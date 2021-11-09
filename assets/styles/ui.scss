@@ -1,0 +1,341 @@
+ul, ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+li {
+  list-style: none;
+}
+p {
+  margin-bottom: 20px;
+}
+a {
+  color: $link;
+  text-decoration: none;
+
+  &:hover {
+    color: $link_hover;
+    text-decoration: none;
+  }
+}
+img {
+  max-width: 100%;
+  height: auto;
+  line-height: 0;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+  font-family: $basefont;
+  font-weight: 600;
+}
+h1, .h1 {
+  @include fz(36);
+  margin-top: 0;
+  margin-bottom: 30px;
+}
+h2, .h2 {
+  @include fz(30);
+}
+
+::-webkit-input-placeholder { color: $font; opacity: 1; transition: opacity 0.3s ease; }
+::-moz-placeholder { color: $font; opacity: 1; transition: opacity 0.3s ease; }
+:-moz-placeholder { color: $font; opacity: 1; transition: opacity 0.3s ease; }
+:-ms-input-placeholder { color: $font; opacity: 1; transition: opacity 0.3s ease; }
+
+:focus::-webkit-input-placeholder { opacity: 0; }
+:focus::-moz-placeholder { opacity: 0; }
+:focus:-moz-placeholder { opacity: 0; }
+:focus:-ms-input-placeholder { opacity: 0; }
+
+.ui {
+  &-centered {
+    text-align: center !important;
+  }
+  &-lefted {
+    text-align: left !important;
+  }
+  &-righted {
+    text-align: right !important;
+  }
+}
+
+.ui-field {
+  padding-bottom: 20px;
+
+  &-submit {
+    padding-top: 10px;
+  }
+  &-error {
+    @include fz(14);
+    padding-top: 6px;
+    color: $invalid !important;
+  }
+}
+.ui-input {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  border: 0;
+  border-bottom: 1px solid $border;
+  height: $input_height;
+  padding: $input_paddings;
+  background: transparent;
+  outline: none;
+  font-family: $basefont;
+  @include fz(14);
+  font-weight: 400;
+
+  &:hover {
+    border-color: $input_border_hover;
+  }
+  &:focus {
+    border-color: $input_border_focus;
+  }
+  &.invalid {
+    border-bottom-color: $invalid !important;
+  }
+
+  @media (min-width: 1590px) {
+    @include fz(18);
+  }
+}
+textarea.ui-input {
+  height: auto;
+  padding: 10px 0px;
+  resize: vertical;
+  line-height: $lh;
+  overflow: hidden;
+}
+
+.ui-btn {
+  display: inline-block;
+  vertical-align: middle;
+  height: $btn_height;
+  line-height: $btn_height - $btn_border*2;
+  border: $btn_border;
+  border-radius: 0;
+  padding: $btn_paddings;
+  background-color: $btn_bg;
+  color: $btn_color;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  outline: none;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $btn_bg_hover;
+    color: #FFF;
+  }
+  &:active {
+    background-color: $btn_bg_active;
+  }
+
+  &:disabled,
+  &.dasbled {
+    cursor: not-allowed;
+    background: #000;
+    background-color: lighten($btn_bg, 20%) !important;
+  }
+}
+
+.ui-file {
+  display: inline-block;
+  margin-right: 20px;
+  margin-bottom: 8px;
+  font-weight: 600;
+  position: relative;
+  padding-right: 24px;
+
+  &-name {
+    margin-right: 5px;
+  }
+  &-delete {
+    position: absolute;
+    right: 0px;
+    top: 2px;
+    width: 18px;
+    height: 18px;
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      left: 3px;
+      right: 3px;
+      top: 50%;
+      margin-top: -1px;
+      height: 2px;
+      background: #CDCDD2;
+      border-radius: 1px;
+    }
+    &:before {
+      transform: rotate(45deg);
+    }
+    &:after {
+      transform: rotate(-45deg);
+    }
+    &:hover {
+      &:before,
+      &:after {
+        background: $font;
+      }
+    }
+  }
+}
+
+.ui-card {
+  position: relative;
+  border: 18px solid #f5f5f5;
+  border-bottom-width: 0;
+  background: #f5f5f5;
+  border-radius: 5px;
+  overflow: hidden;
+  
+  & + & {
+    margin-top: 30px;
+  }
+
+  img {
+    display: block;
+  }
+  &-bordered {
+    border-bottom-width: 18px;
+  }
+  &-inner {
+    overflow: hidden;
+    max-height: 100%;
+    border-radius: 5px;
+  }
+  &-high {
+    height: 50vh;
+  }
+  &-shadow {
+    box-shadow:
+      0px 288.328px 129.077px rgba(0, 0, 0, 0.04),
+      0px 164.975px 73.8551px rgba(0, 0, 0, 0.03),
+      0px 100.139px 44.8295px rgba(0, 0, 0, 0.04),
+      0px 60.3379px 27.0117px rgba(0, 0, 0, 0.02),
+      0px 33.6001px 15.0419px rgba(0, 0, 0, 0.02);
+  }
+  &-blue {
+    border-color: #CDE7FF;
+    background: #CDE7FF;
+  }
+  &-black {
+    border-color: #010A1E;
+    background: #010A1E;
+  }
+  &-sea {
+    border-color: #347A74;
+    background: #347A74;
+  }
+  &-purple {
+    border-color: #F6EEFE;
+    background: #F6EEFE;
+  }
+  &-darkblue {
+    border-color: #BDD4E9;
+    background: #BDD4E9;
+  }
+  &-ingrid {
+    border-color: #3A4760;
+    background: #3A4760;
+  }
+  &-darkgray {
+    border-color: #BDD4E9;
+    background: #BDD4E9;
+  }
+  &-lightyellow {
+    border-color: #F8ECDD;
+    background: #F8ECDD;
+  }
+  &-lightgreen {
+    border-color: #E0EEEC;
+    background: #E0EEEC;
+  }
+  &-magenta {
+    border-color: #F0EEFA;
+    background: #F0EEFA;
+  }
+  &-nightforest {
+    border-color: #262C38;
+    background: #262C38;
+  }
+  &-night {
+    border-color: #242B4B;
+    background: #242B4B;
+  }
+
+  @media (max-width: 768px) {
+    border-width: 14px;
+    border-bottom-width: 0px;
+
+    &-bordered {
+      border-bottom-width: 14px;
+    }
+
+    & + & {
+      margin-top: 16px;
+    }
+  }
+  @media (max-width: 480px) {
+    border-width: 11px;
+    border-bottom-width: 0px;
+
+    &-bordered {
+      border-bottom-width: 11px;
+    }
+  }
+}
+
+.ui-title {
+  margin: 0 auto 65px;
+  text-align: center;
+  line-height: 1.25;
+  @include fz(50);
+  font-weight: 400;
+  max-width: 980px;
+
+  &-mini {
+    @include fz(30);
+  }
+
+  @media (min-width: 1590px) {
+    @include fz(60);
+  }
+
+  @media (max-width:992px) {
+    @include fz(35);
+    margin-bottom: 50px;
+
+    &-mini {
+      @include fz(25);
+    }
+  }
+  @media (max-width: 576px) {
+    @include fz(30);
+    margin-bottom: 35px;
+
+    &-mini {
+      @include fz(20);
+    }
+  }
+}
+.ui-aftertitle {
+  color: $font_gray;
+  @include fz(14);
+  font-weight: 500;
+  
+  @media (min-width: 1590px) {
+    @include fz(18);
+  }
+  @media (max-width: 576px) {
+    @include fz(12);
+  }
+}
+.swiper-visible {
+  overflow: visible !important;
+}
