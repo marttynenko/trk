@@ -17,9 +17,21 @@
   padding-left: $gutter;
   padding-right: $gutter;
 
-	@media (max-width: 533px) {
+	@media (max-width: 576px) {
 		padding-left: 15px;
 		padding-right: 15px;
+	}
+
+	&-wide {
+		max-width: 1750px;
+		margin: 0 auto;
+		padding-left: 35px;
+		padding-right: 35px;
+
+		@media (max-width: 576px) {
+			padding-left: 15px;
+			padding-right: 15px;
+		}
 	}
 }
 .row {

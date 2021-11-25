@@ -42,7 +42,7 @@
     }
 
     &-langs {
-      margin-right: 0;
+      margin-right: 0 !important;
 
       &-current {
         height: 24px;
@@ -75,6 +75,12 @@
         min-width: 100%;
         background: $black;
       }
+    }
+  }
+
+  @media (max-width: 1360px) {
+    &-action {
+      margin-right: 12px;
     }
   }
 }

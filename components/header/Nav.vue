@@ -30,10 +30,13 @@ export default {
 
 <style lang="scss">
 .main-nav {
+  white-space: nowrap;
+  overflow: hidden;
+  
   li {
     display: inline-block;
     vertical-align: middle;
-    margin-right: 25px;
+    // margin-right: 25px;
   }
   a {
     display: block;
@@ -53,6 +56,24 @@ export default {
     &.active {
       background: $primary;
       color: #FFF;
+    }
+  }
+
+  @media (max-width: 1660px) {
+    li {
+      margin-right: 20px;
+    }
+    a {
+      padding: 0px 6px;
+    }
+  }
+
+  @media (max-width: 1360px) {
+    li {
+      margin-right: 15px;
+    }
+    a {
+      @include fz(13);
     }
   }
 }

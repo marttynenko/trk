@@ -23,12 +23,36 @@ export default {
 
   &-icon {
     margin-right: 10px;
+    flex: 0 0 80px;
+    max-width: 80px;
   }
   &-txt {
     max-width: 175px;
   }
   &:hover {
     color: $font;
+  }
+
+  @media (max-width: 1360px) {
+    @include fz(14);
+
+    &-icon {
+      flex: 0 0 65px;
+      max-width: 65px;
+    }
+    &-txt {
+      max-width: 150px;
+    }
+  }
+
+  @media (max-width: 1240px) {
+    &-icon {
+      margin-right: 0;
+    }
+    
+    &-txt {
+      display: none;
+    }
   }
 }
 </style>
