@@ -10,8 +10,8 @@ $fontsize: 18;
 $lh: 1.42;
 
 $primary: #EB9139;
-$primary_hover: darken($primary, 5%);
-$primary_active: darken($primary, 10%);
+$primary_hover: lighten($primary,8%);
+$primary_active: #FDB46D;
 
 $black: #222;
 
@@ -41,13 +41,13 @@ $input_height: 40px;
 $input_paddings: 0px;
 
 //btns
-$btn_height: 60px;
+$btn_height: 33px;
 $btn_border: 0;
-$btn_paddings: 0px 50px;
+$btn_paddings: 0px 20px;
 $btn_color: #FFF;
-$btn_bg: $red;
-$btn_bg_hover: $red_hover;
-$btn_bg_active: $red_active;
+$btn_bg: $primary;
+$btn_bg_hover: $primary_hover;
+$btn_bg_active: $primary_active;
 
 
 
@@ -57,10 +57,10 @@ $link_hover: $primary_hover;
 
 
 //layout
-$inner: 1250;
+$inner: 1390;
 $gutter: 35px;
 $col_gutter: 15px;
-$breakpoints: ("xl":1590,"lg":$inner,"md":993,"sm":769,"xs":576,"us":400);
+$breakpoints: ("xl":1390,"lg":1200,"md":993,"sm":769,"xs":576,"us":400);
 
 
 @mixin fz($f_size) {

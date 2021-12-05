@@ -67,35 +67,35 @@
 
     &-youtube {
       background-color: #C4302B;
-      background-image: url(~/assets/images/subscribe/youtube.svg);
+      background-image: url(~/assets/images/subscribe/youtube.svg?inline);
       background-size: 46px;
     }
     &-telegram {
       background-color: #0088CC;
-      background-image: url(~/assets/images/subscribe/telegram.svg);
+      background-image: url(~/assets/images/subscribe/telegram.svg?inline);
       background-size: auto 42px;
     }
     &-instagram {
       background-color: #a32fd3;
-      background-image: url(~/assets/images/subscribe/instagram.svg);
+      background-image: url(~/assets/images/subscribe/instagram.svg?inline);
       background-size: 54px;
     }
     &-vk {
       background-color: #597DA3;
-      background-image: url(~/assets/images/subscribe/vk.svg);
+      background-image: url(~/assets/images/subscribe/vk.svg?inline);
       background-size: auto 35px;
     }
     &-facebook {
       background-color: #3B5998;
-      background-image: url(~/assets/images/subscribe/facebook.svg);
+      background-image: url(~/assets/images/subscribe/facebook.svg?inline);
     }
     &-odnoklassniki {
       background-color: #ED812B;
-      background-image: url(~/assets/images/subscribe/odnoklassniki.svg);
+      background-image: url(~/assets/images/subscribe/odnoklassniki.svg?inline);
     }
     &-tiktok {
       background-color: #0E0E0E;
-      background-image: url(~/assets/images/subscribe/tiktok.svg);
+      background-image: url(~/assets/images/subscribe/tiktok.svg?inline);
     }
   }
 
@@ -107,6 +107,10 @@
 
     &-link {
       background-size: auto 35px;
+
+      &-vk {
+        background-size: auto 28px;
+      }
     }
   }
 
@@ -136,6 +140,31 @@
 
       &-instagram {
         background-size: 38px;
+      }
+    }
+  }
+
+  @media (max-width: 420px) {
+    &-list {
+      margin-right: -2px;
+      margin-left: -2px;
+    }
+
+    &-col {
+      padding-left: 2px;
+      padding-right: 2px;
+    }
+
+    &-link {
+      height: 42px;
+      background-size: auto 18px;
+
+      &-vk {
+        background-size: auto 17px;
+      }
+
+      &-instagram {
+        background-size: 25px;
       }
     }
   }

@@ -1,10 +1,10 @@
 <template>
-  <a href="/" class="logo">
+  <NuxtLink to="/" class="logo">
     <div class="logo-icon">
-      <img src="images/Logo.png" alt="Телерадиокомпания Гомель">
+      <img src="/images/Logo.png" alt="Телерадиокомпания Гомель">
     </div>
     <div class="logo-txt">Телерадиокомпания «Гомель»</div>
-  </a>
+  </NuxtLink>
 </template>
 
 <script>
@@ -45,7 +45,17 @@ export default {
     }
   }
 
-  @media (max-width: 1240px) {
+  @media (max-width: 1240px) and (min-width: 992px) {
+    &-icon {
+      margin-right: 0;
+    }
+    
+    &-txt {
+      display: none;
+    }
+  }
+
+  @media (max-width: 450px) {
     &-icon {
       margin-right: 0;
     }

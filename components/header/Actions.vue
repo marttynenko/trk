@@ -30,14 +30,14 @@
     &-search {
       width: 18px;
       height: 18px;
-      background: url(@/assets/images/glass.svg) center no-repeat;
+      background: url(@/assets/images/glass.svg?inline) center no-repeat;
       background-size: 14px;
     }
 
     &-eye {
       width: 18px;
       height: 18px;
-      background: url(@/assets/images/eye.svg) center no-repeat;
+      background: url(@/assets/images/eye.svg?inline) center no-repeat;
       background-size: contain;
     }
 
@@ -62,7 +62,7 @@
           margin-top: -4px;
           width: 8px;
           height: 8px;
-          background: url(@/assets/images/toggler.svg) center no-repeat;
+          background: url(@/assets/images/toggler.svg?inline) center no-repeat;
           background-size: contain;
         }
       }

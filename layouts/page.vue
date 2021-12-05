@@ -9,7 +9,7 @@
             <Nuxt />
           </div>
           <div class="col-md-3">
-            <Sidebar />
+            <Aside />
           </div>
         </div>
       </div>
@@ -22,13 +22,13 @@
 <script>
 import Header from '~/components/header/Header.vue'
 import Footer from '~/components/footer/Footer.vue'
-import Sidebar from '~/components/sidebar.vue'
+import Aside from '~/components/Aside.vue'
 
 export default {
   name: 'page',
 
   components: {
-    Header, Footer, Sidebar
+    Header, Footer, Aside
   }
 }
 </script>

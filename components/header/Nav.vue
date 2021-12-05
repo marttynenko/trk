@@ -5,7 +5,7 @@
         v-for="item in menu"
         :key="item.title"
       >
-        <a :href="item.url" :class="{active: item.isActive}">{{item.title}}</a>
+        <NuxtLink :to="item.url">{{item.title}}</NuxtLink>
       </li>
     </ul>
   </nav>
@@ -16,8 +16,8 @@ export default {
   data() {
     return {
       menu: [
-        {url: '#', title: 'Новости', isActive: true},
-        {url: '#', title: 'Спецпроекты', isActive: false},
+        {url: '/news', title: 'Новости', isActive: true},
+        {url: '/shows', title: 'Спецпроекты', isActive: false},
         {url: '#', title: 'Телепрограмма', isActive: false},
         {url: '#', title: 'Подкасты', isActive: false},
         {url: '#', title: 'Реклама и услуги', isActive: false},
@@ -53,7 +53,8 @@ export default {
       color: $primary;
     }
 
-    &.active {
+    &.active,
+    &.nuxt-link-active {
       background: $primary;
       color: #FFF;
     }
@@ -74,6 +75,25 @@ export default {
     }
     a {
       @include fz(13);
+    }
+  }
+
+  @media (max-width: 992px) {
+    li {
+      display: block;
+    }
+    a {
+      height: auto;
+      line-height: $lh;
+      padding: 10px 0px;
+      color: #FFF;
+
+      &.active,
+      &.nuxt-link-active {
+        background: transparent;
+        color: $primary;
+        font-weight: 700;
+      }
     }
   }
 }

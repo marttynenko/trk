@@ -1,3 +1,6 @@
+import config from './config'
+
+
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -25,6 +28,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
+    { src: '~plugins/nuxt-video-player-plugin.js', ssr: false }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -39,7 +43,9 @@ export default {
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
-    '@nuxt/image'
+    '@nuxt/image',
+    'nuxt-svg-loader',
+    'vue-social-sharing/nuxt'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -55,5 +61,34 @@ export default {
 
   router: {
     middleware: ['class']
+  },
+
+  image: {
+    provider: 'api',
+    api: {
+      baseURL: config.APIserver
+    },
+    presets: {
+      postCard: {
+        modifiers: {
+          format: 'webp',
+          quality: 85,
+          width: 290,
+          height: 195
+        }
+      }
+    }
+  },
+
+  svgLoader: {
+    svgoConfig: {
+      plugins: [
+        {
+          addClassesToSVGElement: {
+            className: "svg-inline"
+          }
+        }
+      ]
+    }
   }
 }

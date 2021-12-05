@@ -1,29 +1,43 @@
 <template>
-  <div class="header-bottom" v-if="news">
-    <div class="header-inner">
+  <div class="header-bottom" 
+    v-if="posts && posts.length"
+  >
+    <div class="inner-wide">
       <div class="news-line">
-        <div class="news-line-item"
-          v-for="item in news"
-          :key="item.url"
-        >
-          <a :href="item.url" class="news-line-item-link">{{item.title}}</a>
-        </div>
+        <marquee behavior="altemate" loop="infinite">
+          <div class="news-line-item"
+            v-for="post in posts"
+            :key="post.ID"
+          >
+            <NuxtLink :to="'/news/'+post.CODE" class="news-line-item-link">{{post.NAME}}</NuxtLink>
+          </div>
+        </marquee>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {mapGetters} from 'vuex'
+
 export default {
   name: "Newsline",
+
+  async fetch() {
+    await this.$store.dispatch('newsline/fetchPosts')
+  },
+
+  computed: {
+    ...mapGetters({posts: 'newsline/getPosts'})
+  },
 
   data () {
     return {
       news: [
         {title: 'В Токио началась церемония открытия Олимпийских игр', url: '#'},
-        {title: 'Итоги Олимпиады за 26 июля: три золота Беларуси', url: '#'},
-        {title: 'Депутаты Ливана одобрили кандидатуру Микати на должность премьера', url: '#'},
-        {title: 'Первый день токийских игр завершился сразу несколькими сенсациями', url: '#'},
+        {title: 'Итоги Олимпиады за 26 июля: три золота Беларуси', url: '#2'},
+        {title: 'Депутаты Ливана одобрили кандидатуру Микати на должность премьера', url: '#3'},
+        {title: 'Первый день токийских игр завершился сразу несколькими сенсациями', url: '#4'},
       ]
     }
   }
@@ -34,6 +48,7 @@ export default {
 <style lang="scss">
 .news-line {
   white-space: nowrap;
+  line-height: 0;
 
   &-item {
     position: relative;
@@ -54,7 +69,7 @@ export default {
       left: 0;
       top: 50%;
       margin-top: -9px;
-      background: url(~/assets/images/lightning.svg) center no-repeat;
+      background: url(~/assets/images/lightning.svg?inline) center no-repeat;
       background-size: 13px;
       width: 13px;
       height: 18px;

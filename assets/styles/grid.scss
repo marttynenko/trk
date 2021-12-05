@@ -103,20 +103,27 @@ $reverseBreakpoints: reverse($breakpoints);
     //     max-width: ($screen + px);
     //   }
     // }
-		@if ($name == 'xl') {
-			.inner, .container {
-				max-width: 1920px;
-				padding-left: Min(200px, 10%);
-				padding-right: Min(200px, 10%);
-			}
-		}
-		@if ($name == 'md' or $name == "lg") {
+	
+		@if ($name == "lg") {
 			.inner, .container {
 				max-width: ($screen + px);
 			}
 		}
   }
 }
+
+@media (min-width: 1200px) {
+	.col-layout-content {
+		flex: 0 0 calc(100% - 390px);
+		max-width: calc(100% - 390px);
+		padding-right: 50px;
+	}
+	.col-layout-aside {
+		flex: 0 0 390px;
+		max-width: 390px;
+	}
+}
+
 
 .flex,
 %flex {

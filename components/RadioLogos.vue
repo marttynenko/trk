@@ -1,13 +1,13 @@
 <template>
   <div class="radios-list">
     <a href="#" class="radios-item">
-      <img src="images/Radio1.png" alt="радио 1">
+      <img src="/images/Radio1.png" alt="радио 1">
     </a>
     <a href="#" class="radios-item">
-      <img src="images/Radio2.png" alt="радио 2">
+      <img src="/images/Radio2.png" alt="радио 2">
     </a>
     <a href="#" class="radios-item">
-      <img src="images/Radio3.png" alt="радио 3">
+      <img src="/images/Radio3.png" alt="радио 3">
     </a>
   </div>
 </template>

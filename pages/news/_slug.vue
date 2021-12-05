@@ -1,0 +1,66 @@
+<template>
+  <div class="inner">
+    <div class="row">
+      <div class="col-layout-content col-md-8">
+        <div class="ui-breadcrumbs">
+          <nuxt-link to="/" class="ui-breadcrumbs-link">Главная</nuxt-link>
+          <nuxt-link to="/news" class="ui-breadcrumbs-link">Новости</nuxt-link>
+          <span class="ui-breadcrumbs-current">Название новости</span>
+        </div>
+
+        <PostSubscribe />
+      </div><!--.col-12-->
+
+      <main class="col-layout-content col-md-8">
+        <Post :post="post" />
+        <Sharing :sharingData="sharingData"/>
+      </main>
+
+      <div class="col-layout-aside col-md-4">
+        <Aside />
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import Aside from '~/components/Aside.vue'
+import Post from '~/components/news/Post.vue'
+import PostSubscribe from '~/components/PostSubscribe.vue'
+import Sharing from '~/components/Sharing.vue'
+import {mapActions, mapGetters} from 'vuex'
+
+
+export default {
+  components: {
+    Aside, Post, PostSubscribe, Sharing
+  },
+
+  async asyncData({store, params}) {
+    // console.log(params.slug)
+    await store.dispatch('post/fetchPost', params.slug)
+  },
+
+  computed: {
+    ...mapGetters({post: 'post/post'})
+  },
+
+  methods: {
+    ...mapActions({fetchPost: 'post/fetchPost'})
+  },
+
+  data() {
+    return {
+      sharingData: {
+        url: '',
+        title: ''
+      }
+    }
+  },
+
+  mounted() {
+    this.sharingData.url = window.location.href
+    this.sharingData.title = this.post.NAME
+  }
+}
+</script>

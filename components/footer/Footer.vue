@@ -7,7 +7,7 @@
         <div class="row">
           <div class="col-footer-logo">
             <div class="footer-logo-rights">
-              <div class="footer-logo"><a href=""><img src="images/logo-footer.png" alt="Телерадиокомпания Гомель"></a></div>
+              <div class="footer-logo"><NuxtLink to="/"><img src="/images/logo-footer.png" alt="Телерадиокомпания Гомель"></NuxtLink></div>
 
               <div class="footer-copyrights">«Телерадиокомпания «Гомель». © 2021 Все права защищены.</div>
             </div>
@@ -46,13 +46,13 @@
           <div class="col-footer-map">
             <div class="footer-map">
               <a href="#">
-                <img src="images/footer-map.jpeg" alt="мы на карте">
+                <img src="/images/footer-map.jpeg" alt="мы на карте">
               </a>
             </div>
 
             <div class="footer-develop">
               <div class="footer-develop-what">Верстка и программирование:</div>
-              <a href="#" class="footer-develop-link" target="_blank">Farba Studio</a>
+              <a href="//www.farba-studio.com/ru/" class="footer-develop-link" target="_blank">Farba Studio</a>
             </div>
           </div>
 
@@ -137,7 +137,7 @@ footer.footer {
 
   &-adres {
     padding-left: 30px;
-    background: url(~/assets/images/icons/pin.svg) left 0px no-repeat;
+    background: url(~/assets/images/icons/pin.svg?inline) left 0px no-repeat;
     background-size: 20px;
   }
 
@@ -147,13 +147,13 @@ footer.footer {
   }
 
   &-phones {
-    background: url(~/assets/images/icons/phone.svg) left 0px no-repeat;
+    background: url(~/assets/images/icons/phone.svg?inline) left 0px no-repeat;
     background-size: 20px;
     margin-bottom: 10px;
   }
 
   &-mail {
-    background: url(~/assets/images/icons/mail.svg) left 2px no-repeat;
+    background: url(~/assets/images/icons/mail.svg?inline) left 2px no-repeat;
     background-size: 20px;
     margin-bottom: 10px;
   }
@@ -182,7 +182,7 @@ footer.footer {
         top: -6px;
         width: 16px;
         height: 24px;
-        background: url(~/assets/images/icons/farba.png) center no-repeat;
+        background: url(~/assets/images/icons/farba.png?inline) center no-repeat;
         background-size: contain;
       }
     }
