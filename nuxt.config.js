@@ -28,7 +28,9 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~plugins/nuxt-video-player-plugin.js', ssr: false }
+    // { src: '~plugins/nuxt-video-player-plugin.js', ssr: false }
+    {src: '@/plugins/swiper', mode: 'client'},
+    { src: '@/plugins/vue-plyr', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -40,12 +42,15 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/style-resources',
     '@nuxt/image',
     'nuxt-svg-loader',
-    'vue-social-sharing/nuxt'
+    'vue-social-sharing/nuxt',
+    ['nuxt-gmaps', {
+      key: 'AIzaSyDw-OnFKGZhozQ5RblsdK7ogE5PLJtS5pI',
+    }],
+    '@nuxtjs/i18n'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -90,5 +95,23 @@ export default {
         }
       ]
     }
+  },
+
+  i18n: {
+    locales: [
+      {
+        code: 'ru',
+        name: 'Рус'
+      },
+      {
+        code: 'by',
+        name: 'Бел'
+      },
+    ],
+    defaultLocale: 'ru',
+    vueI18n: {
+      fallbackLocale: 'ru',
+    },
+    vueI18nLoader: true
   }
 }

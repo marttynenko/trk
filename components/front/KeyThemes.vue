@@ -1,12 +1,15 @@
 <template>
   <div class="key-themes">
-    <div class="key-themes-label">Ключевые темы:</div>
+    <NuxtLink 
+      class="key-themes-label"
+      :to="localePath('/news/keythemes/')"
+    >{{$t('title')}}:</NuxtLink>
     <div class="key-themes-links">
       <NuxtLink 
         class="key-themes-link"
         v-for="link in links"
         :key="link.ID"
-        :to="'/news/keythemes/'+link.CODE"
+        :to="localePath('/news/keythemes/'+link.CODE)"
       >{{link.NAME}}</NuxtLink>
     </div>
   </div>
@@ -53,3 +56,14 @@ export default {
   }
 }
 </style>
+
+<i18n>
+{
+  "ru": {
+    "title":"Ключевые темы"
+  },
+  "by": {
+    "title":"Ключавыя тэмы"
+  }
+}
+</i18n>

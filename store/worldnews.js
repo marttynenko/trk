@@ -37,7 +37,12 @@ export const mutations = {
 
 export const actions = {
   async fetchPosts ({ commit}) {
-    const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=2&sort=active_from:desc&fields=id,name,active_from,code,photo&limit=6`)
-    commit('updatePosts', news)
+    try {
+      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=2&sort=active_from:desc&fields=id,name,active_from,code,photo&limit=6`)
+      commit('updatePosts', news)
+    } catch (e) {
+      console.log(e)
+    }
+    
   }
 }

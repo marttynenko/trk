@@ -6,7 +6,7 @@
       <a href="#" class="front-editions-btn ui-btn">Подписаться</a>
     </div>
 
-    <div class="front-editions-body">
+    <div class="front-editions-body" v-if="posts && posts.length">
       <VueSlickCarousel 
         v-bind="slickOptions"
       >

@@ -1,6 +1,6 @@
 <template>
   <div class="actual-carousel"
-    v-if="posts.length"
+    v-if="posts && posts.length"
   >
     <div class="inner-wide">
       <div class="actual-carousel-label">Актуальное</div>
@@ -10,6 +10,7 @@
         :arrows="false"
         :infinite="false"
         :lazyLoad="'ondemand'"
+        :adaptiveHeight="true"
       >
         <div class="actual-carousel-slide"
           v-for="post in posts"

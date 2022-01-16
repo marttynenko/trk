@@ -1,14 +1,14 @@
 <template>
   <div class="post-card" :data-id="post.ID">
     <div class="post-card-img">
-      <NuxtLink :to="post.URL">
+      <NuxtLink :to="localePath(post.URL)">
         <img :src="post.IMG" :alt="post.NAME" loading="lazy">
         <!-- <nuxt-img :src="post.IMG" preset="postCard" :alt="post.title"/> -->
       </NuxtLink>
     </div>
 
     <div class="post-card-body">
-      <div class="post-card-title"><NuxtLink :to="post.URL">{{post.NAME}}</NuxtLink></div>
+      <div class="post-card-title"><NuxtLink :to="localePath(post.URL)">{{post.NAME}}</NuxtLink></div>
       <div class="post-card-descr"
         v-if="post.DETAIL_TEXT.length"
       >{{post.DETAIL_TEXT}}</div>

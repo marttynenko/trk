@@ -14,6 +14,8 @@
       <main class="col-layout-content col-md-8">
         <Post :post="post" />
         <Sharing :sharingData="sharingData"/>
+        <hr class="ui-hr"/>
+        <MoreNewsCarousel />
       </main>
 
       <div class="col-layout-aside col-md-4">
@@ -28,16 +30,20 @@ import Aside from '~/components/Aside.vue'
 import Post from '~/components/news/Post.vue'
 import PostSubscribe from '~/components/PostSubscribe.vue'
 import Sharing from '~/components/Sharing.vue'
+import MoreNewsCarousel from '~/components/news/MoreNewsCarousel.vue'
 import {mapActions, mapGetters} from 'vuex'
 
 
 export default {
   components: {
-    Aside, Post, PostSubscribe, Sharing
+    Aside,
+    Post,
+    PostSubscribe,
+    Sharing,
+    MoreNewsCarousel
   },
 
   async asyncData({store, params}) {
-    // console.log(params.slug)
     await store.dispatch('post/fetchPost', params.slug)
   },
 

@@ -9,18 +9,37 @@
             <div class="footer-logo-rights">
               <div class="footer-logo"><NuxtLink to="/"><img src="/images/logo-footer.png" alt="Телерадиокомпания Гомель"></NuxtLink></div>
 
-              <div class="footer-copyrights">«Телерадиокомпания «Гомель». © 2021 Все права защищены.</div>
+              <div class="footer-copyrights">{{$t('name')}}</div>
             </div>
           </div>
 
           <div class="col-footer-menu">
             <ul class="footer-menu">
-              <li><a href="#">О нас</a></li>
-              <li><a href="#">Спецпроекты</a></li>
-              <li><a href="#">Реклама и услуги</a></li>
-              <li><a href="#">Подкасты</a></li>
-              <li><a href="#">Телепрограмма</a></li>
-              <li><a href="#">Новости</a></li>
+              <!-- <li><nuxt-link to="/about">О нас</nuxt-link></li>
+              <li><nuxt-link to="/keythemes">Спецпроекты</nuxt-link></li>
+              <li><nuxt-link to="/reklama">Реклама и услуги</nuxt-link></li>
+              <li><nuxt-link to="/podcasts">Подкасты</nuxt-link></li>
+              <li><nuxt-link to="/schedule">Телепрограмма</nuxt-link></li>
+              <li><nuxt-link to="/news">Новости</nuxt-link></li> -->
+              <li>
+                <NuxtLink :to="localePath('/about')">{{$t('about')}}</NuxtLink>
+              </li>
+              <li>
+                <NuxtLink :to="localePath('/shows')">{{$t('specials')}}</NuxtLink>
+              </li>
+              
+              <li>
+                <NuxtLink :to="localePath('/reklama')">{{$t('reklama')}}</NuxtLink>
+              </li>
+              <li>
+                <NuxtLink :to="localePath('/podcasts')">{{$t('podcasts')}}</NuxtLink>
+              </li>
+              <li>
+                <NuxtLink :to="localePath('/schedule')">{{$t('tv')}}</NuxtLink>
+              </li>
+              <li>
+                <NuxtLink :to="localePath('/news')">{{$t('news')}}</NuxtLink>
+              </li>
             </ul>
 
             <div class="footer-radios">
@@ -29,14 +48,12 @@
           </div>
 
           <div class="col-footer-adres">
-            <div class="footer-title">Адрес компании</div>
-            <div class="footer-adres">
-              ул. Пушкина, 8,<br>г.Гомель, 246050,<br> Республика Беларусь.
-            </div>
+            <div class="footer-title">{{$t('adressTitle')}}</div>
+            <div class="footer-adres">{{$t('adress')}}</div>
           </div>
 
           <div class="col-footer-contacts">
-            <div class="footer-title">Контакты</div>
+            <div class="footer-title">{{$t('contactsTitle')}}</div>
             <div class="footer-contacts">
               <div class="footer-phones">(0232) 34-26-78, <br> (0232) 34-27-68 (факс)</div>
               <div class="footer-mail"><a href="mailto:sekretar@tvrgomel.by">sekretar@tvrgomel.by</a></div>
@@ -45,13 +62,13 @@
 
           <div class="col-footer-map">
             <div class="footer-map">
-              <a href="#">
+              <nuxt-link :to="localePath('/about/contacts')">
                 <img src="/images/footer-map.jpeg" alt="мы на карте">
-              </a>
+              </nuxt-link>
             </div>
 
             <div class="footer-develop">
-              <div class="footer-develop-what">Верстка и программирование:</div>
+              <div class="footer-develop-what">{{$t('verstka')}}</div>
               <a href="//www.farba-studio.com/ru/" class="footer-develop-link" target="_blank">Farba Studio</a>
             </div>
           </div>
@@ -61,7 +78,7 @@
     </div><!--.footer-main-->
 
     <div class="footer-coping">
-      <div class="inner-wide">*При любом использовании материалов активная гиперссылка на <nuxt-link to="/">tvrgomel.by</nuxt-link> обязательна. Пользуясь сайтом, вы соглашаетесь с условиями политики конфиденциальности.</div>
+      <div class="inner-wide">{{$t('copy')}}</div>
     </div>
     
   </footer>
@@ -356,3 +373,36 @@ footer.footer {
   }
 }
 </style>
+
+<i18n>
+{
+  "ru": {
+    "name": "Телерадиокомпания «Гомель». © 2021 Все права защищены.",
+    "news": "Новости",
+    "specials": "Спецпроекты",
+    "tv": "Телепрограмма",
+    "podcasts": "Подкасты",
+    "reklama": "Реклама и услуги",
+    "about": "О компании",
+    "adressTitle": "Адресс компании",
+    "adress": "ул. Пушкина, 8, г.Гомель, 246050, Республика Беларусь.",
+    "contactsTitle": "Контакты",
+    "copy": "*При любом использовании материалов активная гиперссылка на tvrgomel.by обязательна. Пользуясь сайтом, вы соглашаетесь с условиями политики конфиденциальности.",
+    "verstka": "Верстка и программирование:"
+  },
+  "by": {
+    "name": "Тэлерадыёкампанія «Гомель». © 2021 Усе правы абаронены.",
+    "news": "Навiны",
+    "specials": "Спецпраекты",
+    "tv": "Праграмма перадач",
+    "podcasts": "Падкасты",
+    "reklama": "Рэклама i паслугi",
+    "about": "Пра нас",
+    "adressTitle": "Адрас кампаніі",
+    "adress": "вул. Пушкіна, 8, г.Гомель, 246050, Рэспубліка Беларусь",
+    "contactsTitle": "Кантакты",
+    "copy": "*Пры любым выкарыстанні матэрыялаў актыўная гіперспасылка на tvrgomel.by абавязковая. Карыстаючыся сайтам, вы пагаджаецеся з умовамі палітыкі прыватнасці.",
+    "verstka": "Вёрстка і праграмаванне:"
+  }
+}
+</i18n>

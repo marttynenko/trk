@@ -1,19 +1,25 @@
 <template>
-  <div class="innner">
-    <div class="row">
-      <div class="col-layout-content col-md-8">
-        <div class="ui-breadcrumbs">
-          <nuxt-link to="/" class="ui-breadcrumbs-link">Главная</nuxt-link>
-          <nuxt-link to="/news" class="ui-breadcrumbs-link">Новости</nuxt-link>
-          <span class="ui-breadcrumbs-current">Название новости</span>
-        </div>
+  <div class="inner">
 
-        <PostSubscribe />
-      </div><!--.col-12-->
+    <div class="ui-breadcrumbs">
+      <nuxt-link :to="localePath('/')" class="ui-breadcrumbs-link">{{$t('main')}}</nuxt-link>
+      <nuxt-link :to="localePath('/news/keythemes')" class="ui-breadcrumbs-link">{{$t('keythemes')}}</nuxt-link>
+    </div>
+
+    <h1 class="page-title"><span class="page-title-gray">Тема: </span>{{currentTheme.NAME}}</h1>
+
+    <div class="row">
 
       <main class="col-layout-content col-md-8">
-        <Post :post="post" />
-        <Sharing :sharingData="sharingData"/>
+        <div class="news-list" ref="newslist">
+          <PostCard v-for="card in posts" :key="card.ID" :post="card"/>
+        </div>
+
+        <div class="ui-pgn">
+          <a href="" class="ui-pgn-btn ui-btn"
+            @click.prevent="toNextPage"
+          >Смотреть больше</a>
+        </div>
       </main>
 
       <div class="col-layout-aside col-md-4">
@@ -25,42 +31,68 @@
 
 <script>
 import Aside from '~/components/Aside.vue'
-import Post from '~/components/news/Post.vue'
-import PostSubscribe from '~/components/PostSubscribe.vue'
-import Sharing from '~/components/Sharing.vue'
+import PostCard from '~/components/news/PostCard.vue'
 import {mapActions, mapGetters} from 'vuex'
 
 
 export default {
   components: {
-    Aside, Post, PostSubscribe, Sharing
+    Aside, PostCard
   },
 
   async asyncData({store, params}) {
-    // console.log(params.slug)
-    await store.dispatch('post/fetchPost', params.slug)
-  },
-
-  computed: {
-    ...mapGetters({post: 'post/post'})
-  },
-
-  methods: {
-    ...mapActions({fetchPost: 'post/fetchPost'})
+    const theme = params.slug
+    // await store.dispatch('keythemes/fetchPosts', {theme: theme, page: 1})
+    await store.dispatch('keythemes/fetchTheme', theme)
+    await store.dispatch('keythemes/fetchPosts', {theme})
+    return {theme}
   },
 
   data() {
     return {
-      sharingData: {
-        url: '',
-        title: ''
-      }
+      currentPage: 1
+    }
+  },
+
+  computed: {
+    ...mapGetters({
+      posts: 'keythemes/getPosts',
+      currentTheme: 'keythemes/getCurrentTheme'
+    })
+  },
+
+  methods: {
+    ...mapActions({fetchPosts: 'keythemes/fetchPosts'}),
+
+    toNextPage() {
+      this.fetchPosts({theme: this.theme, page: ++this.currentPage})
+        .then(()=>{
+          this.$refs.newslist.scrollIntoView({behavior: "smooth"})
+        })
     }
   },
 
   mounted() {
-    this.sharingData.url = window.location.href
-    this.sharingData.title = this.post.NAME
+    // console.log(this.currentTheme)
   }
 }
 </script>
+
+<style lang="scss">
+.news-list {
+  margin-bottom: 50px;
+}
+</style>
+
+<i18n>
+{
+  "ru": {
+    "keythemes":"Ключевые темы",
+    "main":"Главная"
+  },
+  "by": {
+    "keythemes":"Ключавыя тэмы",
+    "main": "Галоўная"
+  }
+}
+</i18n>

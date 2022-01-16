@@ -28,7 +28,10 @@ export const mutations = {
 
 export const actions = {
   async fetchPost ({ commit }, code) {
-    const post = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=2&filter[CODE]=${code}&fields=id,name,active_from,detail_text,preview_text,detail_page_url,video_link,photo`)
+    //get locale iblock id from config
+    const iblockID = config.getIblock(this.$i18n.locale,'news')
+    
+    const post = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[CODE]=${code}&fields=id,name,active_from,detail_text,preview_text,detail_page_url,video_link,photo`)
     commit('buildPost', post)
   }
 }

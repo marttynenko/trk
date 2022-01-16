@@ -46,7 +46,7 @@ export default {
   },
 
   async asyncData({store}) {
-    await store.dispatch('posts/fetchNews')
+    await store.dispatch('posts/fetchNews', {})
   },
 
   data() {
@@ -63,7 +63,7 @@ export default {
     ...mapActions({fetchNews: 'posts/fetchNews'}),
 
     toNextPage() {
-      this.fetchNews(++this.currentPage)
+      this.fetchNews({page: ++this.currentPage})
     }
   },
 }

@@ -1,11 +1,29 @@
 <template>
   <nav class="main-nav">
     <ul>
-      <li
+      <!-- <li
         v-for="item in menu"
         :key="item.title"
       >
-        <NuxtLink :to="item.url">{{item.title}}</NuxtLink>
+        <NuxtLink :to="localePath(item.url)">{{item.title}}</NuxtLink>
+      </li> -->
+      <li>
+        <NuxtLink :to="localePath('/news')">{{$t('news')}}</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink :to="localePath('/shows')">{{$t('specials')}}</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink :to="localePath('/schedule')">{{$t('tv')}}</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink :to="localePath('/podcasts')">{{$t('podcasts')}}</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink :to="localePath('/reklama')">{{$t('reklama')}}</NuxtLink>
+      </li>
+      <li>
+        <NuxtLink :to="localePath('/about')">{{$t('about')}}</NuxtLink>
       </li>
     </ul>
   </nav>
@@ -15,14 +33,14 @@
 export default {
   data() {
     return {
-      menu: [
-        {url: '/news', title: 'Новости', isActive: true},
-        {url: '/shows', title: 'Спецпроекты', isActive: false},
-        {url: '#', title: 'Телепрограмма', isActive: false},
-        {url: '#', title: 'Подкасты', isActive: false},
-        {url: '#', title: 'Реклама и услуги', isActive: false},
-        {url: '#', title: 'О компании', isActive: false},
-      ]
+      // menu: [
+      //   {url: '/news', title: this.$t('news')},
+      //   {url: '/shows', title: this.$t('specials')},
+      //   {url: '/schedule', title: this.$t('tv')},
+      //   {url: '/podcasts', title: this.$t('podcasts')},
+      //   {url: '/reklama', title: this.$t('reklama')},
+      //   {url: '/about', title: this.$t('about')},
+      // ]
     }
   }
 }
@@ -99,3 +117,24 @@ export default {
 }
 
 </style>
+
+<i18n>
+{
+  "ru": {
+    "news": "Новости",
+    "specials": "Спецпроекты",
+    "tv": "Телепрограмма",
+    "podcasts": "Подкасты",
+    "reklama": "Реклама и услуги",
+    "about": "О компании"
+  },
+  "by": {
+    "news": "Навiны",
+    "specials": "Спецпраекты",
+    "tv": "Праграмма перадач",
+    "podcasts": "Падкасты",
+    "reklama": "Рэклама i паслугi",
+    "about": "Пра нас"
+  }
+}
+</i18n>

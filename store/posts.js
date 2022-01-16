@@ -10,6 +10,12 @@ export const getters = {
     return state.posts
   },
 
+  firstPosts(state) {
+    return state.posts.length <= 10
+      ? state.posts
+      : state.posts.slice(0,10)
+  },
+
   currentPage (state) {
     return state.currentPage
   }
@@ -25,8 +31,7 @@ export const mutations = {
       const modifiered = {}
       modifiered.DETAIL_TEXT = el.DETAIL_TEXT.replace(/<\/?[^>]+>/ig, " ").substring(0,220)
 
-      modifiered.VIDEO = el.PROPERTIES.VIDEO_LINK.VALUE
-      modifiered.IMG = el.PROPERTIES.PHOTO.VALUE 
+      modifiered.IMG = (el.PROPERTIES.PHOTO && el.PROPERTIES.PHOTO.VALUE) 
         ? config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
         : '/images/plugs/post-card.jpeg'
 
@@ -48,8 +53,16 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchNews ({ commit}, page = 1) {
-    const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=2&sort=active_from:desc&fields=id,name,active_from,detail_text,preview_text,detail_page_url,video_link,photo&limit=10&page=${page}`)
-    commit('updateList', news)
+  async fetchNews ({ commit }, {page = 1, limit = 10}) {
+    try {
+      //get locale iblock id from config
+      // const iblock = config.iblocks[this.$i18n.locale].news
+      const iblockID = config.getIblock(this.$i18n.locale,'news')
+
+      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=active_from:desc&fields=id,name,active_from,detail_text,detail_page_url,photo&limit=${limit}&page=${page}&clear=Y`)
+      commit('updateList', news)
+    } catch (e) {
+      console.log(e)
+    }
   }
 }

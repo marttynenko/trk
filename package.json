@@ -11,18 +11,22 @@
   "dependencies": {
     "@nuxt/types": "^2.15.8",
     "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/i18n": "^7.2.0",
     "@nuxtjs/style-resources": "^1.2.1",
     "core-js": "^3.15.1",
     "nuxt": "^2.15.7",
-    "videojs-youtube": "^2.6.1",
-    "vue-social-sharing": "^3.0.8",
-    "vue-video-player": "^5.0.2"
+    "nuxt-gmaps": "^1.2.10",
+    "swiper": "^5.4.5",
+    "vue-awesome-swiper": "^4.1.1",
+    "vue-plyr": "^7.0.0",
+    "vue-social-sharing": "^3.0.8"
   },
   "devDependencies": {
     "@nuxt/image": "^0.6.0",
     "node-sass": "^6.0.1",
     "nuxt-svg-loader": "^1.2.0",
     "sass-loader": "^10.1.1",
+    "vee-validate": "^3.4.14",
     "vue-slick-carousel": "^1.0.6",
     "webpack": "^4.46.0"
   }

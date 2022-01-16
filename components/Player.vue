@@ -3,13 +3,9 @@
     v-if="activity"
   >
     <div class="player-close" @click.prevent="toggleActivity">X</div>
-    <div class="player-player">
-      <!-- <div class="video-player-box"
-        v-video-player:myVideoPlayer="playerOptions">
-      >
-      </div> -->
-      <iframe width="700" height="400" :src="`https://www.youtube.com/embed/${source}`" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </div>
+    <vue-plyr ref="plyr" v-if="type === 'video'" :options="videoOptions">
+      <div data-plyr-provider="youtube" :data-plyr-embed-id="source"></div>
+    </vue-plyr>
   </div>
 </template>
 
@@ -19,20 +15,10 @@ import {mapGetters, mapMutations} from 'vuex'
 export default {
   data () {
     return {
-      // component options
-      // playsinline: true,
-      controls: true,
-      
-      // videojs options
-      playerOptions: {
-        // muted: true,
-        // language: 'en',
-        // playbackRates: [0.7, 1.0, 1.5, 2.0],
-        sources: [{
-          type: "video/mp4",
-          src: "https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm"
-        }],
-        // poster: "/static/images/author.jpg",
+      videoOptions: {
+        youtube: {
+          autoplay: 1
+        }
       }
     }
   },
@@ -40,7 +26,8 @@ export default {
   computed: {
     ...mapGetters({
       source: 'player/getSource',
-      activity: 'player/getActivity'
+      activity: 'player/getActivity',
+      type: 'player/getType'
     })
   },
 

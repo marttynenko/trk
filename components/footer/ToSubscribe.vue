@@ -1,7 +1,7 @@
 <template>
   <div class="subscribe">
     <div class="inner-wide">
-      <div class="subscribe-title">Подписаться</div>
+      <div class="subscribe-title">{{$t('sub')}}</div>
       <div class="subscribe-list">
         <div class="subscribe-col">
           <a href="#" class="subscribe-link subscribe-link-youtube" target="_blank"></a>
@@ -64,6 +64,11 @@
     background-repeat: no-repeat;
     background-position: center center;
     background-size: auto 50px;
+    transition: opacity .2s;
+
+    &:hover {
+      opacity: 0.8;
+    }
 
     &-youtube {
       background-color: #C4302B;
@@ -170,3 +175,14 @@
   }
 }
 </style>
+
+<i18n>
+{
+  "ru": {
+    "sub": "Подписаться"
+  },
+  "by": {
+    "sub": "Падпісацца"
+  }
+}
+</i18n>

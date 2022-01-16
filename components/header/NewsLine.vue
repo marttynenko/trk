@@ -9,7 +9,7 @@
             v-for="post in posts"
             :key="post.ID"
           >
-            <NuxtLink :to="'/news/'+post.CODE" class="news-line-item-link">{{post.NAME}}</NuxtLink>
+            <NuxtLink :to="localePath('/news/'+post.CODE)" class="news-line-item-link">{{post.NAME}}</NuxtLink>
           </div>
         </marquee>
       </div>
@@ -29,17 +29,6 @@ export default {
 
   computed: {
     ...mapGetters({posts: 'newsline/getPosts'})
-  },
-
-  data () {
-    return {
-      news: [
-        {title: 'В Токио началась церемония открытия Олимпийских игр', url: '#'},
-        {title: 'Итоги Олимпиады за 26 июля: три золота Беларуси', url: '#2'},
-        {title: 'Депутаты Ливана одобрили кандидатуру Микати на должность премьера', url: '#3'},
-        {title: 'Первый день токийских игр завершился сразу несколькими сенсациями', url: '#4'},
-      ]
-    }
   }
 }
 </script>

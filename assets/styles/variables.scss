@@ -34,11 +34,11 @@ $gray: #7d878f;
 $invalid: #E23939;
 
 //inputs
-$input_border: #EBEBF0;
-$input_border_hover: darken($border,15%);
-$input_border_focus: $font;
-$input_height: 40px;
-$input_paddings: 0px;
+$input_border: #8F8F8F;
+$input_border_hover: darken($input_border,15%);
+$input_border_focus: $primary;
+$input_height: 50px;
+$input_paddings: 0px 20px;
 
 //btns
 $btn_height: 33px;
@@ -60,7 +60,7 @@ $link_hover: $primary_hover;
 $inner: 1390;
 $gutter: 35px;
 $col_gutter: 15px;
-$breakpoints: ("xl":1390,"lg":1200,"md":993,"sm":769,"xs":576,"us":400);
+$breakpoints: ("xl":1390,"lg":1200,"md":993,"sm":769,"xs":576,"us":420);
 
 
 @mixin fz($f_size) {

@@ -3,7 +3,7 @@
     <div class="logo-icon">
       <img src="/images/Logo.png" alt="Телерадиокомпания Гомель">
     </div>
-    <div class="logo-txt">Телерадиокомпания «Гомель»</div>
+    <div class="logo-txt">{{ $t('name') }}</div>
   </NuxtLink>
 </template>
 
@@ -66,3 +66,14 @@ export default {
   }
 }
 </style>
+
+<i18n>
+{
+  "ru": {
+    "name": "Телерадиокомпания «Гомель»"
+  },
+  "by": {
+    "name": "Телерадыекампанiя «Гомель»"
+  }
+}
+</i18n>

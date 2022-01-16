@@ -23,7 +23,9 @@ export const mutations = {
 
 export const actions = {
   async fetchPosts ({ commit}) {
-    const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=2&filter[creeping_line_value]=${encodeURIComponent('Да')}&sort=active_from:desc&fields=id,name,active_from,code&limit=10`)
+    const iblockID = config.getIblock(this.$i18n.locale,'news')
+
+    const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[creeping_line_value]=${encodeURIComponent('Да')}&sort=active_from:desc&fields=id,name,active_from,code&limit=10`)
     commit('updatePosts', news)
   }
 }

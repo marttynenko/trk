@@ -2,7 +2,10 @@
 
 export const state = () => ({
   source: null,
-  activity: false
+  activity: false,
+  // source: 'wHFZjTDC8kU',
+  // activity: true,
+  type: 'video'
 })
 
 export const getters = {
@@ -12,6 +15,10 @@ export const getters = {
 
   getActivity(state) {
     return state.activity
+  },
+
+  getType(state) {
+    return state.type
   }
 }
 
@@ -29,10 +36,3 @@ export const mutations = {
     state.activity = !state.activity
   }
 }
-
-// export const actions = {
-//   async fetchPosts ({ commit}) {
-//     const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=2&filter[news_slider_value]=${encodeURIComponent('Да')}&sort=active_from:desc&fields=id,name,active_from,code&limit=10?clear=Y`)
-//     commit('updatePosts', news)
-//   }
-// }

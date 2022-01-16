@@ -26,7 +26,7 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .podcast-card {
   display: flex;
   margin-bottom: 10px;

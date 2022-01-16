@@ -5,6 +5,8 @@
       <Nuxt />
     </div>
     <Footer />
+    <Panel />
+    <Popups />
     <keep-alive>
       <Player />
     </keep-alive>
@@ -14,11 +16,13 @@
 <script>
 import Header from '~/components/header/Header.vue'
 import Footer from '~/components/footer/Footer.vue'
+import Panel from '~/components/SidePanel.vue'
 import Player from '~/components/Player.vue'
+import Popups from '~/components/popups/Popups.vue'
 
 export default {
   components: {
-    Header, Footer, Player
+    Header, Footer, Player, Panel
   },
 }
 </script>

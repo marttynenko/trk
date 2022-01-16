@@ -22,12 +22,14 @@
             <Radios />
           </div>
 
-          <Actions />
+          <Actions :openHandler="openSearch" />
+          <Search ref="search"/>
 
         </div>
+
+        
       </div>
     </div>
-
     <NewsLine />
 
   </header>
@@ -39,10 +41,13 @@ import Logo from "~/components/header/Logo.vue"
 import Radios from "~/components/RadioLogos.vue"
 import Actions from "~/components/header/Actions.vue"
 import NewsLine from "~/components/header/NewsLine.vue"
+import Search from '~/components/Search.vue'
 
 export default {
   components: {
-    Nav, Logo, Radios, Actions, NewsLine
+    Nav, Logo, Radios, Actions, NewsLine,
+    Search: () => import('~/components/Search.vue'),
+    Search
   },
 
   data() {
@@ -54,6 +59,10 @@ export default {
   methods: {
     toggleMenu() {
       this.isNav = !this.isNav
+    },
+
+    openSearch() {
+      this.$refs.search.open()
     }
   }
 }
@@ -68,6 +77,14 @@ header.header {
   &-top {
     padding-top: 18px;
     padding-bottom: 18px;
+
+    &-flex {
+      position: relative;
+
+      @media (min-width: 992px) {
+        min-height: 58px;
+      }
+    }
   }
 
   &-bottom {

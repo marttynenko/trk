@@ -1,5 +1,7 @@
 <template>
-  <div class="ui-block world-news">
+  <div class="ui-block world-news"
+    v-if="posts && posts.length"
+  >
     <div class="ui-block-header">
       <h4 class="ui-block-header-title">В мире</h4>
       <div class="ui-block-header-btn">

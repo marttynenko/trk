@@ -2,15 +2,15 @@
   <div class="inner">
     
     <div class="ui-breadcrumbs">
-      <nuxt-link to="/" class="ui-breadcrumbs-link">Главная</nuxt-link>
-      <span class="ui-breadcrumbs-current">Новости</span>
+      <nuxt-link to="/" class="ui-breadcrumbs-link">{{$t('main')}}</nuxt-link>
+      <span class="ui-breadcrumbs-current">{{$t('specials')}}</span>
     </div>
 
-    <h1 class="page-title">Спецпроекты</h1>
+    <h1 class="page-title">{{$t('specials')}}</h1>
         
     <div class="shows-list">
       <div class="row">
-        <div class="col-md-8">
+        <!-- <div class="col-md-8">
           <a href="#" class="shows-item">
             <img src="/images/shows/shw-1.png" alt="alt">
           </a>
@@ -35,6 +35,16 @@
           <a href="#" class="shows-item">
             <img src="/images/shows/shw-5.png" alt="alt">
           </a>
+        </div> -->
+
+        <div class="col-md-4 col-xs-6"
+          v-for="item in categories"
+          :key="item.ID"
+        >
+          <NuxtLink :to="localePath('/shows/'+item.CODE)" class="shows-item">
+            <img class="shows-item-img" :src="'http://bitrixvm.farbatest.com'+item.DETAIL_PICTURE.SRC" :alt="item.NAME" loading="lazy">
+            <div class="shows-item-name">{{item.NAME}}</div>
+          </NuxtLink>
         </div>
       </div>
     </div>
@@ -44,6 +54,7 @@
 </template>
 
 <script>
+import {mapGetters, mapActions} from 'vuex'
 
 export default {
 
@@ -53,9 +64,9 @@ export default {
     }
   },
 
-  // async asyncData({store}) {
-  //   await store.dispatch('posts/fetchNews')
-  // },
+  async asyncData({store}) {
+    await store.dispatch('shows/fetchCategories')
+  },
 
   data() {
     return {
@@ -63,17 +74,21 @@ export default {
     }
   },
 
-  // computed: {
-  //   ...mapGetters({allPosts: 'posts/allPosts'})
-  // },
+  computed: {
+    ...mapGetters({categories: 'shows/getCategories'})
+  },
 
   methods: {
-    // ...mapActions({fetchNews: 'posts/fetchNews'}),
+    ...mapActions({fetchCategories: 'shows/fetchCategories'}),
 
-    // toNextPage() {
-    //   this.fetchNews(++this.currentPage)
-    // }
+    toNextPage() {
+      this.fetchCategories(++this.currentPage)
+    }
   },
+
+  mounted () {
+    console.log(this.shows)
+  }
 }
 </script>
 
@@ -95,13 +110,55 @@ export default {
   &-item {
     display: block;
     position: relative;
+    overflow: hidden;
+    background: #444;
+    padding-bottom: 61.5%;
     margin-bottom: 20px;
     line-height: 0;
-    opacity: 0.6;
-    transition: opacity;
+
+    &-img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%,-50%);
+      width: 100%;
+      opacity: 0.6;
+      transition: opacity .2s, transform .2s;
+    }
+    &-name {
+      position: absolute;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      padding: 0px 20px 20px;
+      transform: translate(0,60px);
+      transition: transform .2s;
+      color: #FFF;
+      @include fz(20);
+      font-weight: 600;
+      line-height: $lh;
+      z-index: 1;
+
+      &:before {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: -20px;
+        background: linear-gradient(180deg,rgba(255,255,255,0),#000);
+      }
+    }
 
     &:hover {
-      opacity: 1;
+      .shows-item-img {
+        opacity: 1;
+        transform: translate(-50%,-50%) scale(1.03);
+      }
+      .shows-item-name {
+        transform: translate(0,0px);
+      }
     }
 
     img {
@@ -110,5 +167,17 @@ export default {
     }
   }
 }
-
 </style>
+
+<i18n>
+{
+  "ru": {
+    "main":"Главная",
+    "specials": "Спецпроекты"
+  },
+  "by": {
+    "main": "Галоўная",
+    "specials": "Спецпраекты"
+  }
+}
+</i18n>

@@ -104,7 +104,7 @@ $reverseBreakpoints: reverse($breakpoints);
     //   }
     // }
 	
-		@if ($name == "lg") {
+		@if ($name == "lg" or $name == "xl") {
 			.inner, .container {
 				max-width: ($screen + px);
 			}
