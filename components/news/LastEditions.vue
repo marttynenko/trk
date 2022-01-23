@@ -2,10 +2,10 @@
   <div class="ui-block last-editions"
     v-if="posts && posts.length"
   >
-    <div class="ui-block-title">Последние выпуски новостей</div>
+    <div class="ui-block-title">{{$t('title')}}</div>
 
     <div class="last-editions-header">
-      Смотрите также на <span class="last-editions-header-on"><icon-youtube class="last-editions-header-icon" /> YouTube</span>
+      {{$t('also')}} <span class="last-editions-header-on"><icon-youtube class="last-editions-header-icon" /> YouTube</span>
     </div>
 
     <div class="last-editions-body">
@@ -186,3 +186,20 @@ export default {
 
 }
 </style>
+
+<i18n>
+{
+  "ru": {
+    "title":"Последние выпуски новостей",
+    "btn": "Подписаться",
+    "archieve": "Архив новостей",
+    "also": "Смотрите также на"
+  },
+  "by": {
+    "title":"Апошнія выпускі навін",
+    "btn": "Падпісацца",
+    "archieve": "Архіў навін",
+    "also": "Глядзіце таксама на"
+  }
+}
+</i18n>

@@ -1,5 +1,5 @@
 <template>
-  <NuxtLink to="/" class="logo">
+  <NuxtLink :to="localePath('/')" class="logo">
     <div class="logo-icon">
       <img src="/images/Logo.png" alt="Телерадиокомпания Гомель">
     </div>

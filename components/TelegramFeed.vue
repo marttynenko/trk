@@ -90,5 +90,15 @@
       padding-right: 20px;
     }
   }
+
+  @media (max-width: 576px) {
+    &-body {
+      height: 350px;
+      padding: 20px;
+    }
+    &-body .ui-scroller {
+      max-height: 310px !important;
+    }
+  }
 }
 </style>

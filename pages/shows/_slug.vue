@@ -3,48 +3,49 @@
     <div class="row">
       <div class="col-layout-content col-md-8">
         <div class="ui-breadcrumbs">
-          <nuxt-link to="/" class="ui-breadcrumbs-link">Главная</nuxt-link>
-          <nuxt-link to="/news" class="ui-breadcrumbs-link">Новости</nuxt-link>
-          <span class="ui-breadcrumbs-current">Название новости</span>
+          <nuxt-link :to="localePath('/')" class="ui-breadcrumbs-link">{{$t('main')}}</nuxt-link>
+          <nuxt-link :to="localePath('/shows/')" class="ui-breadcrumbs-link">{{$t('specials')}}</nuxt-link>
         </div>
 
       </div><!--.col-12-->
 
       <main class="col-layout-content col-md-8">
-        <div class="show">
-          <h1 class="show-title">Добрый вечер, Гомель!</h1>
-          <div class="show-image"><img src="//via.placeholder.com/893x280" alt="alt"></div>
-          <div class="h3">О проекте :</div>
-          <p>Программа «Добрый вечер, Гомель!» - это разговор на самые актуальные темы, рассказ о самых ярких событиях из жизни Гомельщины, интересные гости в студии и профессиональная команда известных и любимых телезрителями ведущих телерадиокомпании «Гомель». «Добрый вечер, Гомель!» - это приятная возможность всей семьей провести время у телеэкрана.</p>
-          <p>Смотрите программу со вторника по пятницу на телеканале "Беларусь 4 Гомель" в 20.25.Телефон прямого эфира: 8-0232-34-22-43.А также присоединяйтесь к нам в Viber по телефону +375 33 34 22 430 и в группу </p>
+        <div class="show" :data-id="page.ID">
+          <h1 class="show-title">{{page.NAME}}</h1>
+          <div class="show-image" v-if="page.IMG"><img :src="page.IMG" :alt="page.NAME"></div>
+          <div class="h3">{{$t('about')}}:</div>
+          <div class="show-body" v-html="page.DESCRIPTION"></div>
         </div>
 
         <hr class="ui-hr"/>
 
-        <div class="shows-editions">
-          <div class="h3 shows-editions-title">Все выпуски</div>
+        <div class="shows-editions-wrap" v-if="shows && shows.length">
+          <div class="shows-editions">
+            <div class="h3 shows-editions-title">{{$t('editions')}}</div>
 
-          <div class="row">
-            <div class="col-md-4 col-us-6"
-              v-for="show in shows"
-              :key="show.ID"
-            >
-              <div class="shows-edition">
-                <div class="shows-edition-img ui-video">
-                  <img :src="show.IMG" :alt="show.NAME" loading="lazy">
+            <div class="row" ref="list">
+              <div class="col-md-4 col-us-6"
+                v-for="show in shows"
+                :key="show.ID"
+              >
+                <div class="shows-edition">
+                  <div class="shows-edition-img ui-video" @click.prevent="changeSource(show.VIDEO)">
+                    <img :src="show.IMG" :alt="show.NAME" loading="lazy">
+                  </div>
+
+                  <div class="shows-edition-date">{{show.ACTIVE_FROM}}</div>
+
+                  <div class="show-edition-title">{{show.NAME}}</div>
                 </div>
-
-                <div class="shows-edition-date">{{show.ACTIVE_FROM}}</div>
-
-                <div class="show-edition-title">{{show.NAME}}</div>
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="ui-pgn">
-          <a href="#" class="ui-pgn-btn ui-btn">Смотреть больше</a>
+          <div class="ui-pgn" v-if="isMoreData">
+            <a href="#" class="ui-pgn-btn ui-btn" @click.prevent="toNextPage">Смотреть больше</a>
+          </div>
         </div>
+        
 
       </main>
 
@@ -57,7 +58,7 @@
 
 <script>
 import Aside from '~/components/Aside.vue'
-import {mapActions, mapGetters} from 'vuex'
+import {mapActions, mapGetters, mapMutations} from 'vuex'
 
 
 export default {
@@ -67,23 +68,34 @@ export default {
 
   data () {
     return {
-      shows: [
-        {NAME: 'Накануне выходных. Часть 1| Добрый вечер, Гомель!', ACTIVE_FROM: '19:45 | 19 июля', IMG: '//via.placeholder.com/285x160', id: 123213}
-      ]
+      currentPage: 1,
     }
   },  
 
-  // async asyncData({store, params}) {
-  //   await store.dispatch('post/fetchPost', params.slug)
-  // },
+  async asyncData({store, params}) {
+    await store.dispatch('shows/fetchPage', params.slug)
+  },
 
-  // computed: {
-  //   ...mapGetters({post: 'post/post'})
-  // },
+  computed: {
+    ...mapGetters({
+      page: 'shows/getPage',
+      shows: 'shows/getShows',
+      isMoreData: 'shows/getShowsMoreData'
+    })
+  },
 
-  // methods: {
-  //   ...mapActions({fetchPost: 'post/fetchPost'})
-  // },
+  methods: {
+    ...mapActions({fetchShows: 'shows/fetchShows'}),
+
+    ...mapMutations({changeSource: 'player/changeSource'}),
+
+    toNextPage() {
+      this.fetchShows({category: this.page.ID, page: ++this.currentPage})
+        .then(()=>{
+          this.$refs.list.scrollIntoView({behavior: "smooth"})
+        })
+    }
+  },
 
 
 }
@@ -100,6 +112,24 @@ export default {
 
   &-img {
     margin-bottom: 20px;
+    padding-bottom: 56.25%;
+    position: relative;
+    overflow: hidden;
+    background: #444;
+
+    img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+    }
+
+    &:hover {
+      img {
+        transform: translate(-50%, -50%) scale(1.03);
+      }
+    }
   }
   &-date {
     margin-bottom: 15px;
@@ -108,3 +138,20 @@ export default {
   }
 }
 </style>
+
+<i18n>
+{
+  "ru": {
+    "main":"Главная",
+    "specials": "Спецпроекты",
+    "about": "О проекте",
+    "editions": "Все выпуски"
+  },
+  "by": {
+    "main": "Галоўная",
+    "specials": "Спецпраекты",
+    "about": "Пра праект",
+    "editions": "Усе выпускі"
+  }
+}
+</i18n>

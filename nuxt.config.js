@@ -64,9 +64,9 @@ export default {
   build: {
   },
 
-  router: {
-    middleware: ['class']
-  },
+  // router: {
+  //   middleware: ['class']
+  // },
 
   image: {
     provider: 'api',

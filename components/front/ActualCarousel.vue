@@ -3,7 +3,7 @@
     v-if="posts && posts.length"
   >
     <div class="inner-wide">
-      <div class="actual-carousel-label">Актуальное</div>
+      <div class="actual-carousel-label">{{$t('title')}}</div>
       <VueSlickCarousel
         class="actual-carousel-slick"
         :dots="true"
@@ -18,7 +18,7 @@
         >
           <div class="actual-carousel-item">
             <div class="actual-carousel-item-title">
-              <NuxtLink :to="'/news/'+post.CODE" class="actual-carousel-item-link">{{post.NAME}}</NuxtLink>
+              <NuxtLink :to="localePath('/news/'+post.CODE)" class="actual-carousel-item-link">{{post.NAME}}</NuxtLink>
             </div>
             <div class="actual-carousel-item-date">{{post.ACTIVE_FROM}}</div>
           </div>
@@ -117,9 +117,21 @@ export default {
       margin-bottom: 25px;
 
       &-title {
-        @include fz(32);
+        min-height: 92px;
+        @include fz(26);
       }
     }
   }
 }
 </style>
+
+<i18n>
+{
+  "ru": {
+    "title":"Актуальное"
+  },
+  "by": {
+    "title":"Актуальнае"
+  }
+}
+</i18n>

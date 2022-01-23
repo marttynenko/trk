@@ -2,7 +2,7 @@ import config from '~/config'
 
 export const state = () => ({
   results: [],
-  currentPage: 0
+  resultsMoreData: true
 })
 
 export const getters = {
@@ -10,14 +10,8 @@ export const getters = {
     return state.results
   },
 
-  firstShows(state) {
-    return state.shows.length <= 10
-      ? state.shows
-      : state.shows.slice(0,10)
-  },
-
-  currentPage (state) {
-    return state.currentPage
+  getMoreData(state) {
+    return state.resultsMoreData
   }
 }
 
@@ -27,34 +21,37 @@ export const mutations = {
     for (let key in arr.data) {
       list.unshift(arr.data[key])
     }
-    // const clean = list.map(el => {
-    //   const modifiered = {}
 
-    //   modifiered.VIDEO = el.PROPERTIES.VIDEO_LINK.VALUE
+    const clean = list.map(el => {
+      const modifiered = {}
+      // modifiered.DETAIL_TEXT = el.DETAIL_TEXT.replace(/<\/?[^>]+>/ig, " ").substring(0,220)
+      modifiered.SEARCH_RES = el.BODY.substring(0,220)
 
-    //   const videoChanks = modifiered.VIDEO.split('/')
-    //   const videoID = videoChanks[videoChanks.length - 1]
-    //   modifiered.IMG = `//img.youtube.com/vi/${videoID}/hqdefault.jpg`
+      modifiered.IMG = (el.PICTURE && el.PICTURE.SRC) 
+        ? config.APIserver + el.PICTURE.SRC
+        : '/images/plugs/post-card.jpeg'
 
-    //   modifiered.ACTIVE_FROM = el.ACTIVE_FROM
-    //   modifiered.URL = '/shows/'+el.IBLOCK_SECTION_ID
-    //   modifiered.ID = el.ID
-    //   modifiered.NAME = el.NAME
+      // modifiered.ACTIVE_FROM = el.DATE_FROM
+      modifiered.ACTIVE_FROM = config.dateFormatter(el.DATE_FROM)
+      modifiered.URL = '/news/'+el.CODE
+      modifiered.ID = el.ID
+      modifiered.NAME = el.TITLE.replace(/<\/?[^>]+>/ig, " ").replace(/&quot;/g, '\"')
       
-    //   return modifiered
-    // })
+      return modifiered
+    })
 
-    // state.posts = clean
-    // state.shows = state.shows.concat(clean)
-    // state.shows = list
-    state.results = list
+    state.results = clean
+
+    //определяем есть ли еще данные
+    state.resultsMoreData = config.checkMoreData(arr.nav,10)
   }
 }
 
 export const actions = {
   async fetchResults ({ commit}, {query, page = 1}) {
     try {
-      const data = await this.$axios.$post(`${config.APIserver}/api/search/?q=${encodeURIComponent(query)}&clear=Y&limit=10`)
+      const data = await this.$axios.$post(`${config.APIserver}/api/search/?q=${encodeURIComponent(query)}&clear=Y&limit=10&PAGEN_1=${page}`)
+      
       commit('updateResults', data)
     } catch (e) {
       console.log(e)

@@ -56,7 +56,7 @@
 
     <div class="front-cols">
       <div class="inner-wide">
-        <div class="h1 front-cols-title">Последние выпуски новостей</div>
+        <div class="h1 front-cols-title">{{$t('lastEdsTitle')}}</div>
         <div class="row">
 
           <div class="col-lg-6 col-sm-12">
@@ -220,12 +220,16 @@ export default {
     &-head-right {
       display: none;
     }
+
+    &-head {
+      text-align: left;
+    }
   }
 
   @media (max-width: 576px) {
     &-head {
-      padding-left: 15px;
-      padding-right: 15px;
+      padding: 12px 15px;
+
     }
   }
 }
@@ -297,3 +301,14 @@ export default {
   }
 }
 </style>
+
+<i18n>
+{
+  "ru": {
+    "lastEdsTitle":"Последние выпуски новостей"
+  },
+  "by": {
+    "lastEdsTitle":"Апошнія выпускі навін"
+  }
+}
+</i18n>

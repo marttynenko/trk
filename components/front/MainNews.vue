@@ -1,20 +1,20 @@
 <template>
-  <div class="main-news flex" v-if="post">
+  <div class="main-news flex" v-if="post && post.CODE">
     <div class="main-news-body">
-      <div class="main-news-label">Главное</div>
+      <div class="main-news-label">{{$t('main')}}</div>
       <div class="main-news-title">
-        <NuxtLink :to="'/news/'+post.CODE">{{post.NAME}}</NuxtLink>
+        <NuxtLink :to="localePath('/news/'+post.CODE)">{{post.NAME}}</NuxtLink>
       </div>
       <div class="main-news-preview"
         v-if="post.PREVIEW_TEXT && post.PREVIEW_TEXT.length"
       >{{post.PREVIEW_TEXT}}</div>
       <div class="main-news-btn">
-        <NuxtLink :to="'/news/'+post.CODE" class="ui-btn">Читать</NuxtLink>
+        <NuxtLink :to="localePath('/news/'+post.CODE)" class="ui-btn">{{$t('readbtn')}}</NuxtLink>
       </div>
     </div>
 
     <div class="main-news-img">
-      <NuxtLink :to="'/news/'+post.CODE" class="main-news-img-link">
+      <NuxtLink :to="localePath('/news/'+post.CODE)" class="main-news-img-link">
         <img :src="post.IMG" :alt="post.NAME" loading="lazy">
       </NuxtLink>
     </div>
@@ -33,11 +33,7 @@ export default {
 
   computed: {
     ...mapGetters({post: 'mainnews/getPost'})
-  },
-
-  // mounted() {
-  //   console.log(this.post)
-  // }
+  }
 }
 </script>
 
@@ -151,3 +147,16 @@ export default {
   }
 }
 </style>
+
+<i18n>
+{
+  "ru": {
+    "main":"Главное",
+    "readbtn": "Читать"
+  },
+  "by": {
+    "main": "Галоўнае",
+    "readbtn": "Чытаць"
+  }
+}
+</i18n>

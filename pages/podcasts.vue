@@ -1,20 +1,20 @@
 <template>
   <div class="podcasts-page">
-    <podcast-banner />
+    <podcast-banner v-if="banner" :banner="banner" />
   
     <div class="inner">
       
       <div class="ui-breadcrumbs">
-        <nuxt-link to="/" class="ui-breadcrumbs-link">Главная</nuxt-link>
-        <span class="ui-breadcrumbs-current">Подкасты</span>
+        <nuxt-link :to="localePath('/')" class="ui-breadcrumbs-link">{{$t('main')}}</nuxt-link>
+        <span class="ui-breadcrumbs-current">{{$t('podcastTitle')}}</span>
       </div>
 
-      <h1 class="page-title">Подкасты</h1>
+      <h1 class="page-title">{{$t('podcastTitle')}}</h1>
 
-      <div class="podcasts-list">
-        <div class="row">
+      <div class="podcasts-list" ref="list">
+        <div class="row" v-if="podcasts && podcasts.length">
 
-          <div class="col-lg-3 col-sm-4 col-6"
+          <div class="col-lg-3 col-sm-4 col-us-6"
             v-for="podcast in podcasts"
             :key="podcast.ID"
           >
@@ -22,14 +22,18 @@
           </div>
 
         </div>
+        <div class="podcasts-no-items" v-else>
+          {{$t('noitems')}}
+        </div>
       </div>
 
-      <div class="ui-pgn">
-        <span class="ui-pgn-btn ui-btn">Смотреть больше</span>
+
+      <div class="ui-pgn" v-if="isMoreData">
+        <span class="ui-pgn-btn ui-btn" @click.prevent="toNextPage">{{$t('btn')}}</span>
       </div>
 
       <div class="podcasts-news">
-        <h3 class="page-title">Новости</h3>
+        <h3 class="page-title">{{$t('newsTitle')}}</h3>
         <div class="podcast-news-list">
           <PostCard
             v-for="card in allPosts"
@@ -39,9 +43,8 @@
         </div><!--.list-->
 
         <div class="ui-pgn">
-          <span class="ui-pgn-btn ui-btn"
-            @click.prevent="toNextNewsPage"
-          >Смотреть больше</span>
+          <nuxt-link :to="localePath('/news')" class="ui-pgn-btn ui-btn"
+          >{{$t('btn')}}</nuxt-link>
         </div>
       </div>
         
@@ -51,7 +54,7 @@
 </template>
 
 <script>
-import PodcastBanner from '~/components/podcasts/PodcastBanner.vue'
+// import PodcastBanner from '~/components/podcasts/PodcastBanner.vue'
 import PodcastCard from '~/components/podcasts/PodcastCard.vue'
 import PostCard from '~/components/news/PostCard.vue'
 import { mapGetters, mapActions } from 'vuex'
@@ -62,34 +65,44 @@ export default {
   },
 
   components: {
-    PodcastBanner,
+    PodcastBanner: () => import('~/components/podcasts/PodcastBanner.vue'),
     PodcastCard,
     PostCard
+  },
+
+  async asyncData({store,query}) {
+    const page = query.page ? +query.page : 1
+    await store.dispatch('podcasts/fetchPage',page)
+    await store.dispatch('podcasts/fetchBanner')
   },
 
   data() {
     return {
       currentNewsPage: 1,
-      podcasts: [
-        {NAME: 'Как работает наш мозг', IMG: '//via.placeholder.com/315x315', SRC: '#', ID: '01', THEME: 'Психология на дожде'},
-        {NAME: 'Умный подкаст о глупой музыке', IMG: '//via.placeholder.com/315x315/000/FFF', SRC: '#', ID: '02', THEME: 'Научи меня плохому'}
-      ]
     }
   },
 
   computed: {
     ...mapGetters({
-      allPosts: 'posts/allPosts'
+      allPosts: 'posts/allPosts',
+      podcasts: 'podcasts/getPage',
+      isMoreData: 'podcasts/getPagesMoreData',
+      banner: 'podcasts/getBanner'
     })
   },
 
   methods: {
     ...mapActions({
-      fetchNews: 'posts/fetchNews'
+      fetchNews: 'posts/fetchNews',
+      fetchPodcasts: 'podcasts/fetchPage'
     }),
 
-    toNextNewsPage() {
-      this.fetchNews({page: ++this.currentNewsPage, limit: 5})
+    toNextPage() {
+      this.fetchPodcasts({page: ++this.currentPage})
+        .then(()=>{
+          this.$refs.list.scrollIntoView({behavior: "smooth"})
+          this.$router.push({query: { page: this.currentPage}})
+        })
     }
   },
 
@@ -97,7 +110,6 @@ export default {
     if (!this.allPosts.length) {
       await this.fetchNews({page: 1, limit: 5})
     }
-    
   }
 }
 </script>
@@ -116,3 +128,23 @@ export default {
   }
 }
 </style>
+
+
+<i18n>
+{
+  "ru": {
+    "podcastTitle":"Подкасты",
+    "btn": "Смотреть больше",
+    "main":"Главная",
+    "newsTitle":"Новости",
+    "noitems":"Нет подкастов"
+  },
+  "by": {
+    "podcastTitle":"Падкасты",
+    "btn": "Глядзець больш",
+    "main":"Галоўная",
+    "newsTitle":"Навіны",
+    "noitems":"Няма падкастаў"
+  }
+}
+</i18n>

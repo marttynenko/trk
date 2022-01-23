@@ -2,26 +2,29 @@
   <div class="onair">
     <div class="inner-wide">
       <div class="onair-header flex valign-center align-justify">
-        <h4 class="onair-header-title">В эфире</h4>
-        <a href="#" class="ui-btn">Смотреть все проекты</a>
+        <h4 class="onair-header-title">{{$t('title')}}</h4>
+        <nuxt-link :to="localePath('/shows')" class="ui-btn">{{$t('btn')}}</nuxt-link>
       </div>
 
-      <div class="row">
-        <div class="col-lg-3 col-xs-6">
+      <div class="row" v-if="shows && shows.length">
+        <div class="col-lg-3 col-xs-6"
+          v-for="item in shows"
+          :key="item.ID"
+        >
           <div class="onair-card">
-            <div class="onair-card-img ui-video">
-              <img src="//via.placeholder.com/359x202" alt="alt">
+            <div class="onair-card-img ui-video" @click.prevent="changeSource(item.VIDEO)">
+              <img :src="item.IMG" :alt="item.NAME">
             </div>
             <div class="onair-card-string flex valign-baseline align-justify">
-              <div class="onair-card-theme">Классный час</div>
-              <div class="onair-card-date">19:45 | 19 июля</div>
+              <!-- <div class="onair-card-theme">Классный час</div> -->
+              <div class="onair-card-date">{{item.ACTIVE_FROM}}</div>
             </div>
 
-            <div class="onair-card-title">Премьеру спектакля “Ганди молчал по субботам” представил Гомельский облдрамтеатр</div>
+            <div class="onair-card-title">{{item.NAME}}</div>
           </div>
         </div>
 
-        <div class="col-lg-3 col-xs-6">
+        <!-- <div class="col-lg-3 col-xs-6">
           <div class="onair-card">
             <div class="onair-card-img ui-video">
               <img src="//via.placeholder.com/359x202" alt="alt">
@@ -33,41 +36,31 @@
 
             <div class="onair-card-title">“На этюды” Выставка пастелей Олега Белоусова открыта в Гомеле</div>
           </div>
-        </div>
-
-        <div class="col-lg-3 col-xs-6">
-          <div class="onair-card">
-            <div class="onair-card-img ui-video">
-              <img src="//via.placeholder.com/359x202" alt="alt">
-            </div>
-            <div class="onair-card-string flex valign-baseline align-justify">
-              <div class="onair-card-theme">Портреты</div>
-              <div class="onair-card-date">19:45 | 19 июля</div>
-            </div>
-
-            <div class="onair-card-title">Премьеру спектакля “Ганди молчал по субботам” представил Гомельский облдрамтеатр</div>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-xs-6">
-          <div class="onair-card">
-            <div class="onair-card-img ui-video">
-              <img src="//via.placeholder.com/359x202" alt="alt">
-            </div>
-            <div class="onair-card-string flex valign-baseline align-justify">
-              <div class="onair-card-theme">Большая стирка</div>
-              <div class="onair-card-date">19:45 | 19 июля</div>
-            </div>
-
-            <div class="onair-card-title">Премьеру спектакля “Ганди молчал по субботам” представил Гомельский облдрамтеатр</div>
-          </div>
-        </div>
+        </div> -->
 
         
       </div>
     </div>
   </div>
 </template>
+
+<script>
+import {mapGetters, mapMutations} from 'vuex'
+
+export default {
+  async fetch() {
+    await this.$store.dispatch('shows/fetchShowsBlock')
+  },
+
+  computed: {
+    ...mapGetters({shows:'shows/getShowsBlock'})
+  },
+
+  methods: {
+    ...mapMutations({changeSource: 'player/changeSource'}),
+  }
+}
+</script>
 
 
 <style lang="scss">
@@ -127,6 +120,15 @@
   @media (max-width: 576px) {
     padding-top: 35px;
     padding-bottom: 30px;
+
+    &-card {
+      &-img {
+        margin-bottom: 12px;
+      }
+      &-string {
+        margin-bottom: 8px;
+      }
+    }
   }
 
   @media (max-width: 420px) {
@@ -142,3 +144,16 @@
 
 }
 </style>
+
+<i18n>
+{
+  "ru": {
+    "title":"В эфире",
+    "btn": "Смотреть все проекты"
+  },
+  "by": {
+    "title":"У эфіры",
+    "btn": "Глядзець усе праекты"
+  }
+}
+</i18n>

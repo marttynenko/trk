@@ -5,23 +5,18 @@
         <div class="col-lg-6 col-md-8">
           <div class="podcast-banner-data">
             <div class="podcast-banner-btn">
-              <span class="ui-btn">Прорыв</span>
+              <span class="ui-btn" v-if="banner.THEME">{{banner.THEME}}</span>
             </div>
 
-            <div class="podcast-banner-title">Ольга Кравцова: голос за кадром</div>
+            <div class="podcast-banner-title">{{banner.NAME}}</div>
 
-            <div class="podcast-banner-txt">
-              - как устроена индустрия озвучки сериалов (легальная и нелегальная);<br><br>
-              - как попасть в озвучку и сколько на этом можно заработать;<br><br>
-              - как блоггинг влияет на отношения с людьми в режиме "оффлайн"<br><br>
-              - как научиться продвигать свои услуги в инстаграм с нуля.
-            </div>
+            <div class="podcast-banner-txt" v-html="banner.PREVIEW_TEXT"></div>
           </div>
         </div>
 
-        <div class="col-lg-6 col-md-4">
+        <div class="col-lg-6 col-md-4" v-if="banner.IMG">
           <div class="podcast-banner-img">
-            <img src="/images/temp/podcast-banner.png" loading="lazy" alt="alt">
+            <img :src="banner.IMG" loading="lazy" :alt="banner.NAME">
           </div>
         </div>
 
@@ -29,6 +24,14 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  props: {
+    banner: Object
+  }
+}
+</script>
 
 <style lang="scss">
 .podcast-banner {

@@ -20,7 +20,7 @@ export default {
   },
 
   methods: {
-    async close() {
+    close() {
       this.isOpen = false
     },
 
@@ -33,6 +33,7 @@ export default {
     toSearchPage() {
       if (this.query.length <= 2) return
       this.$router.push(this.localePath('/search/'+this.query))
+      this.close()
     }
   }
 }
@@ -84,7 +85,7 @@ export default {
       background-image: url(@/assets/images/glass.svg?inline);
       background-position: center;
       background-repeat: no-repeat;
-      background-size: 24px;
+      background-size: 20px;
       cursor: pointer;
     }
 

@@ -4,7 +4,10 @@
       <div class="inner-wide">
         <div class="header-top-flex flex valign-center align-justify">
 
-          <div class="header-nav-toggler" @click.prevent="toggleMenu">
+          <div class="header-nav-toggler"
+            :class="{opened: isNav}"
+            @click.prevent="toggleMenu"
+          >
             <div class="line-1"></div>
             <div class="line-2"></div>
             <div class="line-3"></div>
@@ -15,7 +18,7 @@
           </div>
 
           <div class="header-nav" :class="{opened: isNav}">
-            <Nav />
+            <Nav :closeMenu="closeMenu"/>
           </div>
 
           <div class="header-radios">
@@ -41,13 +44,12 @@ import Logo from "~/components/header/Logo.vue"
 import Radios from "~/components/RadioLogos.vue"
 import Actions from "~/components/header/Actions.vue"
 import NewsLine from "~/components/header/NewsLine.vue"
-import Search from '~/components/Search.vue'
+// import Search from '~/components/Search.vue'
 
 export default {
   components: {
     Nav, Logo, Radios, Actions, NewsLine,
-    Search: () => import('~/components/Search.vue'),
-    Search
+    Search: () => import('~/components/Search.vue')
   },
 
   data() {
@@ -59,6 +61,10 @@ export default {
   methods: {
     toggleMenu() {
       this.isNav = !this.isNav
+    },
+
+    closeMenu() {
+      this.isNav = false
     },
 
     openSearch() {
@@ -96,6 +102,12 @@ header.header {
     margin-right: 15px;
   }
 
+  &-nav-toggler {
+    @media (min-width: 993px) {
+      display: none;
+    }
+  }
+
   @media (max-width: 1580px) {
     &-radios {
       display: none;
@@ -109,6 +121,7 @@ header.header {
       left: -35px;
       right: -35px;
       top: 100%;
+      margin-top: 15px;
       background: #222;
       padding: 20px 35px;
       z-index: 19;
@@ -145,12 +158,25 @@ header.header {
         width: 24px;
         height: 2px;
         background: #222;
+        transition: transform .2s;
       }
       .line-1 {
         transform: translateY(-6px);
       }
       .line-3 {
         transform: translateY(6px);
+      }
+
+      &.opened {
+        .line-2 {
+          opacity: 0;
+        }
+        .line-1 {
+          transform: translateY(0px) rotate(45deg);
+        }
+        .line-3 {
+          transform: translateY(0px) rotate(-45deg);
+        }
       }
     }
   }

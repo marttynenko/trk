@@ -41,6 +41,10 @@ h1, .h1 {
   @media (max-width: 576px) {
     @include fz(30);
   }
+
+  @media (max-width: 420px) {
+    @include fz(27);
+  }
 }
 h2, .h2 {
   @include fz(30);
@@ -48,6 +52,10 @@ h2, .h2 {
 
   @media (max-width: 576px) {
     @include fz(27);
+  }
+
+  @media (max-width: 420px) {
+    @include fz(24);
   }
 }
 
@@ -72,6 +80,18 @@ h3, .h3 {
   &-gray {
     color: #919191;
     font-weight: 400;
+  }
+  &-mini {
+    color: #777;
+    @include fz(18);
+  }
+
+  @media (max-width: 576px) {
+    @include fz(30);
+  }
+
+  @media (max-width: 420px) {
+    @include fz(27);
   }
 }
 
@@ -312,6 +332,15 @@ textarea.ui-input {
       color: $font;
     }
   }
+
+  @media (max-width: 576px) {
+    white-space: nowrap;
+    overflow-x: auto;
+  }
+}
+.ui-breadcrumbs::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 .ui-pgn {
@@ -338,6 +367,10 @@ textarea.ui-input {
     line-height: 1.15;
     font-weight: 700;
     margin-bottom: 20px;
+
+    @media (max-width: 420px) {
+      @include fz(18);
+    }
   }
 
   &-header {
@@ -357,6 +390,7 @@ textarea.ui-input {
       line-height: 1.15;
       font-weight: 700;
       padding-right: 20px;
+      margin-top: 0;
     }
   }
 }
@@ -366,6 +400,21 @@ textarea.ui-input {
   overflow-x: hidden;
   overflow-y: auto;
   padding-right: 20px;
+
+  @media (max-width: 576px) {
+    max-height: none !important;
+
+    & > *:nth-of-type(7),
+    & > *:nth-of-type(8),
+    & > *:nth-of-type(9),
+    & > *:nth-of-type(10),
+    & > *:nth-of-type(11),
+    & > *:nth-of-type(12),
+    & > *:nth-of-type(13),
+    & > *:nth-of-type(14) {
+      display: none;
+    }
+  }
 }
 .ui-scroller::-webkit-scrollbar {
   width: 3px;
@@ -750,5 +799,166 @@ textarea.ui-input {
   }
   .plyr--full-ui input[type=range] {
     color: var(--plyr-range-fill-background,var(--plyr-color-main,var(--plyr-color-main,$primary)));
+  }
+  .plyr__video-embed iframe,
+  .plyr__video-wrapper--fixed-ratio video {
+    z-index: 2;
+  }
+  .plyr--audio .plyr__control.plyr__tab-focus,
+  .plyr--audio .plyr__control:hover,
+  .plyr--audio .plyr__control[aria-expanded=true] {
+    background: $primary;
+  }
+
+  .plyr__video-embed, .plyr__video-wrapper--fixed-ratio {
+    padding-bottom: 56.25%;
+  }
+}
+
+.static-article {
+  margin-bottom: 50px;
+}
+
+
+.vdp {
+  &OuterWrap {
+    max-width: 360px;
+    margin: 0 auto;
+  }
+  &Table {
+    width: 100%;
+    text-align: center;
+  }
+
+  &Header {
+    text-align: center;
+    position: relative;
+    padding-top: 10px;
+  }
+  &Arrow {
+    position: absolute;
+    display: block;
+    top: 50%;
+    margin-top: -12px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    border: 0;
+    outline: none;
+    box-shadow: none;
+    font-size: 0;
+    color: transparent;
+    background-color: #C2C1C0;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 24px;
+    transition: .2s background;
+
+    &:after {
+      content: "";
+      position: absolute;
+      width: 70%;
+      height: 60%;
+      top: 20%;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    &:hover {
+      background-color: $primary;
+    }
+
+    &Prev {
+      left: 10px;
+
+      &:after {
+        right: 0;
+        background-image: url(@/assets/images/icons/arrow-prev.svg?inline);
+      }
+    }
+    &Next {
+      right: 10px;
+
+      &:after {
+        left: 0;
+        background-image: url(@/assets/images/icons/arrow-next.svg?inline);
+      }
+    }
+  }
+  &PeriodControls {
+    button {
+      display: none;
+    }
+  }
+  &PeriodControl {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0px 10px 10px;
+
+    select {
+      border: 0;
+      background: transparent;
+      box-shadow: none;
+      outline: none;
+      @include fz(16);
+      width: auto;
+    }
+  }
+
+  &HeadCell {
+    @include fz(14);
+    font-weight: 400;
+    color: #bababa;
+    padding-bottom: 5px;
+  }
+
+  &Cell {
+    padding: 3px;
+
+    &Content {
+      display: inline-block;
+      vertical-align: middle;
+      min-width: 30px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      background: #FFF;
+      border-radius: 15px;
+      @include fz(15);
+      cursor: pointer;
+    }
+
+    &.today {
+      .vdpCellContent {
+        background: $primary_hover;
+        color: #FFF;
+      }
+    }
+
+    &.disabled {
+      .vdpCellContent {
+        background: #CBCBCB;
+        color: #858585;
+        cursor: not-allowed;
+      }
+    }
+    
+    &.selectable {
+
+      &.outOfRange {
+        .vdpCellContent {
+          background: #F1f1f1;
+          color: #5e5e5e;
+        }
+      }
+
+      .vdpCellContent {
+        &:hover {
+          background: $primary;
+          color: #FFF;
+        }
+      }
+    }
   }
 }

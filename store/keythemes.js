@@ -4,7 +4,8 @@ export const state = () => ({
   links: [],
   allLinks: [],
   posts: [],
-  currentTheme: null
+  currentTheme: null,
+  postsMoreData: true
 })
 
 export const getters = {
@@ -22,6 +23,10 @@ export const getters = {
 
   getCurrentTheme (state) {
     return state.currentTheme
+  },
+
+  getMoreData(state) {
+    return state.postsMoreData
   }
 }
 
@@ -55,7 +60,7 @@ export const mutations = {
         ? config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
         : '/images/plugs/post-card.jpeg'
 
-      modifiered.ACTIVE_FROM = el.ACTIVE_FROM
+      modifiered.ACTIVE_FROM = config.dateFormatter(el.ACTIVE_FROM)
       modifiered.URL = '/news/'+el.CODE
       modifiered.ID = el.ID
       modifiered.NAME = el.NAME
@@ -65,6 +70,8 @@ export const mutations = {
 
     state.posts = clean
     // state.posts = state.posts.concat(clean)
+
+    state.postsMoreData = config.checkMoreData(arr.nav, 10)
   },
 
   updateCurrentTheme(state,obj) {
@@ -118,29 +125,8 @@ export const actions = {
   async fetchPosts({commit,state},{theme, page = 1, limit = 10}) {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'news')
-      // let themeID
-      // if (state.currentTheme) {
-      //   themeID = state.currentTheme.ID
-      // } else {
-      //   const iblockKeyID = config.getIblock(this.$i18n.locale,'keythemes')
-      //   const req = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockKeyID}&filter[code]=${theme}&fields=id,code,name`)
-      //   let obj
-      //   for (let key in req.data) {
-      //     obj = req.data[key]
-      //   }
-      //   themeID = obj.ID
-      // }
-      // console.log(themeID)
-
-      // console.log(theme)
-      // if (!state.currentTheme || state.currentTheme.CODE !== theme) {
-      //   console.log(state.currentTheme, theme, 'from if fetchPosts')
-      //   await dispatch('fetchTheme',theme)
-      // }
-
-      // console.log(iblockID,theme,page,limit)
+      
       const url = `${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[keythemes_value]=${state.currentTheme.ID}&filter[active]=Y&fields=id,name,active_from,detail_text,detail_page_url,photo&limit=${limit}&page=${page}&clear=Y`
-      // const url = `${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[keythemes_value]=${themeID}&filter[active]=Y&fields=id,name,active_from,detail_text,detail_page_url,photo&limit=${limit}&page=${page}&clear=Y`
       const data = await this.$axios.$get(url)
 
       commit('updatePosts', data)

@@ -4,7 +4,7 @@
   >
     <div class="inner-wide">
       <div class="news-line">
-        <marquee behavior="altemate" loop="infinite">
+        <marquee behavior="scroll" scrollamount="4" scrolldelay="60" loop="infinite">
           <div class="news-line-item"
             v-for="post in posts"
             :key="post.ID"

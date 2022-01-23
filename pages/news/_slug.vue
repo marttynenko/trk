@@ -3,9 +3,9 @@
     <div class="row">
       <div class="col-layout-content col-md-8">
         <div class="ui-breadcrumbs">
-          <nuxt-link to="/" class="ui-breadcrumbs-link">Главная</nuxt-link>
-          <nuxt-link to="/news" class="ui-breadcrumbs-link">Новости</nuxt-link>
-          <span class="ui-breadcrumbs-current">Название новости</span>
+          <nuxt-link :to="localePath('/')" class="ui-breadcrumbs-link">{{$t('main')}}</nuxt-link>
+          <nuxt-link :to="localePath('/news')" class="ui-breadcrumbs-link">{{$t('news')}}</nuxt-link>
+          <span class="ui-breadcrumbs-current">{{post.NAME}}</span>
         </div>
 
         <PostSubscribe />
@@ -70,3 +70,19 @@ export default {
   }
 }
 </script>
+
+
+<i18n>
+{
+  "ru": {
+    "news":"Новости",
+    "main":"Главная",
+    "morebtn":"Смотреть больше"
+  },
+  "by": {
+    "news":"Навiны",
+    "main": "Галоўная",
+    "morebtn":"Глядзець больш"
+  }
+}
+</i18n>

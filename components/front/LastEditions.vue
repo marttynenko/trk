@@ -1,12 +1,12 @@
 <template>
-  <div class="ui-block front-editions">
+  <div class="ui-block front-editions" v-if="posts && posts.length">
 
     <div class="front-editions-header">
-      Смотрите также на <span class="front-editions-header-on"><icon-youtube class="front-editions-header-icon" /> YouTube</span>
-      <a href="#" class="front-editions-btn ui-btn">Подписаться</a>
+      {{$t('also')}} <span class="front-editions-header-on"><icon-youtube class="front-editions-header-icon" /> YouTube</span>
+      <a href="#" class="front-editions-btn ui-btn">{{$t('btn')}}</a>
     </div>
 
-    <div class="front-editions-body" v-if="posts && posts.length">
+    <div class="front-editions-body">
       <VueSlickCarousel 
         v-bind="slickOptions"
       >
@@ -17,7 +17,7 @@
           <div class="front-editions-item">
             <div class="front-editions-item-img">
               <img :src="getYoutubePreview(post.VIDEO)" >
-              <div class="front-editions-item-play ui-play"></div>
+              <div class="front-editions-item-play ui-play" @click.prevent="changeSource(post.VIDEO)"></div>
             </div>
 
             <div class="front-editions-item-date">{{post.ACTIVE_FROM}}</div>
@@ -25,7 +25,7 @@
         </div>
       </VueSlickCarousel>
       <div class="front-editions-archieve">
-        <NuxtLink to="/news/" class="ui-btn ui-btn-big">Архив новостей</NuxtLink>
+        <NuxtLink to="/news/" class="ui-btn ui-btn-big">{{$t('archieve')}}</NuxtLink>
       </div>
     </div>
 
@@ -38,7 +38,7 @@ import iconYoutube from '@/assets/images/icons/youtube-header.svg'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 
-import {mapGetters} from 'vuex'
+import {mapGetters, mapMutations} from 'vuex'
 
 export default {
   components: {
@@ -63,6 +63,8 @@ export default {
   },
 
   methods: {
+    ...mapMutations({changeSource: 'player/changeSource'}),
+
     getYoutubePreview(videoLink) {
       const chanks = videoLink.split('/')
       const videoID = chanks[chanks.length - 1]
@@ -255,3 +257,21 @@ export default {
   }
 }
 </style>
+
+
+<i18n>
+{
+  "ru": {
+    "title":"Последние выпуски новостей",
+    "btn": "Подписаться",
+    "archieve": "Архив новостей",
+    "also": "Смотрите также на"
+  },
+  "by": {
+    "title":"Апошнія выпускі навін",
+    "btn": "Падпісацца",
+    "archieve": "Архіў навін",
+    "also": "Глядзіце таксама на"
+  }
+}
+</i18n>

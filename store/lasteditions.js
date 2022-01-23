@@ -22,7 +22,7 @@ export const mutations = {
       modifiered.VIDEO = el.PROPERTIES.VIDEO_LINK.VALUE
       modifiered.URL = '/news/'+el.CODE
 
-      modifiered.ACTIVE_FROM = el.ACTIVE_FROM
+      modifiered.ACTIVE_FROM = config.dateFormatter(el.ACTIVE_FROM)
       modifiered.ID = el.ID
       modifiered.NAME = el.NAME
       
@@ -35,7 +35,14 @@ export const mutations = {
 
 export const actions = {
   async fetchPosts ({ commit}) {
-    const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=2&filter[IBLOCK_SECTION_ID]=10&sort=active_from:desc&fields=*&limit=6`)
-    commit('updatePosts', news)
+    try {
+      const iblockID = config.getIblock(this.$i18n.locale,'news')
+
+      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[IBLOCK_SECTION_ID]=10&sort=active_from:desc&fields=id,code,name,video_link,active_from&limit=6`)
+      
+      commit('updatePosts', news)
+    } catch (e) {
+      console.log(e)
+    }
   }
 }

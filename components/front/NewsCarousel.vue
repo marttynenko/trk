@@ -10,7 +10,7 @@
       >
         <div class="news-carousel-item">
           <div class="news-carousel-item-title">
-            <NuxtLink :to="'/news/'+post.CODE" class="news-carousel-item-link">{{post.NAME}}</NuxtLink>
+            <NuxtLink :to="localePath('/news/'+post.CODE)" class="news-carousel-item-link">{{post.NAME}}</NuxtLink>
           </div>
           <div class="news-carousel-item-date">{{post.ACTIVE_FROM}}</div>
         </div>
@@ -134,6 +134,12 @@ export default {
 
   @media (max-width: 576px) {
     padding: 35px 15px;
+  }
+
+  @media (max-width: 533px) {
+    &-item {
+      padding-right: 0;
+    }
   }
 }
 </style>

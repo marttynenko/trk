@@ -1,9 +1,9 @@
 <template>
   <div class="ui-block last-news">
     <div class="ui-block-header">
-      <h4 class="ui-block-header-title">Последние новости</h4>
+      <h4 class="ui-block-header-title">{{$t('title')}}</h4>
       <div class="ui-block-header-btn">
-        <NuxtLink to="/news" class="ui-btn">Читать все</NuxtLink>
+        <NuxtLink :to="localePath('/news')" class="ui-btn">{{$t('btn')}}</NuxtLink>
       </div>
     </div>
 
@@ -13,12 +13,12 @@
         :key="post.ID"
       >
         <div class="last-news-item-img">
-          <NuxtLink :to="post.URL"><img :src="post.IMG" :alt="post.NAME"></NuxtLink>
+          <NuxtLink :to="localePath(post.URL)"><img :src="post.IMG" :alt="post.NAME"></NuxtLink>
         </div>
 
         <div class="last-news-item-body">
           <div class="last-news-item-title">
-            <NuxtLink :to="post.URL" class="last-news-item-link">{{post.NAME}}</NuxtLink>
+            <NuxtLink :to="localePath(post.URL)" class="last-news-item-link">{{post.NAME}}</NuxtLink>
           </div>
 
           <div class="last-news-item-date">{{post.ACTIVE_FROM}}</div>
@@ -86,3 +86,16 @@ export default {
   }
 }
 </style>
+
+<i18n>
+{
+  "ru": {
+    "title":"Последние новости",
+    "btn": "Читать все"
+  },
+  "by": {
+    "title":"Апошнія навіны",
+    "btn": "Чытаць усё"
+  }
+}
+</i18n>

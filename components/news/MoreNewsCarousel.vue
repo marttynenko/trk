@@ -1,6 +1,6 @@
 <template>
   <div class="more-news ui-block">
-    <div class="h3 more-news-title">Больше новостей:</div>
+    <div class="h3 more-news-title">{{$t('title')}}:</div>
 
     <div class="more-news-body">
       <div class="more-news-slider" v-swiper="swiperOptions">
@@ -46,21 +46,22 @@ export default {
     return {
       swiperOptions: {
         loop: false,
-        slidesPerView: 1,
+        slidesPerView: 'auto',
+        spaceBetween: 20,
         navigation: {
           nextEl: ".swiper-button-next",
           prevEl: ".swiper-button-prev",
         },
-        breakpoints: {
-          500: {
-            slidesPerView: 2,
-            spaceBetween: 20,
-          },
-          768: {
-            slidesPerView: 3,
-            spaceBetween: 20,
-          }
-        }
+        // breakpoints: {
+        //   500: {
+        //     slidesPerView: 2,
+        //     spaceBetween: 20,
+        //   },
+        //   768: {
+        //     slidesPerView: 3,
+        //     spaceBetween: 20,
+        //   }
+        // }
       }
     }
   },
@@ -110,13 +111,40 @@ export default {
     }
   }
 
+  .swiper-slide {
+    width: 290px;
+  }
+
   &-slider {
     .swiper-button-prev,
     .swiper-button-next {
-      top: 64px;
+      top: 88px;
       margin-top: 0;
     }
   }
-}
 
+  @media (max-width: 576px) {
+    .swiper-slide {
+      width: 225px;
+    }
+    &-slider {
+      .swiper-button-prev,
+      .swiper-button-next {
+        top: 66px;
+      }
+    }
+  }
+}
 </style>
+
+
+<i18n>
+{
+  "ru": {
+    "title":"Больше новостей"
+  },
+  "by": {
+    "title":"Больш навін"
+  }
+}
+</i18n>

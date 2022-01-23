@@ -5,18 +5,19 @@
       <div class="podcast-card-title">{{podcast.NAME}}</div>
       <div class="podcast-card-theme" v-if="podcast.THEME">{{podcast.THEME}}</div>
     </div>
-    <div class="podcast-card-play" :data-src="podcast.SRC">
+    <div class="podcast-card-play" @click.prevent="play({source: podcast.AUDIO, podcast: podcast})">
       <div class="podcast-card-play-status"></div>
     </div>
     <div class="podcast-card-actions">
       <div class="podcast-card-share"></div>
-      <a :href="podcast.SRC" download class="podcast-card-download"></a>
+      <a :href="podcast.AUDIO" download target="_blank" class="podcast-card-download"></a>
     </div>
   </div>
 </template>
 
 
 <script>
+import {mapMutations} from 'vuex'
 export default {
   name: "podcast-card",
 
@@ -25,6 +26,12 @@ export default {
       type: Object,
       required: true
     }
+  },
+
+  methods: {
+    ...mapMutations({
+      play: 'player/changeSource'
+    })
   }
 }
 </script>
@@ -134,6 +141,34 @@ export default {
   &-download {
     background: url(@/assets/images/icons/download.svg?inline) center no-repeat;
     background-size: 22px;
+  }
+
+  @media (max-width: 1360px) {
+    &-title {
+      @include fz(20);
+    }
+  }
+
+  @media (max-width: 1240px) {
+    &-txt {
+      top: 15px;
+      left: 15px;
+      max-height: none;
+    }
+    &-play {
+      transform: none;
+      left: 15px;
+      bottom: 15px;
+      top: auto;
+      width: 52px;
+      height: 52px;
+      background: #FFF;
+      border-radius: 50%;
+    }
+    &-actions {
+      right: 15px;
+      bottom: 25px;
+    }
   }
 }
 </style>

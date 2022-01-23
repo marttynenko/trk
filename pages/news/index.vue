@@ -3,22 +3,23 @@
     <div class="row">
       <div class="col-12">
         <div class="ui-breadcrumbs">
-          <nuxt-link to="/" class="ui-breadcrumbs-link">Главная</nuxt-link>
-          <span class="ui-breadcrumbs-current">Новости</span>
+          <nuxt-link :to="localePath('/')" class="ui-breadcrumbs-link">{{$t('main')}}</nuxt-link>
+          <span class="ui-breadcrumbs-current">{{$t('news')}}</span>
         </div>
 
-        <h1 class="page-title">Новости</h1>
+        <h1 class="page-title">{{$t('news')}}</h1>
         
       </div>
       <main class="col-layout-content col-md-8">
-        <div class="news-list">
-          <PostCard v-for="card in allPosts" :key="card.ID" :post="card"/>
+        <div class="news-list" ref="list" v-if="posts && posts.length">
+          <PostCard v-for="card in posts" :key="card.ID" :post="card"/>
         </div>
+        <div class="news-list" v-else>Нет новостей</div>
 
-        <div class="ui-pgn">
+        <div class="ui-pgn" v-if="isMoreData">
           <a href="" class="ui-pgn-btn ui-btn"
             @click.prevent="toNextPage"
-          >Смотреть больше</a>
+          >{{$t('morebtn')}}</a>
         </div>
       </main>
 
@@ -41,12 +42,13 @@ export default {
 
   head() {
     return {
-      title: "Новости - ТРК"
+      title: "Новости - Телерадиокомпания Гомель"
     }
   },
 
-  async asyncData({store}) {
-    await store.dispatch('posts/fetchNews', {})
+  async asyncData({store,query}) {
+    const page = query.page ? +query.page : 1
+    await store.dispatch('posts/fetchNews', {page})
   },
 
   data() {
@@ -56,7 +58,10 @@ export default {
   },
 
   computed: {
-    ...mapGetters({allPosts: 'posts/allPosts'})
+    ...mapGetters({
+      posts: 'posts/allPosts',
+      isMoreData: 'posts/getMoreData'
+    })
   },
 
   methods: {
@@ -64,6 +69,10 @@ export default {
 
     toNextPage() {
       this.fetchNews({page: ++this.currentPage})
+        .then(()=>{
+          this.$refs.list.scrollIntoView({behavior: "smooth"})
+          this.$router.push({query: { page: this.currentPage}})
+        })
     }
   },
 }
@@ -73,5 +82,19 @@ export default {
 .news-list {
   margin-bottom: 60px;
 }
-
 </style>
+
+<i18n>
+{
+  "ru": {
+    "news":"Новости",
+    "main":"Главная",
+    "morebtn":"Смотреть больше"
+  },
+  "by": {
+    "news":"Навiны",
+    "main": "Галоўная",
+    "morebtn":"Глядзець больш"
+  }
+}
+</i18n>

@@ -99,5 +99,15 @@ export default {
   &-odnoklassniki {
     background-image: url(@/assets/images/subscribe/odnoklassniki.svg?inline);
   }
+
+  @media (max-width: 576px) {
+    &-items {
+      a {
+        margin-left: 7px;
+        width: 32px;
+        height: 32px;
+      }
+    }
+  }
 }
 </style>

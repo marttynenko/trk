@@ -8,26 +8,57 @@ export const state = () => ({
 
 
 export const actions = {
-  async sendFeedback({commit, state}, formData) {
-    return await sendForm(state.pointFeedback, formData)
+  async sendFeedback({state}, formData) {
+    // return await sendForm(state.pointFeedback, formData)
+    try {
+      const req = await this.$axios.$post(
+        config.APIserver+state.pointFeedback,
+        formData,
+        headers
+      )
+      
+      if (req && req.status && req.status == 'ok') {
+        return true
+      }
+      return false
+    } catch (e) {
+      console.log(e)
+    }
   },
 
   async sendNews({state}, formData) {
     // return await sendForm(state.pointNews, formData)
-    const req = await this.$axios.$post(
-      config.APIserver+state.pointNews,
-      formData,
-      headers
-    )
-    
-    if (req && req.status && req.status == 'ok') {
-      return true
+    try {
+      const req = await this.$axios.$post(
+        config.APIserver+state.pointNews,
+        formData,
+        headers
+      )
+      
+      if (req && req.status && req.status == 'ok') {
+        return true
+      }
+      return false
+    } catch (e) {
+      console.log(e)
     }
-    return false
   },
 
-  async sendRezume({commit, state}, formData) {
-    return await sendForm(state.pointRezume, formData)
+  async sendRezume({state}, formData) {
+    try {
+      const req = await this.$axios.$post(
+        config.APIserver+state.pointRezume,
+        formData,
+        headers
+      )
+      
+      if (req && req.status && req.status == 'ok') {
+        return true
+      }
+      return false
+    } catch (e) {
+      console.log(e)
+    }
   }
 }
 

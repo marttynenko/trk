@@ -8,22 +8,22 @@
         <NuxtLink :to="localePath(item.url)">{{item.title}}</NuxtLink>
       </li> -->
       <li>
-        <NuxtLink :to="localePath('/news')">{{$t('news')}}</NuxtLink>
+        <NuxtLink :to="localePath('/news')" @click.native="closeMenu">{{$t('news')}}</NuxtLink>
       </li>
       <li>
-        <NuxtLink :to="localePath('/shows')">{{$t('specials')}}</NuxtLink>
+        <NuxtLink :to="localePath('/shows')" @click.native="closeMenu">{{$t('specials')}}</NuxtLink>
       </li>
       <li>
-        <NuxtLink :to="localePath('/schedule')">{{$t('tv')}}</NuxtLink>
+        <NuxtLink :to="localePath('/schedule')" @click.native="closeMenu">{{$t('tv')}}</NuxtLink>
       </li>
       <li>
-        <NuxtLink :to="localePath('/podcasts')">{{$t('podcasts')}}</NuxtLink>
+        <NuxtLink :to="localePath('/podcasts')" @click.native="closeMenu">{{$t('podcasts')}}</NuxtLink>
       </li>
       <li>
-        <NuxtLink :to="localePath('/reklama')">{{$t('reklama')}}</NuxtLink>
+        <NuxtLink :to="localePath('/reklama')" @click.native="closeMenu">{{$t('reklama')}}</NuxtLink>
       </li>
       <li>
-        <NuxtLink :to="localePath('/about')">{{$t('about')}}</NuxtLink>
+        <NuxtLink :to="localePath('/about')" @click.native="closeMenu">{{$t('about')}}</NuxtLink>
       </li>
     </ul>
   </nav>
@@ -31,16 +31,25 @@
 
 <script>
 export default {
-  data() {
-    return {
-      // menu: [
-      //   {url: '/news', title: this.$t('news')},
-      //   {url: '/shows', title: this.$t('specials')},
-      //   {url: '/schedule', title: this.$t('tv')},
-      //   {url: '/podcasts', title: this.$t('podcasts')},
-      //   {url: '/reklama', title: this.$t('reklama')},
-      //   {url: '/about', title: this.$t('about')},
-      // ]
+  props: {
+    closeMenu: Function
+  },
+  // data() {
+  //   return {
+  //     menu: [
+  //       {url: '/news', title: this.$t('news')},
+  //       {url: '/shows', title: this.$t('specials')},
+  //       {url: '/schedule', title: this.$t('tv')},
+  //       {url: '/podcasts', title: this.$t('podcasts')},
+  //       {url: '/reklama', title: this.$t('reklama')},
+  //       {url: '/about', title: this.$t('about')},
+  //     ]
+  //   }
+  // },
+
+  methods: {
+    handler() {
+      console.log('click')
     }
   }
 }

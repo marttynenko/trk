@@ -6,8 +6,9 @@
         v-for="locale in availableLocales"
         class="header-action-langs-lang"
         :key="locale.code"
-        :to="localePath('/',locale.code)"
+        :to="switchLocalePath(locale.code)"
       >{{ locale.name }}</nuxt-link>
+      <!-- :to="localePath('/',locale.code)" -->
       <!-- :to="switchLocalePath(locale.code)" -->
     </div>
   </div>

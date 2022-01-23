@@ -101,5 +101,13 @@ export default {
       background-color: #090909;
     }
   }
+
+  @media (max-width: 576px) {
+    &-item {
+      margin-left: 7px;
+      width: 32px;
+      height: 32px;
+    }
+  }
 }
 </style>

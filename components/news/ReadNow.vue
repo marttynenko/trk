@@ -1,6 +1,6 @@
 <template>
   <div class="ui-block read-now">
-    <div class="ui-block-title">Сейчас читают</div>
+    <div class="ui-block-title">{{$t('title')}}</div>
 
     <div class="read-now-list">
       <div class="ui-scroller" :style="{maxHeight: blockHeight+'px'}">
@@ -41,3 +41,14 @@ export default {
   }
 }
 </script>
+
+<i18n>
+{
+  "ru": {
+    "title":"Сейчас читают"
+  },
+  "by": {
+    "title":"Зараз чытаюць"
+  }
+}
+</i18n>

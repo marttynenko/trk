@@ -28,7 +28,7 @@
       <div class="panel-actions">
         <div class="panel-popup" @click.prevent="showPopup">
           <div class="panel-popup-icon"><wroteUs/></div>
-          Написать нам
+          {{$t('btn')}}
         </div>
         <div class="panel-to-top" @click.prevent="toTop"><up/></div>
       </div>
@@ -99,10 +99,6 @@ export default {
   overflow: hidden;
   text-align: center;
   @include fz(13);
-
-  &-inner {
-    
-  }
 
   @media (min-width: 992px) {
     position: absolute;
@@ -194,14 +190,15 @@ export default {
 
     &-popup {
       position: fixed;
-      right: 20px;
-      bottom: 20px;
+      right: 35px;
+      bottom: 15px;
+      border: 1px solid rgba(#FFF,.15);
       margin-bottom: 0;
       font-size: 0;
       background: #222;
       padding: 13px 10px;
       border-radius: 50%;
-      z-index: 9;
+      z-index: 29;
 
       &-icon {
         margin-bottom: 0;
@@ -214,5 +211,22 @@ export default {
       display: none;
     }
   }
+
+  @media (max-width: 576px) {
+    &-popup {
+      right: 15px;
+    }
+  }
 }
 </style>
+
+<i18n>
+{
+  "ru": {
+    "btn": "Написать нам"
+  },
+  "by": {
+    "btn": "Напісаць нам"
+  }
+}
+</i18n>

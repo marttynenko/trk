@@ -1,7 +1,7 @@
 <template>
   <div class="static-menu">
     <ul>
-      <li><nuxt-link to="/about">О компании</nuxt-link></li>
+      <li><nuxt-link to="/about" exact>О компании</nuxt-link></li>
       <li><nuxt-link to="/about/tv">О телевидении</nuxt-link></li>
       <li><nuxt-link to="/about/radio">О радио</nuxt-link></li>
       <li><nuxt-link to="/about/contacts">Контакты</nuxt-link></li>

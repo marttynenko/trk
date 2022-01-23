@@ -3,9 +3,9 @@
     v-if="posts && posts.length"
   >
     <div class="ui-block-header">
-      <h4 class="ui-block-header-title">В мире</h4>
+      <h4 class="ui-block-header-title">{{$t('title')}}</h4>
       <div class="ui-block-header-btn">
-        <NuxtLink to="/news/" class="ui-btn">Новое</NuxtLink>
+        <NuxtLink :to="localePath('/news')" class="ui-btn">{{$t('btn')}}</NuxtLink>
       </div>
     </div>
 
@@ -20,11 +20,11 @@
           :key="post.ID"
         >
           <div class="world-news-item">
-            <NuxtLink :to="post.URL" class="world-news-item-img">
+            <NuxtLink :to="localePath(post.URL)" class="world-news-item-img">
               <img :src="post.IMG" :alt="post.NAME">
             </NuxtLink>
             <div class="world-news-item-content">
-              <NuxtLink :to="post.URL" class="world-news-item-title">{{post.NAME}}</NuxtLink>
+              <NuxtLink :to="localePath(post.URL)" class="world-news-item-title">{{post.NAME}}</NuxtLink>
               <div class="world-news-item-date">{{post.ACTIVE_FROM}}</div>
             </div>
           </div>
@@ -69,6 +69,7 @@ export default {
   &-item {
     position: relative;
     color: #FFF;
+    overflow: hidden;
 
     &-img {
       position: relative;
@@ -141,3 +142,16 @@ export default {
   }
 }
 </style>
+
+<i18n>
+{
+  "ru": {
+    "title":"В мире",
+    "btn": "Новое"
+  },
+  "by": {
+    "title":"У свеце",
+    "btn": "Новае"
+  }
+}
+</i18n>

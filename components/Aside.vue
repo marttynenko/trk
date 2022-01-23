@@ -16,13 +16,15 @@ import ReadNow from '~/components/news/ReadNow.vue'
 import NewsArchieve from '~/components/news/NewsArchieve.vue'
 import LastEditions from '~/components/news/LastEditions.vue'
 import TelegramFeed from '~/components/TelegramFeed.vue'
+import PodcastsBlock from '~/components/front/Podcasts.vue'
 
 export default {
   components: {
     ReadNow,
     NewsArchieve,
     LastEditions,
-    TelegramFeed
+    TelegramFeed,
+    PodcastsBlock
   },
 }
 </script>

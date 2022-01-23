@@ -1,38 +1,90 @@
 <template>
-  <div class="program">
-    <div class="program-item">
-      <div class="program-item-time">08:00</div>
+  <div class="program" v-if="schedule && schedule.length">
+    <div class="program-item" 
+      v-for="(item,index) in schedule"
+      :key="item.id"
+      :class="{'program-item-onair': index === activeIndex}"
+    >
+      <div class="program-item-time">{{item.TIME}}</div>
       <div class="program-item-line"></div>
       <div class="program-item-info">
-        <div class="program-item-name">Новости</div>
-      </div>
-    </div>
-
-    <div class="program-item program-item-onair">
-      <div class="program-item-time">08:30</div>
-      <div class="program-item-line"></div>
-      <div class="program-item-info">
-        <div class="program-item-name">"Cамая моя Гомельщина"</div>
-        <div class="program-item-details">2 серия 3 сезон</div>
-      </div>
-    </div>
-
-    <div class="program-item">
-      <div class="program-item-time">10:00</div>
-      <div class="program-item-line"></div>
-      <div class="program-item-info">
-        <div class="program-item-name">Черное зеркало</div>
+        <div class="program-item-name">{{item.NAME}}</div>
+        <div class="program-item-details"
+          v-if="item.DESCR && item.DESCR.length"
+        >{{item.DESCR}}</div>
       </div>
     </div>
   </div>
+
+  <div class="program-not" v-else>{{$t('alert')}}</div>
 </template>
 
+<script>
+import {mapGetters} from 'vuex'
+
+export default {
+  data() {
+    return {
+      activeIndex: 0
+    }
+  },
+
+  computed: {
+    ...mapGetters({schedule: 'schedule/getSchedule'})
+  },
+
+  methods: {
+    findActiveElement() {
+      const now = new Date()
+      this.activeIndex = this.mapArray(now)
+    },
+
+    mapArray(now) {
+      let index = -1
+
+      for (let i = 0; i < this.schedule.length; i++) {
+        const item = this.schedule[i]
+        if (item.DATE.valueOf() > now.valueOf()) {
+          index = i
+          break
+        }
+      }
+      
+      return index !== 0 ? index-1 : index
+    }
+  },
+
+  watch: {
+    schedule: function(data) {
+      if (data.length) {
+        this.findActiveElement()
+      }
+    }
+  },
+
+  mounted() {
+    if (this.schedule.length) {
+      this.findActiveElement()
+    }
+  }
+}
+</script>
+
+
 <style lang="scss">
+.program-not {
+  @include fz(20);
+  margin-bottom: 50px;
+}
 .program-item {
   display: flex;
   position: relative;
   padding: 0px 15px;
-  color: #cbcbcb;
+  color: #818181;
+
+  &.notactive {
+    color: #cbcbcb;
+  }
 
   &-time {
     flex: 0 0 158px;
@@ -81,3 +133,14 @@
   }
 }
 </style>
+
+<i18n>
+{
+  "ru": {
+    "alert":"К сожалению, программа передач на выбранную дату временно отсутствует."
+  },
+  "by": {
+    "alert":"Нажаль, праграма перадач на абраную дату часова адсутнічае."
+  }
+}
+</i18n>

@@ -10,9 +10,13 @@
     <div class="post-card-body">
       <div class="post-card-title"><NuxtLink :to="localePath(post.URL)">{{post.NAME}}</NuxtLink></div>
       <div class="post-card-descr"
-        v-if="post.DETAIL_TEXT.length"
+        v-if="post.DETAIL_TEXT && post.DETAIL_TEXT.length"
       >{{post.DETAIL_TEXT}}</div>
-      <div class="post-card-date">{{post.ACTIVE_FROM}}</div>
+      <div class="post-card-descr"
+        v-else-if="post.SEARCH_RES && post.SEARCH_RES.length"
+        v-html="post.SEARCH_RES"
+      ></div>
+      <div class="post-card-date" v-if="post.ACTIVE_FROM">{{post.ACTIVE_FROM}}</div>
     </div>
   </div>
 </template>

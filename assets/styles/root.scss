@@ -29,6 +29,13 @@ body {
   color: $font;
   @include fz($fontsize);
   font-family: $basefont, sans-serif;
+
+  @media (max-width: 768px) {
+    @include fz(16);
+  }
+  @media (max-width: 480px) {
+    @include fz(14);
+  }
 }
 
 .page-wrapper {

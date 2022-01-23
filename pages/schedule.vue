@@ -1,6 +1,6 @@
 <template> 
   <div class="schedule-page">
-    <banner />
+    <!-- <banner /> -->
   
     <div class="inner">
       
@@ -55,28 +55,6 @@ export default {
       }
     }
   },
-
-  // async asyncData({store}) {
-  //   await store.dispatch('shows/fetchShows')
-  // },
-
-  // data() {
-  //   return {
-  //     currentPage: 1
-  //   }
-  // },
-
-  // computed: {
-  //   ...mapGetters({shows: 'shows/allShows'})
-  // },
-
-  // methods: {
-  //   ...mapActions({fetchShows: 'shows/fetchShows'}),
-
-  //   toNextPage() {
-  //     this.fetchShows(++this.currentPage)
-  //   }
-  // },
 
   mounted () {
     this.sharingData.url = window.location.href

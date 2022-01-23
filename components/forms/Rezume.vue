@@ -72,12 +72,15 @@
           </div>
 
           <div class="ui-field">
-            <div class="ui-field-label">Резюме</div>
-            <label for="files" class="ui-files-area">
-              <input type="file" name="files" id="files" multiple class="ui-files-area-input" @change="choosedFiles($event)" accept=".doc,.docx,.pdf,.rtf,.txt">
-              <div class="ui-files-area-previews"></div>
-              <span class="ui-files-area-hint">перетащите или загрузите файлы <br>Допустимы следующие типы файлов: .doc,.docx,.pdf,.rtf,.txt</span>
-            </label>
+            <div class="ui-field-label">Резюме *</div>
+            <ValidationProvider mode="lazy" rules="required" v-slot="{ errors }">
+              <label for="files" class="ui-files-area">
+                <input type="file" name="files" id="files" class="ui-files-area-input" @change="choosedFiles($event)" accept=".doc,.docx,.pdf,.rtf,.txt">
+                <div class="ui-files-area-previews"></div>
+                <span class="ui-files-area-hint">перетащите или загрузите файлы <br>Допустимы следующие типы файлов: .doc,.docx,.pdf,.rtf,.txt</span>
+              </label>
+              <div v-if="errors.length" class="ui-field-error">{{ errors[0] }}</div>
+            </ValidationProvider>
           </div>
 
           <div class="ui-field">
@@ -102,6 +105,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 import filesHandler from '~/mixins/filesHandler'
 import { ValidationObserver, ValidationProvider }  from 'vee-validate'
 import '~/utils/validatorMethods'
@@ -117,6 +121,7 @@ export default {
     return {
       sendStatus: false,
       check: true,
+      files: [],
       form: {
         first_name: '',
         last_name: '',
@@ -131,9 +136,35 @@ export default {
   },
 
   methods: {
-    sendForm () {
-      this.sendStatus = true
-      // this.$axios.post('uri',this.form)
+    ...mapActions({sendRezume: 'forms/sendRezume'}),
+
+    getFilesData(e) {
+      console.log(e.target.files)
+      this.files.splice(0, this.files.length)
+      if (e.target.files && e.target.files[0]) {
+        console.log(e.target.files)
+        for (let i = 0; i < e.target.files.length; i++) {
+          this.files.push(e.target.files[i]);
+        }
+      } else {
+        this.files.splice(0, this.files.length)
+      }
+    },
+
+    async sendForm () {
+      const FD = new FormData();
+      FD.append("first_name", this.form.first_name);
+      FD.append("last_name", this.form.last_name);
+      FD.append("middle_name", this.form.middle_name);
+      FD.append("email", this.form.email);
+      FD.append("phone", this.form.phone);
+      FD.append("message", this.form.message);
+      for (let i = 0; i < this.files.length; i++) {
+        FD.append('resume', this.files[i]);
+      }
+
+
+      this.sendStatus = await this.sendRezume(FD)
     }
   }
 }

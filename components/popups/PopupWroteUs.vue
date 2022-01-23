@@ -83,6 +83,7 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
 import filesHandler from '~/mixins/filesHandler'
 import { ValidationObserver, ValidationProvider }  from 'vee-validate'
 import '~/utils/validatorMethods'
@@ -113,6 +114,8 @@ export default {
   },
 
   methods: {
+    ...mapActions({sendFeedback: 'forms/sendFeedback'}),
+
     async sendForm () {
 
       const FD = new FormData();
@@ -121,19 +124,7 @@ export default {
       FD.append("email", this.form.email);
       FD.append("message", this.form.message);
 
-      const req = await this.$axios.$post(
-        'http://bitrixvm.farbatest.com/api/feedback/',
-        FD,
-        {
-          headers: {
-            'Content-Type':'multipart/form-data; charset=UTF-8',
-          }
-        }
-      )
-      
-      if (req && req.status && req.status == 'ok') {
-        this.sendStatus = true
-      }
+      this.sendStatus = await this.sendFeedback(FD)
     }
   }
 }

@@ -12,11 +12,16 @@ export const getters = {
 
 export const mutations = {
   buildPost (state, arr) {
+    if (!Object.keys(arr.data).length) {
+      return state.post = null
+    }
+
     let modifiered;
     for (let key in arr.data) {
       modifiered = arr.data[key]
     }
 
+    modifiered.ACTIVE_FROM = config.dateFormatter(modifiered.ACTIVE_FROM)
     modifiered.VIDEO = modifiered.PROPERTIES.VIDEO_LINK.VALUE
     modifiered.IMG = modifiered.PROPERTIES.PHOTO.VALUE 
         ? config.APIserver + modifiered.PROPERTIES.PHOTO.VALUE[0]

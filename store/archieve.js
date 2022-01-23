@@ -1,29 +1,35 @@
 import config from '~/config'
 
 export const state = () => ({
-  posts: [],
-  postsMoreData: true,
-  currentPage: 0
+  posts: null,
+  date: '',
+  moreData: true
 })
 
 export const getters = {
-  allPosts (state) {
+  getPosts (state) {
     return state.posts
   },
 
-  firstPosts(state) {
-    return state.posts.length <= 10
-      ? state.posts
-      : state.posts.slice(0,10)
+  getDate (state) {
+    return state.date
   },
 
-  getMoreData(state) {
-    return state.postsMoreData
+  getMoreData() {
+    return state.moreData
   }
 }
 
 export const mutations = {
-  updateList (state, arr) {
+  setDate(state, val) {
+    state.date = val
+  },
+
+  setPosts (state, arr) {
+    if (!Object.keys(arr.data).length) {
+      return state.posts = null
+    }
+
     const list = []
     for (let key in arr.data) {
       list.unshift(arr.data[key])
@@ -49,23 +55,20 @@ export const mutations = {
     // state.posts = state.posts.concat(clean)
 
     //определяем есть ли еще данные
-    state.postsMoreData = config.checkMoreData(arr.nav,10)
-  },
-
-  updatePage(state, arr) {
-    state.currentPage = arr.nav.currentPage
+    state.moreData = config.checkMoreData(arr.nav, 10)
   },
 }
 
 export const actions = {
-  async fetchNews ({ commit }, {page = 1, limit = 10}) {
+  async fetchPosts ({commit}, {date, page = 1, limit = 10}) {
     try {
-      //get locale iblock id from config
-      // const iblock = config.iblocks[this.$i18n.locale].news
       const iblockID = config.getIblock(this.$i18n.locale,'news')
 
-      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=active_from:desc&fields=id,name,active_from,detail_text,detail_page_url,photo&limit=${limit}&page=${page}`)
-      commit('updateList', news)
+      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[active_from]=${date}&sort=active_from:desc&fields=id,name,active_from,detail_text,detail_page_url,photo&limit=${limit}&page=${page}`)
+      // console.log(data)
+
+      commit('setPosts', data)
+      commit('setDate', date)
     } catch (e) {
       console.log(e)
     }

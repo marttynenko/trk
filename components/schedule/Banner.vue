@@ -26,6 +26,7 @@
   position: relative;
   height: 550px;
   color: #E9E9E9;
+  overflow: hidden;
 
   .inner {
     position: relative;
@@ -38,8 +39,9 @@
     top: 50%;
     transform: translate(-50%,-50%);
     min-width: 100%;
-    min-height: 100%;
+    height: 100%;
     z-index: -1;
+    max-width: none;
   }
   &-body {
     width: 480px;
@@ -70,6 +72,18 @@
     &-days {
       max-width: 150px;
       line-height: 1.15;
+    }
+  }
+
+  @media (max-width: 768px) {
+    height: 400px;
+
+    &-title {
+      @include fz(32);
+    }
+
+    &-time {
+      @include fz(32);
     }
   }
 }

@@ -1,21 +1,22 @@
 <template>
   <div class="front-projects">
     <div class="inner-wide">
-      <div class="h1 front-projects-header">Программы и проекты</div>
+      <div class="h1 front-projects-header">{{$t('title')}}</div>
 
       <div class="row">
         <div class="col-lg-7">
-          <div class="front-projects-main">
+          <div class="front-projects-main" v-if="cat">
             <div class="row">
               <div class="col-sm-7">
-                <div class="front-projects-main-img"><img src="/images/projects/prj-big.jpg" alt="alt"></div>
+                <div class="front-projects-main-img">
+                  <NuxtLink :to="localePath(cat.URL)"><img :src="cat.IMG" :alt="cat.NAME"></NuxtLink>
+                </div>
               </div>
               <div class="col-sm-5">
-                <div class="front-projects-main-title">Точка зрения</div>
+                <div class="front-projects-main-title">{{cat.NAME}}</div>
                 <div class="front-projects-main-descr">
-                  <p>«Точка зрения» - информационно-аналитическое ток-шоу. В качестве экспертов выступают профессионалы своего дела: представители разных сфер, областей, возрастов. Люди, которые в обязательном плане отвечают за достоверность информации.</p>
-                  <p>Мы даём возможность каждому высказать свою позицию, не навязывая её никому, и говорим зрителям: «Смотрите, думайте, анализируйте». В качестве экспертов выступают профессионалы своего дела: представители разных сфер, областей, возрастов.</p>
-                  <a href="#" class="ui-btn">Смотреть видео</a>
+                  <p>{{cat.DESCRIPTION}}</p>
+                  <NuxtLink :to="localePath(cat.URL)" class="ui-btn">Смотреть видео</NuxtLink>
                 </div>
               </div>
               
@@ -23,40 +24,22 @@
           </div><!--.main-->
         </div>
 
-        <div class="col-lg-5">
+        <div class="col-lg-5" v-if="cats && cats.length">
           <div class="front-projects-items">
             <div class="row">
-              <div class="col-us-6">
+              <div class="col-us-6"
+                v-for="item in cats"
+                :key="item.ID"
+              >
                 <div class="front-projects-item">
-                  <a href="#" class="front-projects-item-img">
-                    <img src="/images/projects/prj-1.png" alt="alt">
-                  </a>
+                  <NuxtLink :to="localePath(item.URL)" class="front-projects-item-img">
+                    <div class="front-projects-item-wrap">
+                      <img :src="item.IMG" :alt="item.NAME" loading="lazy">
+                    </div>
+                  </NuxtLink>
                 </div>
               </div>
-
-              <div class="col-us-6">
-                <div class="front-projects-item">
-                  <a href="#" class="front-projects-item-img">
-                    <img src="/images/projects/prj-2.png" alt="alt">
-                  </a>
-                </div>
-              </div>
-
-              <div class="col-us-6">
-                <div class="front-projects-item">
-                  <a href="#" class="front-projects-item-img">
-                    <img src="/images/projects/prj-3.png" alt="alt">
-                  </a>
-                </div>
-              </div>
-
-              <div class="col-us-6">
-                <div class="front-projects-item">
-                  <a href="#" class="front-projects-item-img">
-                    <img src="/images/projects/prj-4.png" alt="alt">
-                  </a>
-                </div>
-              </div>
+              
             </div>
           </div>
         </div>
@@ -64,6 +47,28 @@
     </div>
   </div>
 </template>
+
+<script>
+import {mapGetters,mapActions} from 'vuex'
+
+export default {
+  async fetch() {
+    await this.$store.dispatch('shows/fetchFrontCategories')
+    await this.$store.dispatch('shows/fetchFrontCategory')
+  },
+
+  computed: {
+    ...mapGetters({
+      cats: 'shows/getFrontCategories',
+      cat: 'shows/getFrontCategory'
+    })
+  },
+
+  // mounted() {
+  //   console.log(this.cats)
+  // }
+}
+</script>
 
 <style lang="scss">
 .front-projects {
@@ -109,6 +114,19 @@
       display: block;
       margin: 0 auto;
     }
+    &-wrap {
+      position: relative;
+      padding-bottom: 55%;
+      overflow: hidden;
+
+      img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        width: 100%;
+      }
+    }
   }
 
   @media (max-width: 768px) {
@@ -118,3 +136,14 @@
   }
 }
 </style>
+
+<i18n>
+{
+  "ru": {
+    "title": "Программы и проекты"
+  },
+  "by": {
+    "title": "Тэлепректы i перадачы"
+  }
+}
+</i18n>

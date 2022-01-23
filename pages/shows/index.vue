@@ -8,7 +8,7 @@
 
     <h1 class="page-title">{{$t('specials')}}</h1>
         
-    <div class="shows-list">
+    <div class="shows-list" ref="list">
       <div class="row">
         <!-- <div class="col-md-8">
           <a href="#" class="shows-item">
@@ -41,12 +41,17 @@
           v-for="item in categories"
           :key="item.ID"
         >
-          <NuxtLink :to="localePath('/shows/'+item.CODE)" class="shows-item">
-            <img class="shows-item-img" :src="'http://bitrixvm.farbatest.com'+item.DETAIL_PICTURE.SRC" :alt="item.NAME" loading="lazy">
+          <NuxtLink :to="localePath(item.URL)" class="shows-item">
+            <img class="shows-item-img" :src="item.IMG" :alt="item.NAME" loading="lazy">
             <div class="shows-item-name">{{item.NAME}}</div>
           </NuxtLink>
         </div>
       </div>
+    </div>
+    <div class="ui-pgn" v-if="isMoreData">
+      <a href="#" class="ui-pgn-btn ui-btn"
+        @click.prevent="toNextPage"
+      >Смотреть больше</a>
     </div>
       
       
@@ -75,19 +80,20 @@ export default {
   },
 
   computed: {
-    ...mapGetters({categories: 'shows/getCategories'})
+    ...mapGetters({
+      categories: 'shows/getCategories',
+      isMoreData: 'shows/getCategoriesMoreData'
+    })
   },
 
   methods: {
     ...mapActions({fetchCategories: 'shows/fetchCategories'}),
 
     toNextPage() {
-      this.fetchCategories(++this.currentPage)
+      this.fetchCategories(++this.currentPage).then(()=> {
+        this.$refs.list.scrollIntoView({behavior: "smooth"})
+      })
     }
-  },
-
-  mounted () {
-    console.log(this.shows)
   }
 }
 </script>
@@ -131,7 +137,7 @@ export default {
       right: 0px;
       bottom: 0px;
       padding: 0px 20px 20px;
-      transform: translate(0,60px);
+      transform: translate(0,100%);
       transition: transform .2s;
       color: #FFF;
       @include fz(20);
@@ -157,7 +163,7 @@ export default {
         transform: translate(-50%,-50%) scale(1.03);
       }
       .shows-item-name {
-        transform: translate(0,0px);
+        transform: translate(0,0);
       }
     }
 
