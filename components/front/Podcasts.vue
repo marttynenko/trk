@@ -3,7 +3,7 @@
     <div class="ui-block-header">
       <h4 class="ui-block-header-title">{{$t('title')}}</h4>
       <div class="ui-block-header-btn">
-        <NuxtLink :to="localePath('/pocasts')" class="ui-btn">{{$t('btn')}}</NuxtLink>
+        <NuxtLink :to="localePath('/podcasts')" class="ui-btn">{{$t('btn')}}</NuxtLink>
       </div>
     </div>
 

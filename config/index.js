@@ -10,7 +10,8 @@ module.exports = exports = {
       shows: '22',
       schedule: '20',
       podcasts: '24',
-      podcastsInfo: '28'
+      podcastsInfo: '28',
+      banners: '10'
     },
     by: {
       news: '4',
@@ -18,7 +19,8 @@ module.exports = exports = {
       shows: '21',
       schedule: '19',
       podcasts: '23',
-      podcastsInfo: '27'
+      podcastsInfo: '27',
+      banners: '15'
     }
   },
 

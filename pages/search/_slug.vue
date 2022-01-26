@@ -7,10 +7,12 @@
           <span class="ui-breadcrumbs-current">Новости</span>
         </div>
 
-        <h1 class="page-title">{{$t('results')}}</h1>
-        
+        <h1 class="page-title">{{$t('results')}} <span class="page-title-mini" v-if="counters.total">{{counters.total}} результата(ов)</span></h1>
+
       </div>
       <main class="col-layout-content col-md-8">
+        <search-form />
+
         <div class="news-list" ref="list">
           <PostCard v-for="card in results" :key="card.ID" :post="card"/>
         </div>
@@ -32,11 +34,12 @@
 <script>
 import Aside from '~/components/Aside.vue'
 import PostCard from '~/components/news/PostCard.vue'
+import SearchForm from '~/components/SearchPageForm.vue'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   components: {
-    Aside, PostCard
+    Aside, PostCard, SearchForm
   },
 
   head() {
@@ -61,7 +64,8 @@ export default {
   computed: {
     ...mapGetters({
       results: 'search/getResults',
-      isMoreData: 'search/getMoreData'
+      isMoreData: 'search/getMoreData',
+      counters: 'search/getCounters'
     })
   },
 
@@ -76,6 +80,8 @@ export default {
         })
     }
   },
+
+
 }
 </script>
 

@@ -44,6 +44,12 @@ export default {
 
       for (let i = 0; i < this.schedule.length; i++) {
         const item = this.schedule[i]
+
+        //не сегодня
+        if (item.DATE.getDate() !== now.getDate()) {
+          return -1
+        }
+
         if (item.DATE.valueOf() > now.valueOf()) {
           index = i
           break

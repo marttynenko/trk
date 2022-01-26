@@ -38,8 +38,8 @@ export default {
   data() {
     return {
       cats: [
-        {NAME: 'Видеопроизводство', IMG: '//via.placeholder.com/427x263', SRC: '#', ID: '01'},
-        {NAME: 'Аудиопроизводство', IMG: '//via.placeholder.com/427x263/000/FFF', SRC: '#', ID: '02'}
+        {NAME: 'Видеопроизводство', IMG: '//via.placeholder.com/427x263', SRC: '/reklama/video', ID: '01'},
+        {NAME: 'Аудиопроизводство', IMG: '//via.placeholder.com/427x263/000/FFF', SRC: '/reklama/audio', ID: '02'}
       ]
     }
   },

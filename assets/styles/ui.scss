@@ -960,5 +960,12 @@ textarea.ui-input {
         }
       }
     }
+
+    &.selected {
+      .vdpCellContent {
+        background: $primary;
+        color: #FFF;
+      }
+    }
   }
 }

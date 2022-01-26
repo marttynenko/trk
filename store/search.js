@@ -2,7 +2,8 @@ import config from '~/config'
 
 export const state = () => ({
   results: [],
-  resultsMoreData: true
+  resultsMoreData: true,
+  counters: {}
 })
 
 export const getters = {
@@ -12,6 +13,10 @@ export const getters = {
 
   getMoreData(state) {
     return state.resultsMoreData
+  },
+
+  getCounters (state) {
+    return state.counters
   }
 }
 
@@ -44,6 +49,8 @@ export const mutations = {
 
     //определяем есть ли еще данные
     state.resultsMoreData = config.checkMoreData(arr.nav,10)
+
+    state.counters = arr.nav
   }
 }
 

@@ -91,6 +91,7 @@ export default {
     },
 
     dayHandler(date, index) {
+      console.log(date)
       this.fetchSchedule(date)
       this.activeIndex = index
     }
@@ -98,10 +99,11 @@ export default {
 
   mounted () {
     this.createRange(-2,10)
-    console.log(this.$swiper)
 
     this.fetchSchedule(this.dateRange[this.activeIndex].dateFormatted)
     // this.fetchSchedule('05.09.2021')
+    // this.fetchSchedule('05.09.2021')
+    console.log(this.dateRange[this.activeIndex].dateFormatted)
   }
 }
 </script>
@@ -120,7 +122,7 @@ export default {
 
   &-slide {
     padding-right: 45px;
-    width: fit-content;
+    width: fit-content !important;
   }
 
   &-item {
