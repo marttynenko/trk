@@ -102,8 +102,7 @@ export default {
 
     this.fetchSchedule(this.dateRange[this.activeIndex].dateFormatted)
     // this.fetchSchedule('05.09.2021')
-    // this.fetchSchedule('05.09.2021')
-    console.log(this.dateRange[this.activeIndex].dateFormatted)
+    // console.log(this.dateRange[this.activeIndex].dateFormatted)
   }
 }
 </script>
@@ -151,14 +150,14 @@ export default {
 
   &-prev,
   &-next {
-    width: 24px;
-    height: 24px;
-    color: #000;
+    width: 24px !important;
+    height: 24px !important;
+    color: #000 !important;
     z-index: 9;
-    margin-top: -17px;
+    margin-top: -17px !important;
 
     &:after {
-      font-size: 24px;
+      font-size: 24px !important;
     }
   }
 

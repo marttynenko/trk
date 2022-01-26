@@ -38,6 +38,9 @@ export const mutations = {
       modifiered.DESCR = el.PROPERTIES.SHORT_DESCRIPTION.VALUE
 
       let date = new Date(el.ACTIVE_FROM)
+      // let date = new Date(Date.UTC(el.ACTIVE_FROM))
+      date.setTime( date.getTime() + date.getTimezoneOffset()*60*1000 );
+      
       modifiered.TIME = new Intl.DateTimeFormat('ru-RU', {
         hour: '2-digit', minute: '2-digit'
       }).format(date)
@@ -47,8 +50,9 @@ export const mutations = {
       return modifiered
     })
 
+    const sorted = clean.sort((a, b) => a.DATE - b.DATE)
 
-    state.schedule = clean
+    state.schedule = sorted
   }
 }
 
@@ -58,7 +62,7 @@ export const actions = {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'schedule')
 
-      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[active_from]=${date}&sort=active_from:desc&fields=id,name,short_description,active_from,detail_picture&limit=50`)
+      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[active_from]=${date}&sort=active_from:desc&fields=id,name,short_description,active_from,detail_picture&limit=60`)
 
       // console.log(data)
 
