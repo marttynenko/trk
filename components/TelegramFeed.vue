@@ -7,7 +7,8 @@
       <span class="telegram-feed-header-telegram">Telegram</span>
     </div>
 
-    <div class="telegram-feed-body">
+    <iframe class="telegram-feed-vidget" style="border:0px;height:480px;width:100%;margin:0px auto;" src="https://xn--r1a.website/s/trkgomel"></iframe>
+    <!-- <div class="telegram-feed-body">
       <div class="ui-scroller">
         Открытка из Чили прибыло в графство Англии через 30 лет
 <br><br>
@@ -20,7 +21,7 @@
 <br><br>
 По словам мужчины, он «смутно помнит», как отправлял открытку, но в ней он указал, что «погода и пляжи прекрасные». «Я отправил домой 
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

@@ -33,9 +33,21 @@ export const mutations = {
       const modifiered = {}
       modifiered.DETAIL_TEXT = el.DETAIL_TEXT.replace(/<\/?[^>]+>/ig, " ").substring(0,220)
 
-      modifiered.IMG = (el.PROPERTIES.PHOTO && el.PROPERTIES.PHOTO.VALUE) 
-        ? config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
-        : '/images/plugs/post-card.jpeg'
+      // modifiered.IMG = (el.PROPERTIES.PHOTO && el.PROPERTIES.PHOTO.VALUE) 
+      //   ? config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
+      //   : '/images/plugs/post-card.jpeg'
+
+      let img
+      if (el.PROPERTIES.PHOTO && el.PROPERTIES.PHOTO.VALUE) {
+        img = config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
+      } else if (el.PROPERTIES.VIDEO_LINK && el.PROPERTIES.VIDEO_LINK.VALUE) {
+        const videoChanks = el.PROPERTIES.VIDEO_LINK.VALUE.split('/')
+        const videoID = videoChanks[videoChanks.length - 1]
+        img = `//img.youtube.com/vi/${videoID}/0.jpg`
+      } else {
+        img = '/images/plugs/post-card.jpeg'
+      }
+      modifiered.IMG = img
 
       modifiered.ACTIVE_FROM = config.dateFormatter(el.ACTIVE_FROM)
       modifiered.URL = '/news/'+el.CODE
@@ -64,7 +76,7 @@ export const actions = {
       // const iblock = config.iblocks[this.$i18n.locale].news
       const iblockID = config.getIblock(this.$i18n.locale,'news')
 
-      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=active_from:desc&fields=id,name,active_from,detail_text,detail_page_url,photo&limit=${limit}&page=${page}`)
+      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=active_from:desc&fields=id,name,active_from,detail_text,detail_page_url,photo,video_link&limit=${limit}&page=${page}`)
       commit('updateList', news)
     } catch (e) {
       console.log(e)

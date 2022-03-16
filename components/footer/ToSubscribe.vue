@@ -4,25 +4,25 @@
       <div class="subscribe-title">{{$t('sub')}}</div>
       <div class="subscribe-list">
         <div class="subscribe-col">
-          <a href="#" class="subscribe-link subscribe-link-youtube" target="_blank"></a>
+          <a href="https://www.youtube.com/channel/UCmeQS-euSReIz2l_HlaaQ0Q" class="subscribe-link subscribe-link-youtube" target="_blank"></a>
         </div>
         <div class="subscribe-col">
-          <a href="#" class="subscribe-link subscribe-link-telegram" target="_blank"></a>
+          <a href="https://t.me/trkgomel" class="subscribe-link subscribe-link-telegram" target="_blank"></a>
         </div>
         <div class="subscribe-col">
-          <a href="#" class="subscribe-link subscribe-link-instagram" target="_blank"></a>
+          <a href="https://www.instagram.com/b4_gomel" class="subscribe-link subscribe-link-instagram" target="_blank"></a>
         </div>
         <div class="subscribe-col">
-          <a href="#" class="subscribe-link subscribe-link-vk" target="_blank"></a>
+          <a href="https://vk.com/bel4gomel" class="subscribe-link subscribe-link-vk" target="_blank"></a>
         </div>
         <div class="subscribe-col">
-          <a href="#" class="subscribe-link subscribe-link-facebook" target="_blank"></a>
+          <a href="https://www.facebook.com/groups/bel4gomel" class="subscribe-link subscribe-link-facebook" target="_blank"></a>
         </div>
         <div class="subscribe-col">
-          <a href="#" class="subscribe-link subscribe-link-odnoklassniki" target="_blank"></a>
+          <a href="https://ok.ru/bel4gomel" class="subscribe-link subscribe-link-odnoklassniki" target="_blank"></a>
         </div>
         <div class="subscribe-col">
-          <a href="#" class="subscribe-link subscribe-link-tiktok" target="_blank"></a>
+          <a href="https://www.tiktok.com/@tvrgomel" class="subscribe-link subscribe-link-tiktok" target="_blank"></a>
         </div>
       </div>
     </div>

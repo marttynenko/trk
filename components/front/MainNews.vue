@@ -57,11 +57,18 @@ export default {
       border-radius: 10px;
       border: 1px solid $primary;
 
+      &:hover {
+        img {
+          transform: scale(1.05);
+        }
+      }
+
       img {
         display: block;
         border-radius: 6px;
         position: relative;
         z-index: 2;
+        transition: transform .5s;
       }
 
       &:before {

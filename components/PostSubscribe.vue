@@ -2,25 +2,25 @@
   <div class="post-subscribe">
     <div class="post-subscribe-label">Подписаться</div>
     <div class="post-subscribe-items">
-      <a href="#" class="post-subscribe-item youtube" rel="nofollow" target="_blank">
+      <a href="https://www.youtube.com/channel/UCmeQS-euSReIz2l_HlaaQ0Q" class="post-subscribe-item youtube" rel="nofollow" target="_blank">
         <iconYoutube />
       </a>
-      <a href="#" class="post-subscribe-item telegram" rel="nofollow" target="_blank">
+      <a href="https://t.me/trkgomel" class="post-subscribe-item telegram" rel="nofollow" target="_blank">
         <iconTelegram />
       </a>
-      <a href="#" class="post-subscribe-item instagram" rel="nofollow" target="_blank">
+      <a href="https://www.instagram.com/b4_gomel" class="post-subscribe-item instagram" rel="nofollow" target="_blank">
         <iconInstagram />
       </a>
-      <a href="#" class="post-subscribe-item vk" rel="nofollow" target="_blank">
+      <a href="https://vk.com/bel4gomel" class="post-subscribe-item vk" rel="nofollow" target="_blank">
         <iconVk />
       </a>
-      <a href="#" class="post-subscribe-item facebook" rel="nofollow" target="_blank">
+      <a href="https://www.facebook.com/groups/bel4gomel" class="post-subscribe-item facebook" rel="nofollow" target="_blank">
         <iconFacebook />
       </a>
-      <a href="#" class="post-subscribe-item odnoklassniki" rel="nofollow" target="_blank">
+      <a href="https://ok.ru/bel4gomel" class="post-subscribe-item odnoklassniki" rel="nofollow" target="_blank">
         <iconOdnoklassniki />
       </a>
-      <a href="#" class="post-subscribe-item tiktok" rel="nofollow" target="_blank">
+      <a href="https://www.tiktok.com/@tvrgomel" class="post-subscribe-item tiktok" rel="nofollow" target="_blank">
         <iconTiktok />
       </a>
     </div>

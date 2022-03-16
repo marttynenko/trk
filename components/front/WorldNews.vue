@@ -71,6 +71,12 @@ export default {
     color: #FFF;
     overflow: hidden;
 
+    &:hover {
+      .world-news-item-img img {
+        transform: translate(-50%,-50%) scale(1.05);
+      }
+    }
+
     &-img {
       position: relative;
       display: block;
@@ -86,6 +92,7 @@ export default {
         max-width: none;
         object-fit: cover;
         object-position: center;
+        transition: transform .5s;
       }
       &:after {
         content: "";

@@ -2,25 +2,25 @@
   <div class="panel">
     <div class="panel-inner">
       <div class="panel-share">
-        <a href="#" class="panel-share-link" rel="nofollow" target="_blank">
+        <a href="https://www.youtube.com/channel/UCmeQS-euSReIz2l_HlaaQ0Q" class="panel-share-link" rel="nofollow" target="_blank">
           <ytIcon/>
         </a>
-        <a href="#" class="panel-share-link" rel="nofollow" target="_blank">
+        <a href="https://t.me/trkgomel" class="panel-share-link" rel="nofollow" target="_blank">
           <tlIcon/>
         </a>
-        <a href="#" class="panel-share-link" rel="nofollow" target="_blank">
+        <a href="https://www.instagram.com/b4_gomel" class="panel-share-link" rel="nofollow" target="_blank">
           <inIcon/>
         </a>
-        <a href="#" class="panel-share-link" rel="nofollow" target="_blank">
+        <a href="https://vk.com/bel4gomel" class="panel-share-link" rel="nofollow" target="_blank">
           <vkIcon/>
         </a>
-        <a href="#" class="panel-share-link" rel="nofollow" target="_blank">
+        <a href="https://www.facebook.com/groups/bel4gomel" class="panel-share-link" rel="nofollow" target="_blank">
           <fbIcon/>
         </a>
-        <a href="#" class="panel-share-link" rel="nofollow" target="_blank">
+        <a href="https://ok.ru/bel4gomel" class="panel-share-link" rel="nofollow" target="_blank">
           <okIcon/>
         </a>
-        <a href="#" class="panel-share-link" rel="nofollow" target="_blank">
+        <a href="https://www.tiktok.com/@tvrgomel" class="panel-share-link" rel="nofollow" target="_blank">
           <tkIcon/>
         </a>
       </div>

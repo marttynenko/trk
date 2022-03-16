@@ -54,8 +54,20 @@ export default {
     flex: 0 0 35%;
     max-width: 310px;
 
+    a {
+      display: block;
+      overflow: hidden;
+
+      &:hover {
+        img {
+          transform: scale(1.08);
+        }
+      }
+    }
+
     img {
       display: block;
+      transition: transform .5s;
     }
   }
 

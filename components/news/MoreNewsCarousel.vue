@@ -91,8 +91,28 @@ export default {
     &-img {
       margin-bottom: 15px;
 
+      a {
+        display: block;
+        position: relative;
+        overflow: hidden;
+        padding-bottom: 66%;
+        background: #000;
+
+        &:hover {
+          img {
+            transform: translate(-50%,-50%) scale(1.08);
+          }
+        }
+      }
+
       img {
         display: block;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+        min-width: 100%;
+        transition: transform .5s;
       }
     }
 
