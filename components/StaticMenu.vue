@@ -1,12 +1,12 @@
 <template>
   <div class="static-menu">
     <ul>
-      <li><nuxt-link to="/about" exact>О компании</nuxt-link></li>
-      <li><nuxt-link to="/about/tv">О телевидении</nuxt-link></li>
-      <li><nuxt-link to="/about/radio">О радио</nuxt-link></li>
-      <li><nuxt-link to="/about/contacts">Контакты</nuxt-link></li>
-      <li><nuxt-link to="/about/vacancies">Вакансии</nuxt-link></li>
-      <li><nuxt-link to="/about/press">Пресса о нас</nuxt-link></li>
+      <li><nuxt-link :to="localePath('/about')" exact>{{$t('about')}}</nuxt-link></li>
+      <li><nuxt-link :to="localePath('/about/tv')">{{$t('tv')}}</nuxt-link></li>
+      <li><nuxt-link :to="localePath('/about/radio')">{{$t('radio')}}</nuxt-link></li>
+      <li><nuxt-link :to="localePath('/about/contacts')">{{$t('contacts')}}</nuxt-link></li>
+      <li><nuxt-link :to="localePath('/about/vacancies')">{{$t('vacancies')}}</nuxt-link></li>
+      <li><nuxt-link :to="localePath('/about/press')">{{$t('press')}}</nuxt-link></li>
     </ul>
   </div>
 </template>
@@ -40,3 +40,24 @@
   }
 }
 </style>
+
+<i18n>
+{
+  "ru": {
+    "about": "О компании",
+    "tv":"О телевидении",
+    "radio":"О радио",
+    "contacts":"Контакты",
+    "press":"Пресса о нас",
+    "vacancies":"Вакансии"
+  },
+  "by": {
+    "about": "Аб кампаніі",
+    "tv": "Аб тэлебачанні",
+    "radio":"Аб радыё",
+    "contacts":"Кантакты",
+    "press":"Прэса пра нас",
+    "vacancies":"Вакансіі"
+  }
+}
+</i18n>

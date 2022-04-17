@@ -1,5 +1,6 @@
 <template>
   <div class="inner">
+    <KeythemesToggler />
     <div class="row">
       <div class="col-12">
         <div class="ui-breadcrumbs">
@@ -14,7 +15,7 @@
         <div class="news-list" ref="list" v-if="posts && posts.length">
           <PostCard v-for="card in posts" :key="card.ID" :post="card"/>
         </div>
-        <div class="news-list" v-else>Нет новостей</div>
+        <div class="news-list" v-else>{{$t('nonews')}}</div>
 
         <div class="ui-pgn" v-if="isMoreData">
           <a href="" class="ui-pgn-btn ui-btn"
@@ -33,16 +34,17 @@
 <script>
 import Aside from '~/components/Aside.vue'
 import PostCard from '~/components/news/PostCard.vue'
+import KeythemesToggler from '~/components/news/KeythemesToggler.vue'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   components: {
-    Aside, PostCard
+    Aside, PostCard, KeythemesToggler
   },
 
   head() {
     return {
-      title: "Новости - Телерадиокомпания Гомель"
+      title: this.$t('news')+" - Телерадиокомпания Гомель"
     }
   },
 
@@ -89,12 +91,14 @@ export default {
   "ru": {
     "news":"Новости",
     "main":"Главная",
-    "morebtn":"Смотреть больше"
+    "morebtn":"Смотреть больше",
+    "nonews":"Нет новостей"
   },
   "by": {
     "news":"Навiны",
     "main": "Галоўная",
-    "morebtn":"Глядзець больш"
+    "morebtn":"Глядзець больш",
+    "nonews":"Няма навін"
   }
 }
 </i18n>

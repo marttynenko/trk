@@ -11,7 +11,12 @@ module.exports = exports = {
       schedule: '20',
       podcasts: '24',
       podcastsInfo: '28',
-      banners: '10'
+      banners: '10',
+      pages: '25',
+      vacancies: '29',
+      vacanciesCats: '39',
+      press: '41',
+      ads: '32'
     },
     by: {
       news: '4',
@@ -20,7 +25,12 @@ module.exports = exports = {
       schedule: '19',
       podcasts: '23',
       podcastsInfo: '27',
-      banners: '15'
+      banners: '15',
+      pages: '26',
+      vacancies: '30',
+      vacanciesCats: '40',
+      press: '42',
+      ads: '31'
     }
   },
 

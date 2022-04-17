@@ -2,7 +2,7 @@
   <div class="static-page">
     <div class="inner">
       <div class="ui-breadcrumbs">
-        <nuxt-link :to="localePath('/')" class="ui-breadcrumbs-link">{{$t('main')}}</nuxt-link>
+        <nuxt-link to="/" class="ui-breadcrumbs-link">{{$t('main')}}</nuxt-link>
         <span class="ui-breadcrumbs-current">{{$t('about')}}</span>
       </div>
 
@@ -32,7 +32,6 @@
 import Aside from '~/components/Aside.vue'
 import StaticMenu from '~/components/StaticMenu.vue'
 import {mapGetters, mapMutations} from 'vuex'
-
 import Swiper from 'swiper';
 import 'swiper/css/swiper.css'
 
@@ -48,7 +47,7 @@ export default {
   },
 
   async asyncData({store, params}) {
-    await store.dispatch('page/fetchPage', 'about')
+    await store.dispatch('page/fetchPage', params.slug)
   },
 
   methods: {
@@ -95,7 +94,6 @@ export default {
   }
 }
 </script>
-
 
 <i18n>
 {

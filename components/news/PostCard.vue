@@ -55,17 +55,24 @@ export default {
     max-width: 310px;
 
     a {
+      position: relative;
       display: block;
       overflow: hidden;
+      padding-bottom: 56.25%;
 
       &:hover {
         img {
-          transform: scale(1.08);
+          transform: translate(-50%, -50%) scale(1.08);
         }
       }
     }
 
     img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
       display: block;
       transition: transform .5s;
     }
@@ -114,6 +121,28 @@ export default {
     }
     &-descr {
       @include fz(14);
+    }
+  }
+
+  @media (max-width: 400px) {
+    display: block;
+
+    &-img {
+      max-width: 100%;
+      padding-right: 0;
+      margin-bottom: 15px;
+    }
+    &-body {
+      padding-bottom: 0;
+    }
+    &-title {
+      @include fz(16);
+    }
+    &-descr {
+      margin-bottom: 10px;
+    }
+    &-date {
+      position: static;
     }
   }
 }

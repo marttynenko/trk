@@ -1,7 +1,14 @@
 <template>
   <div class="front-projects">
     <div class="inner-wide">
-      <div class="h1 front-projects-header">{{$t('title')}}</div>
+
+      <div class="front-projects-header flex valign-center align-justify">
+        <div class="front-projects-header-title h1">{{$t('title')}}</div>
+        <div class="front-projects-header-btn">
+          <nuxt-link :to="localePath('/shows')" class="ui-btn">{{$t('btn')}}</nuxt-link>
+        </div>
+      </div>
+      
 
       <div class="row">
         <div class="col-lg-7">
@@ -74,6 +81,17 @@ export default {
 .front-projects {
   padding-top: 90px;
 
+  &-header {
+    margin-bottom: 20px;
+
+    &-title {
+      margin-bottom: 10px;
+    }
+    &-btn {
+      margin-bottom: 10px;
+    }
+  }
+
   &-main {
     margin-bottom: 40px;
     @include fz(14);
@@ -86,6 +104,20 @@ export default {
     }
     &-descr {
       margin-bottom: 30px;
+    }
+    &-img {
+      a {
+        display: block;
+        overflow: hidden;
+      }
+      img {
+        transition: transform .5s;
+      }
+      a:hover {
+        img {
+          transform: scale(1.05);
+        }
+      }
     }
   }
 
@@ -125,6 +157,13 @@ export default {
         top: 50%;
         transform: translate(-50%,-50%);
         width: 100%;
+        transition: transform .5s;
+      }
+    }
+
+    &:hover {
+      img {
+        transform: translate(-50%,-50%) scale(1.08);
       }
     }
   }
@@ -140,10 +179,12 @@ export default {
 <i18n>
 {
   "ru": {
-    "title": "Программы и проекты"
+    "title": "Программы и проекты",
+    "btn": "Смотреть все программы"
   },
   "by": {
-    "title": "Тэлепректы i перадачы"
+    "title": "Тэлепректы i перадачы",
+    "btn": "Глядзець усе праграмы"
   }
 }
 </i18n>

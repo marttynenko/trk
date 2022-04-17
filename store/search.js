@@ -32,9 +32,21 @@ export const mutations = {
       // modifiered.DETAIL_TEXT = el.DETAIL_TEXT.replace(/<\/?[^>]+>/ig, " ").substring(0,220)
       modifiered.SEARCH_RES = el.BODY.substring(0,220)
 
-      modifiered.IMG = (el.PICTURE && el.PICTURE.SRC) 
-        ? config.APIserver + el.PICTURE.SRC
-        : '/images/plugs/post-card.jpeg'
+      // modifiered.IMG = (el.PICTURE && el.PICTURE.SRC) 
+      //   ? config.APIserver + el.PICTURE.SRC
+      //   : '/images/plugs/post-card.jpeg'
+
+      let img
+      if (el.PICTURE && el.PICTURE.SRC) {
+        img = config.APIserver + el.PICTURE.SRC
+      } else if (el.VIDEO_LINK) {
+        const videoChanks = el.VIDEO_LINK.split('/')
+        const videoID = videoChanks[videoChanks.length - 1]
+        img = `//img.youtube.com/vi/${videoID}/0.jpg`
+      } else {
+        img = '/images/plugs/post-card.jpeg'
+      }
+      modifiered.IMG = img
 
       // modifiered.ACTIVE_FROM = el.DATE_FROM
       modifiered.ACTIVE_FROM = config.dateFormatter(el.DATE_FROM)
@@ -58,6 +70,8 @@ export const actions = {
   async fetchResults ({ commit}, {query, page = 1}) {
     try {
       const data = await this.$axios.$post(`${config.APIserver}/api/search/?q=${encodeURIComponent(query)}&clear=Y&limit=10&PAGEN_1=${page}`)
+
+      // console.log(data)
       
       commit('updateResults', data)
     } catch (e) {

@@ -13,8 +13,14 @@
       </div>
     </div>
 
-    <div class="main-news-img">
-      <NuxtLink :to="localePath('/news/'+post.CODE)" class="main-news-img-link">
+    <div class="main-news-img" @mouseenter.once="plHover">
+      <div class="main-news-img-link" v-if="isPlayer">
+        <vue-plyr ref="plyr" :options="videoOptions">
+          <div data-plyr-provider="youtube" :data-plyr-embed-id="post.PROPERTIES.VIDEO_LINK.VALUE" :rel="0"></div>
+        </vue-plyr>
+      </div>
+      
+      <NuxtLink :to="localePath('/news/'+post.CODE)" class="main-news-img-link" v-else>
         <img :src="post.IMG" :alt="post.NAME" loading="lazy">
       </NuxtLink>
     </div>
@@ -31,13 +37,40 @@ export default {
     await this.$store.dispatch('mainnews/fetchPost')
   },
 
+  data() {
+    return {
+      isPlayer: false,
+      videoOptions: {
+        ratio: '16:9',
+        controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'settings', 'fullscreen'],
+        clickToPlay: true,
+        autoplay: true,
+        youtube: {
+          autoplay: 1,
+          rel: 0,
+        }
+
+      },
+    }
+  },
+
   computed: {
     ...mapGetters({post: 'mainnews/getPost'})
+  },
+
+  methods: {
+    plHover() {
+      this.isPlayer = true
+      // this.$refs.plyr.player.play()
+      // if (document.querySelector('.plyr__controls')) {
+      //   document.querySelector('.plyr__controls').classList.add('visible')
+      // }
+    }
   }
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .main-news {
   padding: 50px 65px;
 
@@ -49,6 +82,18 @@ export default {
   &-img {
     flex: 0 0 45%;
     max-width: 45%;
+
+    .plyr {
+      z-index: 2;
+      border-radius: 4px;
+    }
+    // .plyr__controls {
+    //   opacity: 0;
+
+    //   &.visible {
+    //     opacity: 1;
+    //   }
+    // }
 
     &-link {
       display: block;

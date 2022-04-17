@@ -4,30 +4,32 @@
     <div class="telegram-feed-header">
       <span class="telegram-feed-header-logo"></span>
       <span class="telegram-feed-header-txt">ТРК Гомель в</span>
-      <span class="telegram-feed-header-telegram">Telegram</span>
+      <a href="//t.me/trkgomel" class="telegram-feed-header-telegram">Telegram</a>
     </div>
 
-    <iframe class="telegram-feed-vidget" style="border:0px;height:480px;width:100%;margin:0px auto;" src="https://xn--r1a.website/s/trkgomel"></iframe>
-    <!-- <div class="telegram-feed-body">
-      <div class="ui-scroller">
-        Открытка из Чили прибыло в графство Англии через 30 лет
-<br><br>
-Речь идёт об открытке, которую британец Нил Крокер отправил своему тестю в 1991 году, во время службы в Королевском флоте. Судно, на котором служил Крокер, возвращалось из трехмесячного путешествия по Фолклендским островам и остановилось на пять дней в чилийском портовом городе Вальпараисо. <br><br>
-По словам мужчины, он «смутно помнит», как отправлял открытку, но в ней он указал, что «погода и пляжи прекрасные». «Я отправил домой 
-<br><br>
-Открытка из Чили прибыло в графство Англии через 30 лет
-<br><br>
-Речь идёт об открытке, которую британец Нил Крокер отправил своему тестю в 1991 году, во время службы в Королевском флоте. Судно, на котором служил Крокер, возвращалось из трехмесячного путешествия по Фолклендским островам и остановилось на пять дней в чилийском портовом городе Вальпараисо. 
-<br><br>
-По словам мужчины, он «смутно помнит», как отправлял открытку, но в ней он указал, что «погода и пляжи прекрасные». «Я отправил домой 
-      </div>
-    </div> -->
+    <div class="telegram-feed-wrp">
+      <div class="telegram-feed-shadow"></div>
+      <iframe class="telegram-feed-vidget" style="border:0px;height:480px;width:100%;margin:0px auto;" src="https://xn--r1a.website/s/trkgomel"></iframe>
+    </div>
+    
   </div>
 </template>
 
 
 <style lang="scss">
 .telegram-feed {
+  &-wrp {
+    position: relative;
+  }
+  &-shadow {
+    position: absolute;
+    right: 0px;
+    top: 0;
+    height: 48px;
+    width: 200px;
+    min-width: 55%;
+    background: linear-gradient(90deg, rgba(255,255,255,0), #FFF 20%);
+  }
   &-header {
     position: relative;
     display: inline-block;
@@ -46,6 +48,10 @@
       position: relative;
       padding-left: 30px;
       color: #2E93C3;
+
+      &:hover {
+        color: darken(#2E93C3,10%);
+      }
 
       &:before {
         content: "";

@@ -1,12 +1,14 @@
 <template>
   <div class="inner">
 
+    <KeythemesToggler />
+
     <div class="ui-breadcrumbs">
       <nuxt-link :to="localePath('/')" class="ui-breadcrumbs-link">{{$t('main')}}</nuxt-link>
       <nuxt-link :to="localePath('/news/keythemes')" class="ui-breadcrumbs-link">{{$t('keythemes')}}</nuxt-link>
     </div>
 
-    <h1 class="page-title"><span class="page-title-gray">Тема: </span>{{currentTheme.NAME}}</h1>
+    <h1 class="page-title" v-if="currentTheme"><span class="page-title-gray">Тема: </span>{{currentTheme.NAME}}</h1>
 
     <div class="row">
 
@@ -15,7 +17,7 @@
           <PostCard v-for="card in posts" :key="card.ID" :post="card"/>
         </div>
 
-        <div class="ui-pgn">
+        <div class="ui-pgn" v-if="moreData">
           <a href="" class="ui-pgn-btn ui-btn"
             @click.prevent="toNextPage"
           >Смотреть больше</a>
@@ -32,12 +34,13 @@
 <script>
 import Aside from '~/components/Aside.vue'
 import PostCard from '~/components/news/PostCard.vue'
+import KeythemesToggler from '~/components/news/KeythemesToggler.vue'
 import {mapActions, mapGetters} from 'vuex'
 
 
 export default {
   components: {
-    Aside, PostCard
+    Aside, PostCard, KeythemesToggler
   },
 
   async asyncData({store, params}) {
@@ -57,7 +60,8 @@ export default {
   computed: {
     ...mapGetters({
       posts: 'keythemes/getPosts',
-      currentTheme: 'keythemes/getCurrentTheme'
+      currentTheme: 'keythemes/getCurrentTheme',
+      moreData: 'keythemes/getMoreData'
     })
   },
 

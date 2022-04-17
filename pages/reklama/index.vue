@@ -5,11 +5,11 @@
     <div class="inner">
       
       <div class="ui-breadcrumbs">
-        <nuxt-link to="/" class="ui-breadcrumbs-link">Главная</nuxt-link>
-        <span class="ui-breadcrumbs-current">Реклама и услуги</span>
+        <nuxt-link :to="localePath('/')" class="ui-breadcrumbs-link">{{$t('main')}}</nuxt-link>
+        <span class="ui-breadcrumbs-current">{{$t('adm')}}</span>
       </div>
 
-      <h1 class="page-title">Реклама и услуги</h1>
+      <h1 class="page-title">{{$t('adm')}}</h1>
 
       <div class="rek-categories" v-if="cats && cats.length">
         <div class="row">
@@ -17,32 +17,37 @@
             v-for="cat in cats"
             :key="cat.ID"
           >
-            <nuxt-link :to="cat.SRC" class="rek-category">
+            <nuxt-link :to="cat.URL" class="rek-category">
               <img :src="cat.IMG" :alt="cat.NAME" class="rek-category-img" loading="lazy">
               <div class="rek-category-title">{{cat.NAME}}</div>
             </nuxt-link>
           </div>
         </div>
       </div>
+
+      <div v-else>{{$t('nodata')}}</div>
     </div>
     
   </div>
 </template>
 
 <script>
-export default {
-  head: {
-    title: 'Реклама и услуги - Телерадиокомпания Гомель'
-  },
+import {mapGetters} from 'vuex'
 
-  data() {
+export default {
+  head() {
     return {
-      cats: [
-        {NAME: 'Видеопроизводство', IMG: '//via.placeholder.com/427x263', SRC: '/reklama/video', ID: '01'},
-        {NAME: 'Аудиопроизводство', IMG: '//via.placeholder.com/427x263/000/FFF', SRC: '/reklama/audio', ID: '02'}
-      ]
+      title: this.$t('adm')+" - Телерадиокомпания Гомель"
     }
   },
+
+  async asyncData({store}) {
+    await store.dispatch('ads/fetchCategories')
+  },
+
+  computed: {
+    ...mapGetters({cats: 'ads/getCategories'})
+  }
 }
 </script>
 
@@ -55,6 +60,7 @@ export default {
     img {
       display: block;
       margin: 0 auto;
+      width: 100%;
     }
   }
 
@@ -103,3 +109,19 @@ export default {
   }
 }
 </style>
+
+
+<i18n>
+{
+  "ru": {
+    "main":"Главная",
+    "adm": "Реклама и услуги",
+    "nodata": "Раздел не заполнен"
+  },
+  "by": {
+    "main": "Галоўная",
+    "adm": "Рэклама і паслугі",
+    "nodata": "Раздзел не запоўнены"
+  }
+}
+</i18n>

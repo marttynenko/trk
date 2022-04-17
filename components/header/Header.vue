@@ -1,5 +1,5 @@
 <template>
-  <header class="header" id="header">
+  <header class="header" id="header" ref="header">
     <div class="header-top">
       <div class="inner-wide">
         <div class="header-top-flex flex valign-center align-justify">
@@ -75,8 +75,29 @@ export default {
 </script>
 
 <style lang="scss">
+.page-wrapper {
+  padding-top: 184px;
+
+  @media (max-width: 1240px) {
+    padding-top: 175px;
+  }
+
+  @media (max-width: 992px) {
+    padding-top: 150px;
+  }
+
+  @media (max-width: 480px) {
+    padding-top: 130px;
+  }
+}
 header.header {
   margin-bottom: 30px;
+  position: fixed;
+  z-index: 10;
+  left: 0;
+  top: 0;
+  right: 0;
+  background: $bg;
 }
 .header {
 
@@ -103,18 +124,24 @@ header.header {
   }
 
   &-nav-toggler {
-    @media (min-width: 993px) {
+    @media (min-width: 1241px) {
       display: none;
     }
   }
 
   @media (max-width: 1580px) {
-    &-radios {
-      display: none;
-    }
+    // &-radios {
+    //   display: none;
+    // }
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: 1240px) {
+
+    &-radios {
+      text-align: right;
+      padding-right: 10px;
+      width: 100%;
+    }
     &-nav {
       display: none;
       position: absolute;
@@ -178,6 +205,19 @@ header.header {
           transform: translateY(0px) rotate(-45deg);
         }
       }
+    }
+  }
+
+  @media (max-width: 992px) {
+    &-top {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+
+  @media (max-width: 533px) {
+    &-top-flex {
+      padding-left: 40px;
     }
   }
 }

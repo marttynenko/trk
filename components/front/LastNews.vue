@@ -58,8 +58,27 @@ export default {
     max-width: 35%;
     padding-right: 10px;
 
-    img {
+    a {
+      position: relative;
       display: block;
+      overflow: hidden;
+      padding-bottom: 56.25%;
+
+      &:hover {
+        img {
+          transform: translate(-50%, -50%) scale(1.08);
+        }
+      }
+    }
+
+    img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      display: block;
+      transition: transform .5s;
     }
   }
   &-body {

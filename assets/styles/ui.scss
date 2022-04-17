@@ -487,6 +487,25 @@ textarea.ui-input {
   }
 }
 
+.post-video,
+.snippet-video-img {
+  position: relative;
+  height: 0;
+  padding-bottom: 56.25%;
+
+  img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
+  &:hover {
+    img {
+      transform: translate(-50%,-50%) scale(1.05);
+    }
+  }
+}
+
 .slick-arrow {
   // position: absolute;
   // bottom: 0;
@@ -591,6 +610,33 @@ textarea.ui-input {
   border: 0;
 }
 
+.swiper {
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+.swiper-dots {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  z-index: 2;
+
+  .swiper-pagination-bullet {
+    width: 60px;
+    max-width: 8vw;
+    height: 4px;
+    margin: 4px;
+    border-radius: 2px;
+    background-color: #FFF;
+
+    &-active,
+    &:hover {
+      background-color: $primary;
+    }
+  }
+}
 .swiper-button-prev.ui-swiper-arrow,
 .swiper-button-next.ui-swiper-arrow {
   width: 24px;
@@ -786,7 +832,8 @@ textarea.ui-input {
   }
 }
 
-.player-window {
+.player-window,
+#__nuxt {
   .plyr {
     &__control--overlaid {
       background: var(--plyr-color-main,var(--plyr-color-main,$primary))
@@ -967,5 +1014,72 @@ textarea.ui-input {
         color: #FFF;
       }
     }
+  }
+}
+
+.snippet-history {
+  margin-bottom: 100px;
+
+  &-item {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #5a5a5a;
+  }
+  &-title {
+    font-weight: 600;
+    @include fz(18);
+    margin-bottom: 20px;
+  }
+  &-descr {
+    margin-bottom: 20px;
+
+    :last-child {
+      margin-bottom: 0;
+    }
+  }
+  &-img,
+  &-video {
+    display: block;
+    position: relative;
+    margin-bottom: 20px;
+
+    img {
+      display: block;
+    }
+  }
+  &-video {
+    border-radius: 0;
+
+    &:after {
+      width: 30px;
+      height: 32px;
+    }
+  }
+  &-btn {
+    padding-top: 70px;
+  }
+
+}
+
+.snippets-audio {
+  margin-bottom: 40px;
+}
+.snippet-audio {
+  margin-bottom: 28px;
+
+  &-title {
+    margin-bottom: 15px;
+  }
+  audio {
+    width: 100%;
+  }
+}
+
+.snippets-video {
+  margin-bottom: 40px;
+}
+
+.last-editions-item-img {
+  img {
+    margin: 0 auto;
   }
 }

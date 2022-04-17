@@ -22,14 +22,11 @@
         </div>
 
         <div class="topblock-banner">
-          <img class="topblock-banner-img" src="/images/banners/banner-topblock.png" alt="banner" loading="lazy">
+          <MainRightVertical />
         </div>
       </div>
+      <MainMidHorizontal />
     </div><!--.topblock-->
-
-    <div class="ui-banner ui-banner-wide">
-      <img src="/images/banners/banner-wide-1.jpg" alt="banner" loading="lazy">
-    </div>
 
     <div class="front-cols">
       <div class="inner-wide">
@@ -48,11 +45,11 @@
           </div>
         </div>
       </div>
+
+      <MainBottomHorizontal />
     </div>
 
-    <div class="ui-banner ui-banner-wide">
-      <img src="/images/banners/banner-wide-1.jpg" alt="banner" loading="lazy">
-    </div>
+    
 
     <div class="front-cols">
       <div class="inner-wide">
@@ -71,19 +68,7 @@
             <div class="tempory-banners">
               <div class="tempory-banners-header"></div>
 
-              <div class="tempory-banners-body">
-                <div class="tempory-banners-banner">
-                  <img src="/images/banners/b1.jpg" alt="alt">
-                </div>
-
-                <div class="tempory-banners-banner">
-                  <img src="/images/banners/b2.jpg" alt="alt">
-                </div>
-
-                <div class="tempory-banners-banner">
-                  <img src="/images/banners/b1.jpg" alt="alt">
-                </div>
-              </div>
+              <MainMini />
             </div>
           </div>
           
@@ -113,6 +98,10 @@ import OnAir from '~/components/front/OnAir.vue'
 import ActualCarousel from '~/components/front/ActualCarousel.vue'
 import Projects from '~/components/front/Projects.vue'
 import SendNewsBtn from '~/components/front/SendNewsBtn.vue'
+import MainRightVertical from '~/components/banners/MainRightVertical.vue'
+import MainMidHorizontal from '~/components/banners/MainMidHorizontal.vue'
+import MainBottomHorizontal from '~/components/banners/MainBottomHorizontal.vue'
+import MainMini from '~/components/banners/MainMini.vue'
 
 export default {
   // layout: 'front',
@@ -131,7 +120,11 @@ export default {
     OnAir,
     ActualCarousel,
     Projects,
-    SendNewsBtn
+    SendNewsBtn,
+    MainRightVertical,
+    MainMidHorizontal,
+    MainBottomHorizontal,
+    MainMini
   }
 }
 </script>
@@ -238,6 +231,15 @@ export default {
   padding-top: 45px;
   padding-bottom: 50px;
 
+  .banner {
+    margin-bottom: -50px;
+  }
+  .banners-list {
+    .banner {
+      margin-bottom: 20px;
+    }
+  }
+
   @media (max-width: 1690px) {
     .ui-block-header {
 
@@ -264,6 +266,10 @@ export default {
   @media (max-width: 576px) {
     padding-top: 15px;
     padding-bottom: 20px;
+
+    .banner {
+      margin-bottom: -20px;
+    }
   }
 }
 

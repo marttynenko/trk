@@ -96,7 +96,7 @@ export default {
     }
   }
 
-  @media (max-width: 1360px) {
+  @media (max-width: 1520px) {
     li {
       margin-right: 15px;
     }
@@ -105,7 +105,7 @@ export default {
     }
   }
 
-  @media (max-width: 992px) {
+  @media (max-width: 1240px) {
     li {
       display: block;
     }

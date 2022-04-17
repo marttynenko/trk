@@ -51,7 +51,6 @@ export const actions = {
         formData,
         headers
       )
-      
       if (req && req.status && req.status == 'ok') {
         return true
       }

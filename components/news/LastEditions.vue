@@ -5,7 +5,7 @@
     <div class="ui-block-title">{{$t('title')}}</div>
 
     <div class="last-editions-header">
-      {{$t('also')}} <span class="last-editions-header-on"><icon-youtube class="last-editions-header-icon" /> YouTube</span>
+      {{$t('also')}} <a href="//www.youtube.com/channel/UCmeQS-euSReIz2l_HlaaQ0Q" class="last-editions-header-on"><icon-youtube class="last-editions-header-icon" /> YouTube</a>
     </div>
 
     <div class="last-editions-body">
@@ -104,6 +104,10 @@ export default {
       @include fz(16);
       font-weight: 600;
       color: #C4302B;
+
+      &:hover {
+        color: darken(#C4302B, 10%);
+      }
     }
   }
 

@@ -17,9 +17,8 @@
               v-for="link in links"
               :key="link.ID"
             >
-              <div class="keythemes-item">
-                <nuxt-link class="keythemes-item-link" :to="localePath('/news/keythemes/'+link.CODE)">{{link.NAME}}</nuxt-link>
-              </div>
+              <nuxt-link class="keythemes-item-link" :to="localePath('/news/keythemes/'+link.CODE)">{{link.NAME}}</nuxt-link>
+              
             </div>
           </div>
         </div>
@@ -68,7 +67,6 @@ export default {
   margin-bottom: 50px;
 }
 .keythemes-item {
-  
 
   &-link {
     display: block;

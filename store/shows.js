@@ -201,10 +201,10 @@ export const actions = {
     }
   },
 
-  async fetchCategories({commit}, page = 1) {
+  async fetchCategories({commit}, {page = 1}) {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'shows')
-
+      
       const cats = await this.$axios.$get(`${config.APIserver}/api/section/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=id:desc&fields=id,name,code,detail_picture&limit=12&page=${page}`)
       // console.log(cats)
       commit('updateCategories', cats)

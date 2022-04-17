@@ -2,8 +2,9 @@
   <div class="ui-form rezume">
     <div class="ui-form-inner">
       <h2 class="ui-form-title">Прислать резюме</h2>
+      <div class="ui-form-content" v-if="!sendStatus">
       <ValidationObserver v-slot="{ invalid }">
-        <form id="form_rezume">
+        <form id="form_rezume" @submit.prevent="sendForm">
 
           <div class="ui-form-group">
             <div class="row">
@@ -37,9 +38,11 @@
               <div class="col-md-4 col-us-6">
                 <div class="ui-field">
                   <select name="position" id="" placeholder="Выберите вакансию" class="ui-input" v-model="form.vacancy">
-                    <option value="Графический дизайнер">Графический дизайнер</option>
-                    <option value="Полиграфист">Полиграфист</option>
-                    <option value="Диктор">Диктор</option>
+                    <option
+                      v-for="cat in categories"
+                      :key="cat.ID"
+                      :value="cat.NAME"
+                    >{{cat.NAME}}</option>
                   </select>
                 </div>
               </div>
@@ -75,7 +78,7 @@
             <div class="ui-field-label">Резюме *</div>
             <ValidationProvider mode="lazy" rules="required" v-slot="{ errors }">
               <label for="files" class="ui-files-area">
-                <input type="file" name="files" id="files" class="ui-files-area-input" @change="choosedFiles($event)" accept=".doc,.docx,.pdf,.rtf,.txt">
+                <input type="file" name="files" id="files" class="ui-files-area-input" @change="[choosedFiles($event), getFilesData($event)]" accept=".doc,.docx,.pdf,.rtf,.txt">
                 <div class="ui-files-area-previews"></div>
                 <span class="ui-files-area-hint">перетащите или загрузите файлы <br>Допустимы следующие типы файлов: .doc,.docx,.pdf,.rtf,.txt</span>
               </label>
@@ -100,12 +103,15 @@
 
         </form>
       </ValidationObserver>
+      </div>
+
+      <div class="ui-form-success" v-else>Спасибо! Ваша заявка отправлена!</div>
     </div>
   </div>
 </template>
 
 <script>
-import {mapActions} from 'vuex'
+import {mapGetters,mapActions} from 'vuex'
 import filesHandler from '~/mixins/filesHandler'
 import { ValidationObserver, ValidationProvider }  from 'vee-validate'
 import '~/utils/validatorMethods'
@@ -117,6 +123,10 @@ export default {
 
   mixins: [filesHandler],
 
+  async fetch() {
+    await this.$store.dispatch('vacancies/fetchCategories')
+  },
+
   data () {
     return {
       sendStatus: false,
@@ -126,13 +136,17 @@ export default {
         first_name: '',
         last_name: '',
         middle_name: '',
-        vacancy: 'Графический дизайнер',
+        vacancy: '',
         phone: '',
         email: '',
         message: '',
         resume: ''
       }
     }
+  },
+
+  computed: {
+    ...mapGetters({categories: 'vacancies/getCategories'})
   },
 
   methods: {
@@ -165,7 +179,12 @@ export default {
 
 
       this.sendStatus = await this.sendRezume(FD)
+      console.log(this.sendStatus,FD)
     }
+  },
+
+  mounted () {
+    this.form.vacancy = this.categories[0].NAME
   }
 }
 </script>

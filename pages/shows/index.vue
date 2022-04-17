@@ -51,7 +51,7 @@
     <div class="ui-pgn" v-if="isMoreData">
       <a href="#" class="ui-pgn-btn ui-btn"
         @click.prevent="toNextPage"
-      >Смотреть больше</a>
+      >{{$t('morebtn')}}</a>
     </div>
       
       
@@ -69,8 +69,10 @@ export default {
     }
   },
 
-  async asyncData({store}) {
-    await store.dispatch('shows/fetchCategories')
+  async asyncData({store,query}) {
+    const page = query.page ? +query.page : 1
+    // console.log(page)
+    await store.dispatch('shows/fetchCategories',{page})
   },
 
   data() {
@@ -90,10 +92,25 @@ export default {
     ...mapActions({fetchCategories: 'shows/fetchCategories'}),
 
     toNextPage() {
-      this.fetchCategories(++this.currentPage).then(()=> {
-        this.$refs.list.scrollIntoView({behavior: "smooth"})
-      })
+      this.fetchCategories({page: ++this.currentPage})
+        .then(()=>{
+          this.$refs.list.scrollIntoView({behavior: "smooth"})
+          this.$router.push({query: { page: this.currentPage}})
+          // history.pushState({'page': this.currentPage}, '', window.location.href)
+        })
     }
+
+    // toNextPage() {
+    //   this.fetchCategories(++this.currentPage).then(()=> {
+    //     this.$refs.list.scrollIntoView({behavior: "smooth"})
+    //   })
+    // }
+  },
+
+  mounted() {
+    // window.onpopstate = function(event) {
+    //   console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
+    // };
   }
 }
 </script>
@@ -179,11 +196,13 @@ export default {
 {
   "ru": {
     "main":"Главная",
-    "specials": "Спецпроекты"
+    "specials": "Спецпроекты",
+    "morebtn":"Смотреть больше"
   },
   "by": {
     "main": "Галоўная",
-    "specials": "Спецпраекты"
+    "specials": "Спецпраекты",
+    "morebtn":"Глядзець больш"
   }
 }
 </i18n>

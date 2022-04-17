@@ -2,6 +2,7 @@
   <div class="page-wrapper">
     <Header />
     <div class="page-middle">
+      <MainTopHorizontal />
       <Nuxt />
     </div>
     <Footer />
@@ -19,10 +20,11 @@ import Footer from '~/components/footer/Footer.vue'
 import Panel from '~/components/SidePanel.vue'
 import Player from '~/components/Player.vue'
 import Popups from '~/components/popups/Popups.vue'
+import MainTopHorizontal from '~/components/banners/MainTopHorizontal.vue'
 
 export default {
   components: {
-    Header, Footer, Player, Panel
+    Header, Footer, Player, Panel, MainTopHorizontal
   },
 }
 </script>

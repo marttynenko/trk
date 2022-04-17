@@ -25,7 +25,8 @@
         </div>
       </VueSlickCarousel>
       <div class="front-editions-archieve">
-        <NuxtLink to="/news/" class="ui-btn ui-btn-big">{{$t('archieve')}}</NuxtLink>
+        <!-- <NuxtLink to="/news/" class="ui-btn ui-btn-big">{{$t('archieve')}}</NuxtLink> -->
+        <FrontArchieve />
       </div>
     </div>
 
@@ -34,7 +35,7 @@
 
 <script>
 import iconYoutube from '@/assets/images/icons/youtube-header.svg'
-
+import FrontArchieve from '~/components/news/FrontArchieve.vue'
 import VueSlickCarousel from 'vue-slick-carousel'
 import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 
@@ -42,7 +43,9 @@ import {mapGetters, mapMutations} from 'vuex'
 
 export default {
   components: {
-    iconYoutube, VueSlickCarousel
+    iconYoutube,
+    VueSlickCarousel,
+    FrontArchieve
   },
 
   async fetch() {
@@ -114,6 +117,12 @@ export default {
   &-item {
     position: relative;
 
+    &:hover {
+      .front-editions-item-img img {
+        transform: translate(-50%,-50%) scale(1.05);
+      }
+    }
+
     &-img {
       position: relative;
       // height: 480px;
@@ -127,6 +136,7 @@ export default {
           position: absolute;
           left: 50%;
           top: 50%;
+          transition: transform .5s;
           transform: translate(-50%,-50%);
           height: 100%;
           min-width: 100%;
@@ -194,7 +204,7 @@ export default {
 
   &-archieve {
     position: absolute;
-    z-index: 99;
+    z-index: 1;
     bottom: 0;
     right: 0;
   }

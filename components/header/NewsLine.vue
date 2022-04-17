@@ -72,5 +72,20 @@ export default {
       }
     }
   }
+
+  @media (max-width: 992px) {
+    &-item {
+      height: 46px;
+      line-height: 46px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &-item {
+      height: 36px;
+      line-height: 36px;
+      @include fz(13);
+    }
+  }
 }
 </style>

@@ -19,7 +19,7 @@
             v-for="vacancy in vacancies"
             :key="vacancy.ID"
             :vacancy="vacancy"
-            />
+          />
         </div>
 
         <no-vacancies v-else />
@@ -38,6 +38,7 @@ import StaticMenu from '~/components/StaticMenu.vue'
 import VacancyCard from '~/components/vacancies/VacancyCard.vue'
 import NoVacancies from '~/components/vacancies/NoVacancies.vue'
 import Rezume from '~/components/forms/Rezume.vue'
+import {mapGetters} from 'vuex'
 
 export default {
   components: {
@@ -50,36 +51,17 @@ export default {
     }
   },
 
-  data () {
-    return {
-      vacancies: [
-        {ID: '01', NAME: "Художник-дизайнер компьютерной графики", SALARY: 'От 1000 BYN', DETAIL: "обработка графических материалов; подготовка и вывод графической информации на видеостены в системе vizrt multiplay.обработка графических материалов; подготовка и вывод графической информации на видеостены в системе vizrt multiplay."},
-        {ID: '02', NAME: "Художник-дизайнер компьютерной графики", SALARY: 'От 1700 BYN', DETAIL: "обработка графических материалов; подготовка и вывод графической информации на видеостены в системе vizrt multiplay.обработка графических материалов; подготовка и вывод графической информации на видеостены в системе vizrt multiplay."}
-      ]
-    }
+  async asyncData({store}) {
+    await store.dispatch('vacancies/fetchVacancies')
   },
 
-  // async asyncData({store}) {
-  //   await store.dispatch('posts/fetchNews', {})
-  // },
+  computed: {
+    ...mapGetters({vacancies: 'vacancies/getVacancies'})
+  },
 
-  // data() {
-  //   return {
-  //     currentPage: 1
-  //   }
-  // },
-
-  // computed: {
-  //   ...mapGetters({allPosts: 'posts/allPosts'})
-  // },
-
-  // methods: {
-  //   ...mapActions({fetchNews: 'posts/fetchNews'}),
-
-  //   toNextPage() {
-  //     this.fetchNews({page: ++this.currentPage})
-  //   }
-  // },
+  mounted() {
+    
+  }
 }
 </script>
 

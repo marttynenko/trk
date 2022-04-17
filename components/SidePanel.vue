@@ -114,7 +114,7 @@ export default {
       left: 0;
       width: 68px;
       min-height: calc(100vh - 94px);
-      padding: 30px 0px 20px;
+      padding: 68px 0px 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;

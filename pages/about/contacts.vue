@@ -2,9 +2,9 @@
   <div class="static-page">
     <div class="inner">
       <div class="ui-breadcrumbs">
-        <nuxt-link to="/" class="ui-breadcrumbs-link">Главная</nuxt-link>
-        <nuxt-link to="/about" class="ui-breadcrumbs-link">О компании</nuxt-link>
-        <span class="ui-breadcrumbs-current">Контакты</span>
+        <nuxt-link :to="localePath('/')" class="ui-breadcrumbs-link">{{$t('main')}}</nuxt-link>
+        <nuxt-link :to="localePath('/about')" class="ui-breadcrumbs-link">{{$t('about')}}</nuxt-link>
+        <span class="ui-breadcrumbs-current">{{page.NAME}}</span>
       </div>
 
       <static-menu />
@@ -12,7 +12,12 @@
       <div class="row">
 
         <main class="col-layout-content col-md-8">
-          <h1 class="page-title">Контакты</h1>
+          <article class="static-article">
+            <header>
+              <h1>{{page.NAME}}</h1>
+            </header>
+            <div class="static-article-body" v-html="page.DETAIL_TEXT"></div>
+          </article>
 
           <div class="contacts-map">
             <GMap
@@ -40,6 +45,7 @@
 <script>
 import Aside from '~/components/Aside.vue'
 import StaticMenu from '~/components/StaticMenu.vue'
+import {mapGetters} from 'vuex'
 
 export default {
   components: {
@@ -50,6 +56,14 @@ export default {
     return {
       title: "Контакты - Телерадиокомпания Гомель"
     }
+  },
+
+  async asyncData({store, params}) {
+    await store.dispatch('page/fetchPage', 'contacts')
+  },
+
+  computed: {
+    ...mapGetters({page: 'page/page'})
   },
 
   data () {
@@ -64,28 +78,19 @@ export default {
         streetViewControl: false
       },
     }
-  },
-
-  // async asyncData({store}) {
-  //   await store.dispatch('posts/fetchNews', {})
-  // },
-
-  // data() {
-  //   return {
-  //     currentPage: 1
-  //   }
-  // },
-
-  // computed: {
-  //   ...mapGetters({allPosts: 'posts/allPosts'})
-  // },
-
-  // methods: {
-  //   ...mapActions({fetchNews: 'posts/fetchNews'}),
-
-  //   toNextPage() {
-  //     this.fetchNews({page: ++this.currentPage})
-  //   }
-  // },
+  }
 }
 </script>
+
+<i18n>
+{
+  "ru": {
+    "main":"Главная",
+    "about": "О компании"
+  },
+  "by": {
+    "main": "Галоўная",
+    "about": "Аб кампаніі"
+  }
+}
+</i18n>

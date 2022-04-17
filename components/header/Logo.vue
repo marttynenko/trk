@@ -33,7 +33,7 @@ export default {
     color: $font;
   }
 
-  @media (max-width: 1360px) {
+  @media (max-width: 1520px) {
     @include fz(14);
 
     &-icon {
@@ -45,17 +45,13 @@ export default {
     }
   }
 
-  @media (max-width: 1240px) and (min-width: 992px) {
-    &-icon {
-      margin-right: 0;
-    }
-    
+  @media (max-width: 1420px) and (min-width: 1240px) {
     &-txt {
       display: none;
     }
   }
 
-  @media (max-width: 450px) {
+  @media (max-width: 768px) {
     &-icon {
       margin-right: 0;
     }

@@ -2,10 +2,10 @@
   <div class="vacancy-card">
     <div class="vacancy-card-position">{{vacancy.NAME}}</div>
     <div class="vacancy-card-salary">{{vacancy.SALARY}}</div>
-    <div class="vacancy-card-descr">{{vacancy.DETAIL}}</div>
+    <div class="vacancy-card-descr">{{vacancy.PREVIEW_TEXT}}</div>
     <div class="vacancy-card-liks">
-      <a href="javascript:void(0)" class="vacancy-card-link">Откликнуться</a>
-      <nuxt-link to="/about/contacts" class="vacancy-card-link">Посмотреть контакты</nuxt-link>
+      <a href="javascript:void(0)" class="vacancy-card-link vacancy-card-link-toform" @click.prevent="scrollToForm">Откликнуться</a>
+      <nuxt-link :to="localePath('/about/contacts')" class="vacancy-card-link">Посмотреть контакты</nuxt-link>
     </div>
   </div>
 </template>
@@ -18,6 +18,13 @@ export default {
     vacancy: {
       type: Object,
       required: true
+    }
+  },
+
+  methods: {
+    scrollToForm() {
+      if (!document.querySelector('.rezume.ui-form')) return
+      document.querySelector('.rezume.ui-form').scrollIntoView({behavior: 'smooth'})
     }
   }
 }
