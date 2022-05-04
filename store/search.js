@@ -49,7 +49,7 @@ export const mutations = {
       modifiered.IMG = img
 
       // modifiered.ACTIVE_FROM = el.DATE_FROM
-      modifiered.ACTIVE_FROM = config.dateFormatter(el.DATE_FROM)
+      modifiered.ACTIVE_FROM = config.dateFormatter(el.DATE_FROM,this.$i18n.locale)
       modifiered.URL = '/news/'+el.CODE
       modifiered.ID = el.ID
       modifiered.NAME = el.TITLE.replace(/<\/?[^>]+>/ig, " ").replace(/&quot;/g, '\"')

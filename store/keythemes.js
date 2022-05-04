@@ -60,7 +60,7 @@ export const mutations = {
         ? config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
         : '/images/plugs/post-card.jpeg'
 
-      modifiered.ACTIVE_FROM = config.dateFormatter(el.ACTIVE_FROM)
+      modifiered.ACTIVE_FROM = config.dateFormatter(el.ACTIVE_FROM,this.$i18n.locale)
       modifiered.URL = '/news/'+el.CODE
       modifiered.ID = el.ID
       modifiered.NAME = el.NAME
@@ -112,7 +112,7 @@ export const actions = {
 
   async fetchTheme({commit},themeCode) {
     try {
-      console.log(themeCode, 'from fetchTheme')
+    
       const iblockKeyID = config.getIblock(this.$i18n.locale,'keythemes')
       const req = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockKeyID}&filter[code]=${themeCode}&fields=id,code,name`)
  

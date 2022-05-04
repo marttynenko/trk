@@ -25,12 +25,15 @@ export const mutations = {
       const modifiered = {}
  
       // modifiered.IMG = el.PROPERTIES.length && el.PROPERTIES.PHOTO.VALUE 
-      modifiered.IMG = el.PROPERTIES && el.PROPERTIES.PHOTO
-        ? config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
+      // modifiered.IMG = el.PROPERTIES && el.PROPERTIES.PHOTO && el.PROPERTIES.PHOTO.VALUE
+      //   ? config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
+      //   : '/images/plugs/world-news-card.jpg'
+      modifiered.IMG = el.DETAIL_PICTURE && el.DETAIL_PICTURE.SRC
+        ? config.APIserver + el.DETAIL_PICTURE.SRC
         : '/images/plugs/world-news-card.jpg'
       modifiered.URL = '/news/'+el.CODE
 
-      modifiered.ACTIVE_FROM = config.dateFormatter(el.ACTIVE_FROM)
+      modifiered.ACTIVE_FROM = config.dateFormatter(el.ACTIVE_FROM,this.$i18n.locale)
       modifiered.ID = el.ID
       modifiered.NAME = el.NAME
       
@@ -46,7 +49,7 @@ export const actions = {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'news')
 
-      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[in_the_world_value]=${encodeURIComponent('Да')}&sort=active_from:desc&fields=id,name,active_from,code,photo&limit=6`)
+      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[in_the_world_value]=${encodeURIComponent('Да')}&sort=active_from:desc&fields=id,name,active_from,code,detail_picture&limit=6`)
       
       commit('updatePosts', news)
     } catch (e) {

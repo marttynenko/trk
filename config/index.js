@@ -16,7 +16,8 @@ module.exports = exports = {
       vacancies: '29',
       vacanciesCats: '39',
       press: '41',
-      ads: '32'
+      ads: '32',
+      videonews: '10'
     },
     by: {
       news: '4',
@@ -30,7 +31,8 @@ module.exports = exports = {
       vacancies: '30',
       vacanciesCats: '40',
       press: '42',
-      ads: '31'
+      ads: '31',
+      videonews: '19'
     }
   },
 
@@ -47,12 +49,16 @@ module.exports = exports = {
     }
   },
 
-  dateFormatter(dateString) {
+  dateFormatter(dateString,locale = 'ru') {
+    let loc = 'ru-RU'
+    if (locale === 'by') {
+      loc = 'be-BE'
+    }
     const d = new Date(dateString)
-    const time = new Intl.DateTimeFormat('ru-RU', {
+    const time = new Intl.DateTimeFormat(loc, {
       hour: '2-digit', minute: '2-digit',
     }).format(d)
-    const date = new Intl.DateTimeFormat('ru-RU', {
+    const date = new Intl.DateTimeFormat(loc, {
       day: 'numeric', month: 'long'
     }).format(d)
 

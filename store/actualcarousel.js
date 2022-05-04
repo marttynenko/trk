@@ -20,7 +20,7 @@ export const mutations = {
     
     for (let key in arr.data) {
       const el = arr.data[key]
-      el.ACTIVE_FROM = config.dateFormatter(el.ACTIVE_FROM)
+      el.ACTIVE_FROM = config.dateFormatter(el.ACTIVE_FROM,this.$i18n.locale)
       list.unshift(el)
     }
     

@@ -1,5 +1,5 @@
 <template>
-  <span class="purpose-news-btn" @click.prevent="showPopup"><span class="purpose-news-btn-txt">Прислать новость</span></span>
+  <span class="purpose-news-btn" @click.prevent="showPopup"><span class="purpose-news-btn-txt">{{$t('btn')}}</span></span>
 </template>
 
 <script>

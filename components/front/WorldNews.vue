@@ -88,7 +88,7 @@ export default {
         top: 50%;
         transform: translate(-50%,-50%);
         min-width: 100%;
-        min-height: 100%;
+        height: 100%;
         max-width: none;
         object-fit: cover;
         object-position: center;

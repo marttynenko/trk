@@ -54,10 +54,19 @@ export default {
   @media (max-width: 768px) {
     &-icon {
       margin-right: 0;
+      line-height: 0;
     }
     
     &-txt {
       display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &-icon {
+      img {
+        max-height: 34px;
+      }
     }
   }
 }

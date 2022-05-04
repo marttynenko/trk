@@ -9,7 +9,7 @@
       <div class="podcast-card-play-status"></div>
     </div>
     <div class="podcast-card-actions">
-      <div class="podcast-card-share"></div>
+      <!-- <div class="podcast-card-share"></div> -->
       <a :href="podcast.AUDIO" download target="_blank" class="podcast-card-download"></a>
     </div>
   </div>

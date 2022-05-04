@@ -21,7 +21,7 @@ export const mutations = {
       modifiered = arr.data[key]
     }
 
-    modifiered.ACTIVE_FROM = config.dateFormatter(modifiered.ACTIVE_FROM)
+    modifiered.ACTIVE_FROM = config.dateFormatter(modifiered.ACTIVE_FROM,this.$i18n.locale)
     modifiered.VIDEO = modifiered.PROPERTIES.VIDEO_LINK.VALUE
     modifiered.IMG = modifiered.PROPERTIES.PHOTO.VALUE 
         ? config.APIserver + modifiered.PROPERTIES.PHOTO.VALUE[0]

@@ -87,7 +87,7 @@ export default {
   }
 
   @media (max-width: 480px) {
-    padding-top: 130px;
+    padding-top: 104px;
   }
 }
 header.header {
@@ -218,6 +218,13 @@ header.header {
   @media (max-width: 533px) {
     &-top-flex {
       padding-left: 40px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    &-top {
+      padding-top: 3px;
+      padding-bottom: 3px;
     }
   }
 }

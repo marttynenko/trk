@@ -190,7 +190,7 @@ export const mutations = {
 }
 
 export const actions = {
-  async fetchShows ({ commit}, {category, page = 1}) {
+  async fetchShows ({ commit }, {category, page = 1}) {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'shows')
 

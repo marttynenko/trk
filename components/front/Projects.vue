@@ -23,7 +23,7 @@
                 <div class="front-projects-main-title">{{cat.NAME}}</div>
                 <div class="front-projects-main-descr">
                   <p>{{cat.DESCRIPTION}}</p>
-                  <NuxtLink :to="localePath(cat.URL)" class="ui-btn">Смотреть видео</NuxtLink>
+                  <NuxtLink :to="localePath(cat.URL)" class="ui-btn">{{$t('videobtn')}}</NuxtLink>
                 </div>
               </div>
               
@@ -180,11 +180,13 @@ export default {
 {
   "ru": {
     "title": "Программы и проекты",
-    "btn": "Смотреть все программы"
+    "btn": "Смотреть все программы",
+    "videobtn": "Смотреть видео"
   },
   "by": {
     "title": "Тэлепректы i перадачы",
-    "btn": "Глядзець усе праграмы"
+    "btn": "Глядзець усе праграмы",
+    "videobtn": "Глядзець відэа"
   }
 }
 </i18n>

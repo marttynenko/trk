@@ -82,9 +82,14 @@ export default {
 
   @media (max-width: 480px) {
     &-item {
-      height: 36px;
-      line-height: 36px;
+      height: 24px;
+      line-height: 24px;
       @include fz(13);
+      padding-left: 20px;
+
+      &:before {
+        background-size: 10px;
+      }
     }
   }
 }

@@ -27,7 +27,7 @@ export const mutations = {
     } else if (modifiered.PROPERTIES.VIDEO_LINK && modifiered.PROPERTIES.VIDEO_LINK.VALUE) {
       const videoChanks = modifiered.PROPERTIES.VIDEO_LINK.VALUE.split('/')
       const videoID = videoChanks[videoChanks.length - 1]
-      img = `//img.youtube.com/vi/${videoID}/maxresdefault.jpg`
+      img = `//img.youtube.com/vi/${videoID}/hqdefault.jpg`
     } else {
       img = '/images/plugs/main-news.jpeg'
     }

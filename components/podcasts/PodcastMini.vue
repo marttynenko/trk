@@ -10,7 +10,7 @@
       </div>
       <div class="podcast-mini-actions">
         <div class="podcast-mini-right">
-          <div class="podcast-mini-share"></div>
+          <!-- <div class="podcast-mini-share"></div> -->
           <a :href="podcast.AUDIO" download target="_blank" class="podcast-mini-download"></a>
         </div>
       

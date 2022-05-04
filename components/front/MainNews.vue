@@ -21,7 +21,9 @@
       </div>
       
       <NuxtLink :to="localePath('/news/'+post.CODE)" class="main-news-img-link" v-else>
-        <img :src="post.IMG" :alt="post.NAME" loading="lazy">
+        <div class="main-news-img-wrp">
+          <img :src="post.IMG" :alt="post.NAME" loading="lazy">
+        </div>
       </NuxtLink>
     </div>
   </div>
@@ -95,16 +97,31 @@ export default {
     //   }
     // }
 
+    &-wrp {
+      position: relative;
+      overflow: hidden;
+      padding-bottom: 55%;
+      margin: 0 auto;
+
+      img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%,-50%);
+      }
+    }
+
     &-link {
       display: block;
       position: relative;
       padding: 30px;
       border-radius: 10px;
       border: 1px solid $primary;
+      overflow: hidden;
 
       &:hover {
         img {
-          transform: scale(1.05);
+          transform: scale(1.05) translate(-50%,-50%);
         }
       }
 
@@ -113,7 +130,9 @@ export default {
         border-radius: 6px;
         position: relative;
         z-index: 2;
+        margin: 0 auto;
         transition: transform .5s;
+        position: absolute;
       }
 
       &:before {

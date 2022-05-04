@@ -864,6 +864,32 @@ textarea.ui-input {
 
 .static-article {
   margin-bottom: 50px;
+
+  table[width*="100%"] {
+    font-weight: 600;
+    @include fz(18);
+    border-collapse: collapse;
+
+    thead {
+      th, td {
+        background: $primary;
+        padding: 20px 40px;
+        color: #FFF;
+
+        &:first-child {
+          border-radius: 20px 0px 0px 0px;
+        }
+        &:last-child {
+          border-radius: 0px 20px 0px 0px;
+        }
+      }
+    }
+
+    td {
+      padding: 20px 40px;
+      background: #FFF;
+    }
+  }
 }
 
 
