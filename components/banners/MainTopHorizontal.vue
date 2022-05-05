@@ -1,5 +1,5 @@
 <template>
-  <Banner :banner="banner" v-if="banner" :classes="'banner-top'"/>
+  <Banner :banner="banner" v-if="banner && notFront" :classes="'banner-top'"/>
 </template>
 
 <script>
@@ -22,7 +22,14 @@ export default {
   },
 
   computed: {
-    ...mapGetters({banners: 'banners/getMainTopHorizontal'})
+    ...mapGetters({banners: 'banners/getMainTopHorizontal'}),
+
+    notFront: function() {
+      if (this.$route.path === '/') {
+        return false
+      }
+      return true
+    }
   },
 
   methods: {
@@ -39,7 +46,7 @@ export default {
     } else {
       this.banner = null
     }
-    
+
     // console.log(this.banners, this.banner)
   }
 }

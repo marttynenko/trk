@@ -2,6 +2,7 @@ import config from '~/config'
 
 export const state = () => ({
   posts: [],
+  post: null,
   postsMoreData: true,
   currentPage: 0
 })
@@ -19,6 +20,10 @@ export const getters = {
 
   getMoreData(state) {
     return state.postsMoreData
+  },
+
+  getPost(state) {
+    return state.post
   }
 }
 
@@ -50,7 +55,7 @@ export const mutations = {
       modifiered.IMG = img
 
       modifiered.ACTIVE_FROM = config.dateFormatter(el.ACTIVE_FROM,this.$i18n.locale)
-      modifiered.URL = '/news/'+el.CODE
+      modifiered.URL = '/about/press/'+el.CODE
       modifiered.ID = el.ID
       modifiered.NAME = el.NAME
       
@@ -67,6 +72,26 @@ export const mutations = {
   updatePage(state, arr) {
     state.currentPage = arr.nav.currentPage
   },
+
+
+  buildPost (state, arr) {
+    if (!Object.keys(arr.data).length) {
+      return state.post = null
+    }
+
+    let modifiered;
+    for (let key in arr.data) {
+      modifiered = arr.data[key]
+    }
+
+    modifiered.ACTIVE_FROM = config.dateFormatter(modifiered.ACTIVE_FROM,this.$i18n.locale)
+    modifiered.VIDEO = modifiered.PROPERTIES.VIDEO_LINK.VALUE
+    modifiered.IMG = modifiered.PROPERTIES.PHOTO.VALUE 
+        ? config.APIserver + modifiered.PROPERTIES.PHOTO.VALUE[0]
+        : null
+    
+    state.post = modifiered
+  }
 }
 
 export const actions = {
@@ -81,5 +106,13 @@ export const actions = {
     } catch (e) {
       console.log(e)
     }
+  },
+
+  async fetchPost ({ commit }, code) {
+    //get locale iblock id from config
+    const iblockID = config.getIblock(this.$i18n.locale,'press')
+    
+    const post = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[CODE]=${code}&fields=id,name,active_from,detail_text,preview_text,detail_page_url,video_link,photo`)
+    commit('buildPost', post)
   }
 }

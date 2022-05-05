@@ -30,17 +30,11 @@ export default {
     }
   },
 
-  methods: {
-    generateURL(code) {
-      return '/news/'+code
-    }
-  },
-
   filters: {
     strippedContent: function(string) {
       return string.replace(/<\/?[^>]+>/ig, " "); 
     }
-  } 
+  }
 }
 </script>
 

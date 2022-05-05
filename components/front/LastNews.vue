@@ -13,7 +13,10 @@
         :key="post.ID"
       >
         <div class="last-news-item-img">
-          <NuxtLink :to="localePath(post.URL)"><img :src="post.IMG" :alt="post.NAME"></NuxtLink>
+          <NuxtLink :to="localePath(post.URL)">
+            <img :src="post.IMG" :alt="post.NAME" loading="lazy">
+            <div class="last-news-item-date">{{post.ACTIVE_FROM}}</div>
+          </NuxtLink>
         </div>
 
         <div class="last-news-item-body">
@@ -21,7 +24,7 @@
             <NuxtLink :to="localePath(post.URL)" class="last-news-item-link">{{post.NAME}}</NuxtLink>
           </div>
 
-          <div class="last-news-item-date">{{post.ACTIVE_FROM}}</div>
+          <!-- <div class="last-news-item-date">{{post.ACTIVE_FROM}}</div> -->
         </div>
       </div>
     </div>
@@ -83,11 +86,14 @@ export default {
   }
   &-body {
     position: relative;
-    padding-bottom: 25px;
+    // padding-bottom: 25px;
   }
   &-title {
     font-weight: 600;
     @include fz(16);
+    max-height: 68px;
+    overflow: hidden;
+    margin-top: -5px;
   }
   &-link {
     color: $font;
@@ -99,9 +105,17 @@ export default {
   &-date {
     position: absolute;
     left: 0;
+    right: 0;
     bottom: 0;
-    color: $font_gray;
-    @include fz(14);
+    color: $font;
+    font-weight: 500;
+    background: rgba(#FFF,.75);
+    @include fz(11);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0px 5px;
+    line-height: 1.2;
   }
 }
 </style>
