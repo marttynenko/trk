@@ -55,6 +55,7 @@ module.exports = exports = {
       loc = 'be-BE'
     }
     const d = new Date(dateString)
+    d.setTime( d.getTime() + d.getTimezoneOffset()*60*1000 );
     const time = new Intl.DateTimeFormat(loc, {
       hour: '2-digit', minute: '2-digit',
     }).format(d)
@@ -63,5 +64,15 @@ module.exports = exports = {
     }).format(d)
 
     return time + ' | ' + date
+  },
+
+  ytParser(url, size) {
+    var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    if (match && match[2].length == 11) {
+      // return match[2];
+      return `//img.youtube.com/vi/${match[2]}/${size}.jpg`
+    }
+    return '/images/plugs/main-mews.jpeg'
   }
 }

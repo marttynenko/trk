@@ -82,7 +82,12 @@ export default {
     toNextPage() {
       this.fetchNews({date: this.queryDate, page: ++this.currentPage})
         .then(()=>{
-          this.$refs.list.scrollIntoView({behavior: "smooth"})
+          const offset = this.$refs.list.offsetTop
+          window.scrollTo({
+            top: offset - 160,
+            behavior: "smooth"
+          })
+          // this.$refs.list.scrollIntoView({behavior: "smooth"})
           this.$router.push({query: { page: this.currentPage}})
         })
     }

@@ -16,7 +16,9 @@ export const mutations = {
     for (let key in arr.data) {
       list.unshift(arr.data[key])
     }
+
     const clean = list.map(el => {
+    // const clean = arr.map(el => {
       const modifiered = {}
 
       modifiered.URL = '/news/'+el.CODE
@@ -29,17 +31,52 @@ export const mutations = {
     })
 
     state.posts = clean
-    // state.posts = state.posts.concat(clean)
   }
 }
 
 export const actions = {
   async fetchPosts ({ commit}) {
     try {
-      const iblockID = config.getIblock(this.$i18n.locale,'news')
+      const locale = this.$i18n.locale
+      const IDs = await this.$axios.$get(`${config.APIserver}/api/now_browsering?lang=${locale}`)
+      
+      const iblockID = config.getIblock(locale,'news')
+      const arr = []
+      let filterString = ''
 
-      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=active_from:desc&fields=id,name,active_from,code&limit=12&page=2`)
-      commit('updatePosts', news)
+      if (IDs && IDs.data && IDs.data.length) {
+
+        const max = Math.max(10,IDs.data.length)
+        
+        for (let i = 0; i < max; i++) {
+          filterString += `filter[id][]=${IDs.data[i]}&`
+        }
+
+        const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&${filterString}fields=id,name,active_from,code&limit=10`)
+        // for await (const id of IDs.data) {
+        //   const res = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[id]=${id}&fields=id,name,active_from,code`)
+          
+        //   if (res.data && !Array.isArray(res.data)) {
+        //     arr.push(res.data[id])
+        //   }
+        // }
+        commit('updatePosts', data)
+      }
+
+      // commit('updatePosts', arr)
+    } catch (e) {
+      console.log(e)
+    }
+  },
+
+  async postToNow({}, id) {
+    try {
+      const data = {
+        lang: this.$i18n.locale,
+        id: id
+      }
+
+      await this.$axios.$post(`${config.APIserver}/api/now_browsering/`,data)
     } catch (e) {
       console.log(e)
     }

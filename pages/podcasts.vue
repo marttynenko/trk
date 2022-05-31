@@ -78,7 +78,7 @@ export default {
 
   data() {
     return {
-      currentNewsPage: 1,
+      currentPage: 1,
     }
   },
 
@@ -100,7 +100,12 @@ export default {
     toNextPage() {
       this.fetchPodcasts({page: ++this.currentPage})
         .then(()=>{
-          this.$refs.list.scrollIntoView({behavior: "smooth"})
+          // this.$refs.list.scrollIntoView({behavior: "smooth"})
+          const offset = this.$refs.list.offsetTop
+          window.scrollTo({
+            top: offset - 160,
+            behavior: "smooth"
+          })
           this.$router.push({query: { page: this.currentPage}})
         })
     }

@@ -118,7 +118,7 @@ export const actions = {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'podcasts')
       
-      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=active_from:desc&fields=id,name,podcast,preview_picture&limit=5`)
+      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=id:desc&fields=id,name,podcast,preview_picture&limit=7`)
       
       commit('setBlock', news)
     } catch (e) {
@@ -126,11 +126,11 @@ export const actions = {
     }
   },
 
-  async fetchPage ({ commit}, page = 1) {
+  async fetchPage ({ commit }, {page = 1}) {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'podcasts')
       
-      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=active_from:desc&fields=id,name,podcast,preview_picture,theme&limit=12&page=${page}`)
+      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=id:desc&fields=id,name,podcast,preview_picture,theme&limit=12&page=${page}`)
       
       commit('setPage', news)
     } catch (e) {
@@ -142,7 +142,7 @@ export const actions = {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'podcastsInfo')
       
-      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=active_from:desc&fields=id,name,preview_picture,preview_text,theme&limit=1`)
+      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=id:desc&fields=id,name,preview_picture,preview_text,theme&limit=1`)
       
       commit('setBanner', news)
     } catch (e) {

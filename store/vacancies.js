@@ -54,7 +54,7 @@ export const actions = {
       //get locale iblock id from config
       const iblockID = config.getIblock(this.$i18n.locale,'vacancies')
       
-      const res = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=active_from:desc&fields=id,name,PREVIEW_TEXT,SALARY&clear=Y`)
+      const res = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=active_from:desc&fields=id,name,PREVIEW_TEXT,SALARY`)
       commit('setVacancies', res)
     } catch (e) {
       console.log(e)
@@ -67,7 +67,7 @@ export const actions = {
       //get locale iblock id from config
       const iblockID = config.getIblock(this.$i18n.locale,'vacanciesCats')
       
-      const res = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=active_from:desc&fields=id,name&clear=Y`)
+      const res = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=active_from:desc&fields=id,name`)
       commit('setCategories', res)
     } catch (e) {
       console.log(e)

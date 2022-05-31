@@ -25,9 +25,10 @@ export const mutations = {
     if (modifiered.PROPERTIES.PHOTO && modifiered.PROPERTIES.PHOTO.VALUE) {
       img = config.APIserver + modifiered.PROPERTIES.PHOTO.VALUE[0]
     } else if (modifiered.PROPERTIES.VIDEO_LINK && modifiered.PROPERTIES.VIDEO_LINK.VALUE) {
-      const videoChanks = modifiered.PROPERTIES.VIDEO_LINK.VALUE.split('/')
-      const videoID = videoChanks[videoChanks.length - 1]
-      img = `//img.youtube.com/vi/${videoID}/hqdefault.jpg`
+      // const videoChanks = modifiered.PROPERTIES.VIDEO_LINK.VALUE.split('/')
+      // const videoID = videoChanks[videoChanks.length - 1]
+      // img = `//img.youtube.com/vi/${videoID}/hqdefault.jpg`
+      img = config.ytParser(modifiered.PROPERTIES.VIDEO_LINK.VALUE,'hqdefault')
     } else {
       img = '/images/plugs/main-news.jpeg'
     }

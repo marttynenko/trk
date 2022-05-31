@@ -74,7 +74,7 @@ export default {
 <style lang="scss">
 .news-carousel {
   background: $bg;
-  padding: 50px 65px;
+  padding: 40px 65px 30px;
   color: $font;
 
   &-item {

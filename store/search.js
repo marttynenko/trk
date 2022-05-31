@@ -69,7 +69,7 @@ export const mutations = {
 export const actions = {
   async fetchResults ({ commit}, {query, page = 1}) {
     try {
-      const data = await this.$axios.$post(`${config.APIserver}/api/search/?q=${encodeURIComponent(query)}&clear=Y&limit=10&PAGEN_1=${page}`)
+      const data = await this.$axios.$post(`${config.APIserver}/api/search/?q=${encodeURIComponent(query)}&limit=10&PAGEN_1=${page}`)
 
       // console.log(data)
       

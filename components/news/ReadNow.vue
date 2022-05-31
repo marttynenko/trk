@@ -1,6 +1,9 @@
 <template>
-  <div class="ui-block read-now">
-    <div class="ui-block-title">{{$t('title')}}</div>
+  <div class="ui-block read-now" v-if="posts && posts.length">
+    <div class="ui-block-header">
+      <div class="ui-block-title">{{$t('title')}}</div>
+    </div>
+    
 
     <div class="read-now-list">
       <div class="ui-scroller" :style="{maxHeight: blockHeight+'px'}">

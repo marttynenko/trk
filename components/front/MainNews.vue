@@ -74,7 +74,8 @@ export default {
 
 <style lang="scss">
 .main-news {
-  padding: 50px 65px;
+  padding: 35px 65px;
+  background: #282828;
 
   &-body {
     flex: 0 0 55%;
@@ -114,7 +115,7 @@ export default {
     &-link {
       display: block;
       position: relative;
-      padding: 30px;
+      padding: 25px;
       border-radius: 10px;
       border: 1px solid $primary;
       overflow: hidden;

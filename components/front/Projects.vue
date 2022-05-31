@@ -61,14 +61,24 @@ import {mapGetters,mapActions} from 'vuex'
 export default {
   async fetch() {
     await this.$store.dispatch('shows/fetchFrontCategories')
-    await this.$store.dispatch('shows/fetchFrontCategory')
+    // await this.$store.dispatch('shows/fetchFrontCategory')
   },
 
   computed: {
     ...mapGetters({
-      cats: 'shows/getFrontCategories',
-      cat: 'shows/getFrontCategory'
-    })
+      catsData: 'shows/getFrontCategories',
+      // cat: 'shows/getFrontCategory'
+    }),
+
+    cat() {
+      if (!this.catsData.length) return null
+      return this.catsData[0]
+    },
+
+    cats() {
+      if (!this.catsData.length) return null
+      return this.catsData.slice(1, Math.min(5, this.catsData.length))
+    }
   },
 
   // mounted() {

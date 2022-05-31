@@ -95,7 +95,7 @@ export default {
         display: block;
         position: relative;
         overflow: hidden;
-        padding-bottom: 66%;
+        padding-bottom: 56.25%;
         background: #000;
 
         &:hover {

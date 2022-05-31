@@ -50,7 +50,9 @@ export default {
     ['nuxt-gmaps', {
       key: 'AIzaSyDw-OnFKGZhozQ5RblsdK7ogE5PLJtS5pI',
     }],
-    '@nuxtjs/i18n'
+    '@nuxtjs/i18n',
+    ['nuxt-clipboard', { autoSetContainer: true }]
+
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

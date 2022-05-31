@@ -1,6 +1,6 @@
 <template>
   <div class="read-now-item">
-    <NuxtLink :to="post.URL" class="read-now-item-title">{{post.NAME}}</NuxtLink>
+    <NuxtLink :to="localePath(post.URL)" class="read-now-item-title">{{post.NAME}}</NuxtLink>
     <div class="read-now-item-date">{{post.ACTIVE_FROM}}</div>
   </div>
 </template>

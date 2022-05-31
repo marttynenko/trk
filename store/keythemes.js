@@ -126,7 +126,7 @@ export const actions = {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'news')
       
-      const url = `${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[keythemes_value]=${state.currentTheme.ID}&filter[active]=Y&fields=id,name,active_from,detail_text,detail_page_url,photo&limit=${limit}&page=${page}&clear=Y`
+      const url = `${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[keythemes_value]=${state.currentTheme.ID}&filter[active]=Y&fields=id,name,active_from,detail_text,detail_page_url,photo&limit=${limit}&page=${page}`
       const data = await this.$axios.$get(url)
 
       commit('updatePosts', data)

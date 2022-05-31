@@ -71,7 +71,13 @@ export default {
     toNextPage() {
       this.fetchPosts({theme: this.theme, page: ++this.currentPage})
         .then(()=>{
-          this.$refs.newslist.scrollIntoView({behavior: "smooth"})
+          // this.$refs.newslist.scrollIntoView({behavior: "smooth"})
+          const offset = this.$refs.newslist.offsetTop
+          window.scrollTo({
+            top: offset - 160,
+            behavior: "smooth"
+          })
+          this.$router.push({query: { page: this.currentPage}})
         })
     }
   },

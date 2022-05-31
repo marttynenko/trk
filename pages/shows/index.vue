@@ -94,24 +94,17 @@ export default {
     toNextPage() {
       this.fetchCategories({page: ++this.currentPage})
         .then(()=>{
-          this.$refs.list.scrollIntoView({behavior: "smooth"})
+          // this.$refs.list.scrollIntoView({behavior: "smooth"})
+          const offset = this.$refs.list.offsetTop
+          window.scrollTo({
+            top: offset - 160,
+            behavior: "smooth"
+          })
           this.$router.push({query: { page: this.currentPage}})
           // history.pushState({'page': this.currentPage}, '', window.location.href)
         })
     }
-
-    // toNextPage() {
-    //   this.fetchCategories(++this.currentPage).then(()=> {
-    //     this.$refs.list.scrollIntoView({behavior: "smooth"})
-    //   })
-    // }
   },
-
-  mounted() {
-    // window.onpopstate = function(event) {
-    //   console.log("location: " + document.location + ", state: " + JSON.stringify(event.state));
-    // };
-  }
 }
 </script>
 

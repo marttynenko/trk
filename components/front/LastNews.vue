@@ -15,7 +15,6 @@
         <div class="last-news-item-img">
           <NuxtLink :to="localePath(post.URL)">
             <img :src="post.IMG" :alt="post.NAME" loading="lazy">
-            <div class="last-news-item-date">{{post.ACTIVE_FROM}}</div>
           </NuxtLink>
         </div>
 
@@ -53,19 +52,27 @@ export default {
 }
 .last-news-item {
   display: flex;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #dfdbd7;
+
+  &:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
 
   &-img {
-    flex: 0 0 166px;
-    max-width: 166px;
-    max-width: 35%;
-    padding-right: 10px;
+    flex: 0 0 80px;
+    max-width: 80px;
+    margin-right: 15px;
 
     a {
       position: relative;
       display: block;
       overflow: hidden;
       padding-bottom: 56.25%;
+      border-radius: 2px;
 
       &:hover {
         img {
@@ -91,8 +98,6 @@ export default {
   &-title {
     font-weight: 600;
     @include fz(16);
-    max-height: 68px;
-    overflow: hidden;
     margin-top: -5px;
   }
   &-link {

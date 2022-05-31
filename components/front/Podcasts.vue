@@ -7,7 +7,7 @@
       </div>
     </div>
 
-    <div class="our-podcasts-list" v-if="podcasts && podcasts.length">
+    <div class="our-podcasts-list ui-scroller" v-if="podcasts && podcasts.length">
       <Podcast 
         v-for="item in podcasts"
         :key="item.id"
@@ -35,6 +35,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss">
+.our-podcasts {
+  &-list {
+    max-height: 550px;
+  }
+}
+</style>
 
 <i18n>
 {

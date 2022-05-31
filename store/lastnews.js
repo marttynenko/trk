@@ -27,9 +27,10 @@ export const mutations = {
       if (el.PROPERTIES.PHOTO && el.PROPERTIES.PHOTO.VALUE) {
         img = config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
       } else if (el.PROPERTIES.VIDEO_LINK && el.PROPERTIES.VIDEO_LINK.VALUE) {
-        const videoChanks = el.PROPERTIES.VIDEO_LINK.VALUE.split('/')
-        const videoID = videoChanks[videoChanks.length - 1]
-        img = `//img.youtube.com/vi/${videoID}/default.jpg`
+        // const videoChanks = el.PROPERTIES.VIDEO_LINK.VALUE.split('/')
+        // const videoID = videoChanks[videoChanks.length - 1]
+        // img = `//img.youtube.com/vi/${videoID}/default.jpg`
+        img = config.ytParser(el.PROPERTIES.VIDEO_LINK.VALUE,'default');
       } else {
         img = '/images/plugs/post-card.jpeg'
       }

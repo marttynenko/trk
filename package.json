@@ -15,6 +15,7 @@
     "@nuxtjs/style-resources": "^1.2.1",
     "core-js": "^3.15.1",
     "nuxt": "^2.15.7",
+    "nuxt-clipboard": "^0.0.7",
     "nuxt-gmaps": "^1.2.10",
     "vue-plyr": "^7.0.0",
     "vue-social-sharing": "^3.0.8"

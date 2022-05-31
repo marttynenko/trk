@@ -60,7 +60,8 @@ export const mutations = {
 
       const videoChanks = modifiered.VIDEO.split('/')
       const videoID = videoChanks[videoChanks.length - 1]
-      modifiered.IMG = `//img.youtube.com/vi/${videoID}/mqdefault.jpg`
+      // modifiered.IMG = `//img.youtube.com/vi/${videoID}/mqdefault.jpg`
+      modifiered.IMG = config.ytParser(modifiered.VIDEO, 'mqdefault')
 
       modifiered.ACTIVE_FROM = config.dateFormatter(el.ACTIVE_FROM)
       modifiered.URL = '/shows/'+el.IBLOCK_SECTION_ID
@@ -174,12 +175,12 @@ export const mutations = {
       modifiered.ID = el.ID
       modifiered.NAME = el.NAME
       modifiered.ACTIVE_FROM = config.dateFormatter(el.ACTIVE_FROM)
-      // modifiered.IMG = (el.DETAIL_PICTURE && el.DETAIL_PICTURE.SRC)
-      //   ? config.APIserver + el.DETAIL_PICTURE.SRC
-      //   : '/images/plugs/post-card.jpeg'
-      const videoChanks = modifiered.VIDEO.split('/')
-      const videoID = videoChanks[videoChanks.length - 1]
-      modifiered.IMG = `//img.youtube.com/vi/${videoID}/mqdefault.jpg`
+
+      // const videoChanks = modifiered.VIDEO.split('/')
+      // const videoID = videoChanks[videoChanks.length - 1]
+      
+      // modifiered.IMG = yID ? `//img.youtube.com/vi/${yID}}/mqdefault.jpg` : ''
+      modifiered.IMG = config.ytParser(modifiered.VIDEO, 'mqdefault')
       
       return modifiered
     })
@@ -217,7 +218,7 @@ export const actions = {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'shows')
 
-      const cats = await this.$axios.$get(`${config.APIserver}/api/section/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=id:desc&fields=id,name,code,detail_picture&limit=4`)
+      const cats = await this.$axios.$get(`${config.APIserver}/api/section/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=sort:desc&fields=id,name,code,detail_picture&limit=5`)
       commit('updateFrontCategories', cats)
     } catch (e) {
       console.log(e)

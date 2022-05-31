@@ -92,7 +92,12 @@ export default {
     toNextPage() {
       this.fetchShows({category: this.page.ID, page: ++this.currentPage})
         .then(()=>{
-          this.$refs.list.scrollIntoView({behavior: "smooth"})
+          const offset = this.$refs.list.offsetTop
+          window.scrollTo({
+            top: offset - 160,
+            behavior: "smooth"
+          })
+          // this.$refs.list.scrollIntoView({behavior: "smooth"})
         })
     }
   },
@@ -105,6 +110,10 @@ export default {
 <style lang="scss">
 .shows-editions {
   margin-bottom: 50px;
+
+  @media (max-width: 992px) {
+    margin-bottom: 10px;
+  }
 }
 .shows-edition {
   margin-bottom: 30px;
@@ -134,7 +143,15 @@ export default {
   &-date {
     margin-bottom: 15px;
     color: $font_gray;
+  }
 
+  @media (max-width: 576px) {
+    &-img {
+      margin-bottom: 12px;
+    }
+    &-date {
+      margin-bottom: 8px;
+    }
   }
 }
 </style>

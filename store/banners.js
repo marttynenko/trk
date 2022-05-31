@@ -169,9 +169,8 @@ export const actions = {
   async fetchMainTopHorizontal ({commit}) {
     try {
       // const iblockID = config.getIblock(this.$i18n.locale,'banners')
-      // const iblockID = config.getIblock(this.$i18n.locale,'banners')
       
-      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[IBLOCK_SECTION_ID]=29&sort=active_from:desc&fields=id,name,iblock_section_id,detail_picture,link&limit=20`)
+      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[IBLOCK_SECTION_ID]=29&sort=sort:desc&fields=id,name,iblock_section_id,detail_picture,link&limit=10`)
 
       // console.log(data)
 
@@ -183,7 +182,7 @@ export const actions = {
 
   async fetchMainMidHorizontal ({commit}) {
     try {
-      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[IBLOCK_SECTION_ID]=30&sort=active_from:desc&fields=id,name,iblock_section_id,detail_picture,link&limit=20`)
+      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[IBLOCK_SECTION_ID]=30&sort=sort:desc&fields=id,name,iblock_section_id,detail_picture,link&limit=10`)
 
       // console.log(data)
 
@@ -195,7 +194,7 @@ export const actions = {
 
   async fetchMainBottomHorizontal ({commit}) {
     try {
-      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[IBLOCK_SECTION_ID]=168&sort=active_from:desc&fields=id,name,iblock_section_id,detail_picture,link&limit=20`)
+      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[IBLOCK_SECTION_ID]=168&sort=sort:desc&fields=id,name,iblock_section_id,detail_picture,link&limit=10`)
 
       // console.log(data)
 
@@ -207,7 +206,7 @@ export const actions = {
 
   async fetchMainRightVertical ({commit}) {
     try {
-      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[IBLOCK_SECTION_ID]=167&sort=active_from:desc&fields=id,name,iblock_section_id,detail_picture,link&limit=20`)
+      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[IBLOCK_SECTION_ID]=167&sort=sort:desc&fields=id,name,iblock_section_id,detail_picture,link&limit=5`)
 
       // console.log(data)
 
@@ -219,7 +218,7 @@ export const actions = {
 
   async fetchMainMini ({commit}) {
     try {
-      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[IBLOCK_SECTION_ID]=169&sort=active_from:desc&fields=id,name,iblock_section_id,detail_picture,link&limit=20`)
+      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[IBLOCK_SECTION_ID]=169&sort=sort:desc&fields=id,name,iblock_section_id,detail_picture,link&limit=3`)
 
       // console.log(data)
 
@@ -231,7 +230,7 @@ export const actions = {
 
   async fetchVerticalAside ({commit}) {
     try {
-      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[IBLOCK_SECTION_ID]=28&sort=active_from:desc&fields=id,name,iblock_section_id,detail_picture,link&limit=20`)
+      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[IBLOCK_SECTION_ID]=28&sort=sort:desc&fields=id,name,iblock_section_id,detail_picture,link&limit=2`)
 
       // console.log(data)
 

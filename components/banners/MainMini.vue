@@ -1,7 +1,7 @@
 <template>
   <div class="banners-list">
     <Banner
-      v-for="item in toRender"
+      v-for="item in banners"
       :key="item.ID"
       :banner="item"
     />
@@ -42,15 +42,15 @@ export default {
 
   mounted() {
 
-    if (this.banners && this.banners.length) {
+    // if (this.banners && this.banners.length) {
       
-      // this.banner = this.banners[random]
-      const count = Math.min(3, this.banners.length)
-      for (let i = 0; i < count; i++) {
-        const random = this.randomInteger(0,this.banners.length - 1)
-        this.toRender.push(this.banners[random])
-      }
-    }
+    //   // this.banner = this.banners[random]
+    //   const count = Math.min(3, this.banners.length)
+    //   for (let i = 0; i < count; i++) {
+    //     const random = this.randomInteger(0,this.banners.length - 1)
+    //     this.toRender.push(this.banners[random])
+    //   }
+    // }
   }
 }
 </script>

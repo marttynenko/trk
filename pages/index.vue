@@ -137,7 +137,7 @@ export default {
   color: #FFF;
 
   &-head {
-    padding: 25px 65px;
+    padding: 20px 65px 15px;
     border-bottom: 1px solid #555;
     @include fz(14);
     display: flex;
@@ -167,12 +167,14 @@ export default {
   &-news {
     flex: 0 0 calc(100% - 350px);
     max-width: calc(100% - 350px);
+    background-color: $bg;
   }
   &-banner {
     flex: 0 0 350px;
     max-width: 350px;
     position: relative;
     overflow: hidden;
+    background-color: #282828;
 
     &-img {
       position: absolute;
