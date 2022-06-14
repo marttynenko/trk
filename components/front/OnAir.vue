@@ -24,20 +24,6 @@
           </div>
         </div>
 
-        <!-- <div class="col-lg-3 col-xs-6">
-          <div class="onair-card">
-            <div class="onair-card-img ui-video">
-              <img src="//via.placeholder.com/359x202" alt="alt">
-            </div>
-            <div class="onair-card-string flex valign-baseline align-justify">
-              <div class="onair-card-theme">Точка зрения</div>
-              <div class="onair-card-date">17:25 | 19 июля</div>
-            </div>
-
-            <div class="onair-card-title">“На этюды” Выставка пастелей Олега Белоусова открыта в Гомеле</div>
-          </div>
-        </div> -->
-
         
       </div>
     </div>

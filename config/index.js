@@ -1,8 +1,8 @@
 module.exports = exports = {
   port: 3000,
   // APIserver: 'http://bitrixvm.farbatest.com',
-  APIserver: 'http://apitrk.farbatest.com',
-  domain: 'http://trk.farbatest.com',
+  APIserver: 'http://api.tvrgomel.by',
+  domain: 'http://tvrgomel.by',
   iblocks: {
     ru: {
       news: '2',

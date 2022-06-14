@@ -20,7 +20,7 @@
         <a href="https://ok.ru/bel4gomel" class="panel-share-link" rel="nofollow" target="_blank">
           <okIcon/>
         </a>
-        <a href="https://www.tiktok.com/@tvrgomel" class="panel-share-link" rel="nofollow" target="_blank">
+        <a href="https://www.tiktok.com/@tvr_gomel" class="panel-share-link" rel="nofollow" target="_blank">
           <tkIcon/>
         </a>
       </div>

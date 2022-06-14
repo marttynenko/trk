@@ -4,9 +4,9 @@
       <div class="row valign-center">
         <div class="col-lg-6 col-md-8">
           <div class="podcast-banner-data">
-            <div class="podcast-banner-btn">
+            <!-- <div class="podcast-banner-btn">
               <span class="ui-btn" v-if="banner.THEME">{{banner.THEME}}</span>
-            </div>
+            </div> -->
 
             <div class="podcast-banner-title">{{banner.NAME}}</div>
 

@@ -1,7 +1,7 @@
 <template>
   <div class="banner" :class="[classes]">
     <a :href="banner.LINK" target="_blank" class="banner-link">
-      <img :src="banner.IMG" :alt="banner.NAME" class="banner-img" loadin="lazy">
+      <img :src="banner.IMG" :alt="banner.NAME" class="banner-img" loading="lazy">
     </a>
   </div>
 </template>

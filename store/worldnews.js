@@ -39,7 +39,7 @@ export const mutations = {
       //   ? config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
       //   : '/images/plugs/world-news-card.jpg'
       modifiered.IMG = el.DETAIL_PICTURE && el.DETAIL_PICTURE.SRC
-        ? config.APIserver + el.DETAIL_PICTURE.SRC
+        ? el.DETAIL_PICTURE.SRC
         : '/images/plugs/world-news-card.jpg'
       modifiered.URL = '/news/'+el.CODE
 
@@ -68,7 +68,7 @@ export const mutations = {
  
       // modifiered.IMG = el.PROPERTIES.length && el.PROPERTIES.PHOTO.VALUE 
       modifiered.IMG = el.PROPERTIES && el.PROPERTIES.PHOTO && el.PROPERTIES.PHOTO.VALUE
-        ? config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
+        ? el.PROPERTIES.PHOTO.VALUE[0]
         : '/images/plugs/world-news-card.jpg'
       // modifiered.IMG = el.DETAIL_PICTURE && el.DETAIL_PICTURE.SRC
       //   ? config.APIserver + el.DETAIL_PICTURE.SRC

@@ -36,6 +36,11 @@ export const mutations = {
     for (let key in arr.data) {
       list.push(arr.data[key])
     }
+
+    list.sort((a,b)=> {
+      return +b.SORT - +a.SORT
+    })
+
     state.links = list
   },
 
@@ -44,6 +49,11 @@ export const mutations = {
     for (let key in arr.data) {
       list.push(arr.data[key])
     }
+
+    list.sort((a,b)=> {
+      return +b.SORT - +a.SORT
+    })
+
     state.allLinks = list
   },
 
@@ -92,7 +102,7 @@ export const actions = {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'keythemes')
 
-      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&fields=id,code,name&limit=4`)
+      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=sort:desc&fields=id,code,name,sort&limit=4`)
       commit('updateLinks', data)
     } catch (e) {
       console.log(e)
@@ -103,7 +113,7 @@ export const actions = {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'keythemes')
 
-      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&fields=id,code,name&limit=50`)
+      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=sort:desc&fields=id,code,name,sort&limit=50`)
       commit('updateAllLinks', data)
     } catch (e) {
       console.log(e)
@@ -126,7 +136,7 @@ export const actions = {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'news')
       
-      const url = `${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[keythemes_value]=${state.currentTheme.ID}&filter[active]=Y&fields=id,name,active_from,detail_text,detail_page_url,photo&limit=${limit}&page=${page}`
+      const url = `${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[keythemes_value]=${state.currentTheme.ID}&filter[active]=Y&sort=active_from:desc&fields=id,name,active_from,detail_text,detail_page_url,photo&limit=${limit}&page=${page}`
       const data = await this.$axios.$get(url)
 
       commit('updatePosts', data)

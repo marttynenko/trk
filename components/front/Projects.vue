@@ -80,10 +80,6 @@ export default {
       return this.catsData.slice(1, Math.min(5, this.catsData.length))
     }
   },
-
-  // mounted() {
-  //   console.log(this.cats)
-  // }
 }
 </script>
 

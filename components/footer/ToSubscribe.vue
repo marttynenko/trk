@@ -22,7 +22,7 @@
           <a href="https://ok.ru/bel4gomel" class="subscribe-link subscribe-link-odnoklassniki" target="_blank"></a>
         </div>
         <div class="subscribe-col">
-          <a href="https://www.tiktok.com/@tvrgomel" class="subscribe-link subscribe-link-tiktok" target="_blank"></a>
+          <a href="https://www.tiktok.com/@tvr_gomel" class="subscribe-link subscribe-link-tiktok" target="_blank"></a>
         </div>
       </div>
     </div>

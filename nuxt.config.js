@@ -51,7 +51,17 @@ export default {
       key: 'AIzaSyDw-OnFKGZhozQ5RblsdK7ogE5PLJtS5pI',
     }],
     '@nuxtjs/i18n',
-    ['nuxt-clipboard', { autoSetContainer: true }]
+    ['nuxt-clipboard', { autoSetContainer: true }],
+    [
+      '@rkaliev/nuxtjs-yandex-metrika',
+      {
+        id: '83859610',
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+      },
+    ],
 
   ],
 

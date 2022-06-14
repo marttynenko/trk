@@ -138,7 +138,7 @@ export default {
   &-slider {
     .swiper-button-prev,
     .swiper-button-next {
-      top: 88px;
+      top: 72px;
       margin-top: 0;
     }
   }
@@ -150,7 +150,7 @@ export default {
     &-slider {
       .swiper-button-prev,
       .swiper-button-next {
-        top: 66px;
+        top: 54px;
       }
     }
   }

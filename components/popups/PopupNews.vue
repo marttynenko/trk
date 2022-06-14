@@ -92,7 +92,7 @@
               <ValidationProvider rules="required" v-slot="{ errors }">
                 <label for="agree" class="ui-checkbox">
                   <input type="checkbox" name="agree" id="agree" class="ui-checkbox-input" :class="{invalid: errors.length}" v-model="check" checked>
-                  <span class="ui-checkbox-txt">Я принимаю условия пользовательсткого соглашения</span>
+                  <span class="ui-checkbox-txt">Я принимаю условия пользовательского соглашения</span>
                   <div v-if="errors.length" class="ui-field-error">{{ errors[0] }}</div>
                 </label>
               </ValidationProvider>

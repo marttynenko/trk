@@ -39,7 +39,7 @@ export const mutations = {
     const clean = list.map(el => {
       const modifiered = {}
       modifiered.IMG = (el.PREVIEW_PICTURE && el.PREVIEW_PICTURE.SRC && el.PREVIEW_PICTURE.SRC.length) 
-        ? config.APIserver + el.PREVIEW_PICTURE.SRC
+        ? el.PREVIEW_PICTURE.SRC
         : '/images/plugs/post-card.jpeg'
 
       modifiered.AUDIO = (el.PROPERTIES.PODCAST && el.PROPERTIES.PODCAST.VALUE)
@@ -74,7 +74,7 @@ export const mutations = {
     const clean = list.map(el => {
       const modifiered = {}
       modifiered.IMG = (el.PREVIEW_PICTURE && el.PREVIEW_PICTURE.SRC && el.PREVIEW_PICTURE.SRC.length) 
-        ? config.APIserver + el.PREVIEW_PICTURE.SRC
+        ? el.PREVIEW_PICTURE.SRC
         : '/images/plugs/post-card.jpeg'
 
       modifiered.AUDIO = (el.PROPERTIES.PODCAST && el.PROPERTIES.PODCAST.VALUE)
@@ -103,7 +103,7 @@ export const mutations = {
 
     // modifiered.NAME = modifiered.PROPERTIES.VIDEO_LINK.VALUE
     if (modifiered.PREVIEW_PICTURE && modifiered.PREVIEW_PICTURE.SRC && modifiered.PREVIEW_PICTURE.SRC.length) {
-      modifiered.IMG = config.APIserver + modifiered.PREVIEW_PICTURE.SRC
+      modifiered.IMG = modifiered.PREVIEW_PICTURE.SRC
     }
     if (modifiered.PROPERTIES.THEME.VALUE && modifiered.PROPERTIES.THEME.VALUE.length) {
       modifiered.THEME = modifiered.PROPERTIES.THEME.VALUE

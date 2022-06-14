@@ -2,8 +2,8 @@
   <div class="ui-block front-editions" v-if="posts && posts.length">
 
     <div class="front-editions-header">
-      {{$t('also')}} <span class="front-editions-header-on"><icon-youtube class="front-editions-header-icon" /> YouTube</span>
-      <a href="#" class="front-editions-btn ui-btn">{{$t('btn')}}</a>
+      {{$t('also')}} <a href="https://www.youtube.com/channel/UCmeQS-euSReIz2l_HlaaQ0Q" rel="nofollow" target="_blank" class="front-editions-header-on"><icon-youtube class="front-editions-header-icon" /> YouTube</a>
+      <a href="https://www.youtube.com/channel/UCmeQS-euSReIz2l_HlaaQ0Q" rel="nofollow" target="_blank" class="front-editions-btn ui-btn">{{$t('btn')}}</a>
     </div>
 
     <div class="front-editions-body">
@@ -111,6 +111,10 @@ export default {
       @include fz(16);
       font-weight: 600;
       color: #C4302B;
+
+      &:hover {
+        color: lighten(#C4302B, 10%);
+      }
     }
   }
 
