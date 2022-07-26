@@ -33,6 +33,8 @@ export const mutations = {
       img = '/images/plugs/main-news.jpeg'
     }
     modifiered.IMG = img
+
+    modifiered.PREVIEW_TEXT = modifiered.PREVIEW_TEXT.replace(/<\/?[^>]+>/ig, " ").substring(0,220)
     
     state.post = modifiered
   }

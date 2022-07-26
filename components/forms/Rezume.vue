@@ -90,7 +90,7 @@
             <ValidationProvider rules="required" v-slot="{ errors }">
               <label for="agree" class="ui-checkbox">
                 <input type="checkbox" name="agree" id="agree" class="ui-checkbox-input" :class="{invalid: errors.length}" v-model="check" checked>
-                <span class="ui-checkbox-txt">Я принимаю условия пользовательcкого соглашения</span>
+                <span class="ui-checkbox-txt">Я принимаю условия <nuxt-link :to="localePath('/terms-of-use')">пользовательcкого соглашения</nuxt-link></span>
                 <div v-if="errors.length" class="ui-field-error">{{ errors[0] }}</div>
               </label>
             </ValidationProvider>

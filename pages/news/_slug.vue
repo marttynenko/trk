@@ -57,6 +57,24 @@ export default {
     await store.dispatch('post/fetchPost', params.slug)
   },
 
+  head() {
+    return {
+      title: (this.post.META.ELEMENT_META_TITLE || this.post.NAME) + ' | ' + this.$t('sitename'),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.post.META.ELEMENT_META_DESCRIPTION || this.post.DETAIL_TEXT.replace(/<\/?[^>]+>/ig, " ").substring(0,220)
+        }, {
+          hid: 'keywords',
+          name: 'keywords',
+          content: (this.post.TAGS && this.post.TAGS != "") ? this.post.TAGS : ''
+          // content: this.post.META.ELEMENT_META_KEYWORDS ? this.post.META.ELEMENT_META_KEYWORDS : ''
+        }
+      ]
+    }
+  },
+
   data() {
     return {
       sharingData: {
@@ -122,14 +140,16 @@ export default {
     "main":"Главная",
     "morebtn":"Смотреть больше",
     "short":"Короткая ссылка",
-    "shortLabel":"Скопировано"
+    "shortLabel":"Скопировано",
+    "sitename":"Телерадиокомпания Гомель"
   },
   "by": {
     "news":"Навiны",
     "main": "Галоўная",
     "morebtn":"Глядзець больш",
     "short":"Кароткая спасылка",
-    "shortLabel":"Скапіравана"
+    "shortLabel":"Скапіравана",
+    "sitename":"Телерадыекампанiя Гомель"
   }
 }
 </i18n>

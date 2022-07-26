@@ -33,6 +33,10 @@ import Aside from '~/components/Aside.vue'
 import StaticMenu from '~/components/StaticMenu.vue'
 import {mapGetters, mapMutations} from 'vuex'
 
+import lightGallery from 'lightgallery';
+// import 'lightgallery/css/lightgallery.css'
+// import 'lightgallery/css/lightgallery-bundle.css'
+// import 'lightgallery/fonts/lg.woff2'
 import Swiper from 'swiper';
 import 'swiper/css/swiper.css'
 
@@ -52,7 +56,20 @@ export default {
   },
 
   methods: {
-    ...mapMutations({changeSource: 'player/changeSource'})
+    ...mapMutations({changeSource: 'player/changeSource'}),
+
+    initGallery(selector) {
+      const style = document.createElement('link')
+      style.rel = 'stylesheet'
+      style.href = 'https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.5.0/css/lightgallery.min.css'
+      document.head.appendChild(style)
+
+      lightGallery(document.querySelector(selector), {
+        selector: '.snippet-history-img',
+        download: false
+      });
+
+    }
   },
 
   computed: {
@@ -60,9 +77,16 @@ export default {
   },
 
   mounted() {
-    document.querySelectorAll('.snippet-history-img').forEach(el => {
-      el.addEventListener('click',(e) => {e.preventDefault()})
-    })
+    // document.querySelectorAll('.snippet-history-img').forEach(el => {
+    //   el.addEventListener('click',function (e) {
+    //     e.preventDefault()
+    //     console.log(this.href)
+    //   })
+    // })
+
+    if (document.querySelector('.snippet-history-img')) {
+      this.initGallery('.snippet-history')
+    }
 
     document.querySelectorAll('.snippet-history-video').forEach(el => {
       const video = el.dataset.video || null
@@ -86,6 +110,7 @@ export default {
       const slider = new Swiper('.snippet-slider-wrapper',{
         loop: false,
         slidesPerView: 1,
+        autoHeight: true,
         pagination: {
           el: ".swiper-pagination",
           clickable: true

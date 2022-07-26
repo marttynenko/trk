@@ -66,9 +66,18 @@ export const mutations = {
       const modifiered = {}
       modifiered.DETAIL_TEXT = el.DETAIL_TEXT.replace(/<\/?[^>]+>/ig, " ").substring(0,220)
 
-      modifiered.IMG = (el.PROPERTIES.PHOTO && el.PROPERTIES.PHOTO.VALUE)
-        ? config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
-        : '/images/plugs/post-card.jpeg'
+      // modifiered.IMG = (el.PROPERTIES.PHOTO && el.PROPERTIES.PHOTO.VALUE)
+      //   ? config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
+      //   : '/images/plugs/post-card.jpeg'
+      let img
+      if (el.PROPERTIES.PHOTO && el.PROPERTIES.PHOTO.VALUE) {
+        img = config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
+      } else if (el.PROPERTIES.VIDEO_LINK && el.PROPERTIES.VIDEO_LINK.VALUE) {
+        img = config.ytParser(el.PROPERTIES.VIDEO_LINK.VALUE,'0')
+      } else {
+        img = '/images/plugs/post-card.jpeg'
+      }
+      modifiered.IMG = img
 
       modifiered.ACTIVE_FROM = config.dateFormatter(el.ACTIVE_FROM,this.$i18n.locale)
       modifiered.URL = '/news/'+el.CODE
@@ -136,7 +145,7 @@ export const actions = {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'news')
       
-      const url = `${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[keythemes_value]=${state.currentTheme.ID}&filter[active]=Y&sort=active_from:desc&fields=id,name,active_from,detail_text,detail_page_url,photo&limit=${limit}&page=${page}`
+      const url = `${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[keythemes_value]=${state.currentTheme.ID}&filter[active]=Y&sort=active_from:desc&fields=id,name,active_from,detail_text,detail_page_url,photo,video_link&limit=${limit}&page=${page}`
       const data = await this.$axios.$get(url)
 
       commit('updatePosts', data)

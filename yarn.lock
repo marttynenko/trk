@@ -5757,6 +5757,11 @@
   "resolved" "https://registry.npmjs.org/lazy-cache/-/lazy-cache-1.0.4.tgz"
   "version" "1.0.4"
 
+"lightgallery@^2.5.0":
+  "integrity" "sha512-pzg5gwflLGlKaK1VqDKpb7yqQ/WSV/TxFaHRR7ld7G5iOI9gkJZ2qKKo2lyqvTvu8yAqNYXoU0w9O/Dll6POkw=="
+  "resolved" "https://registry.npmjs.org/lightgallery/-/lightgallery-2.5.0.tgz"
+  "version" "2.5.0"
+
 "lines-and-columns@^1.1.6":
   "integrity" "sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg=="
   "resolved" "https://registry.npmjs.org/lines-and-columns/-/lines-and-columns-1.2.4.tgz"

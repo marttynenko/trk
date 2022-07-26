@@ -56,7 +56,7 @@
               <ValidationProvider rules="required" v-slot="{ errors }">
                 <label for="agree" class="ui-checkbox">
                   <input type="checkbox" name="agree" id="agree" class="ui-checkbox-input" :class="{invalid: errors.length}" v-model="check" checked>
-                  <span class="ui-checkbox-txt">Я принимаю условия пользовательского соглашения</span>
+                  <span class="ui-checkbox-txt">Я принимаю условия <a href="#" @click.prevent="toURL('/terms-of-use')">пользовательcкого соглашения</a></span>
                   <div v-if="errors.length" class="ui-field-error">{{ errors[0] }}</div>
                 </label>
               </ValidationProvider>
@@ -125,6 +125,12 @@ export default {
       FD.append("message", this.form.message);
 
       this.sendStatus = await this.sendFeedback(FD)
+    },
+
+    toURL(url) {
+      // this.$router.push(url)
+      this.$router.push(this.localePath(url))
+      this.closeHandler()
     }
   }
 }

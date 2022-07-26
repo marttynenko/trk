@@ -1,9 +1,10 @@
 <template>
   <div class="key-themes">
-    <NuxtLink 
+    <!-- <NuxtLink 
       class="key-themes-label"
       :to="localePath('/news/keythemes/')"
-    >{{$t('title')}}:</NuxtLink>
+    >{{$t('title')}}:</NuxtLink> -->
+    <span class="key-themes-label">{{$t('title')}}:</span>
     <div class="key-themes-links">
       <NuxtLink 
         class="key-themes-link"

@@ -71,7 +71,7 @@ export default {
       position: relative;
       display: block;
       overflow: hidden;
-      padding-bottom: 56.25%;
+      padding-bottom: 55%;
       border-radius: 2px;
 
       &:hover {
@@ -99,6 +99,7 @@ export default {
     font-weight: 600;
     @include fz(16);
     margin-top: -5px;
+    margin-bottom: -3px;
   }
   &-link {
     color: $font;
