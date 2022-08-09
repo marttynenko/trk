@@ -54,7 +54,7 @@ export const actions = {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'news')
 
-      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=active_from:desc&fields=id,name,active_from,code,photo,video_link&limit=12`)
+      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[active_date]=Y&sort=active_from:desc&fields=id,name,active_from,code,photo,video_link&limit=12`)
       commit('updatePosts', news)
     } catch (e) {
       console.log(e)

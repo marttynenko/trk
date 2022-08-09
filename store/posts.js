@@ -31,13 +31,24 @@ export const mutations = {
 
     const clean = list.map(el => {
       const modifiered = {}
-      modifiered.DETAIL_TEXT = el.DETAIL_TEXT.replace(/<\/?[^>]+>/ig, " ").substring(0,220)
+      // modifiered.DETAIL_TEXT = el.DETAIL_TEXT.replace(/<\/?[^>]+>/ig, " ").substring(0,220)
 
       // modifiered.IMG = (el.PROPERTIES.PHOTO && el.PROPERTIES.PHOTO.VALUE) 
       //   ? config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
       //   : '/images/plugs/post-card.jpeg'
 
-      let img
+      let img, text
+
+
+      if (el.PROPERTIES.SHORT_TEXT && el.PROPERTIES.SHORT_TEXT.VALUE && el.PROPERTIES.SHORT_TEXT.VALUE.TEXT && typeof el.PROPERTIES.SHORT_TEXT.VALUE.TEXT === 'string') {
+        // text = el.PROPERTIES.SHORT_TEXT.VALUE.TEXT.trim().replace(/<\/?[^>]+>/ig, " ")
+        text = el.PROPERTIES.SHORT_TEXT.VALUE.TEXT.replace(/&lt;\/?\D&gt;|&quot;/ig,'')
+      } else {
+        text = el.DETAIL_TEXT.replace(/<\/?[^>]+>/ig, " ").substring(0,220)
+      }
+
+      modifiered.DETAIL_TEXT = text
+
       if (el.PROPERTIES.PHOTO && el.PROPERTIES.PHOTO.VALUE) {
         img = config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
       } else if (el.PROPERTIES.VIDEO_LINK && el.PROPERTIES.VIDEO_LINK.VALUE) {
@@ -77,7 +88,7 @@ export const actions = {
       // const iblock = config.iblocks[this.$i18n.locale].news
       const iblockID = config.getIblock(this.$i18n.locale,'news')
 
-      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=active_from:desc&fields=id,name,active_from,detail_text,detail_page_url,photo,video_link&limit=${limit}&page=${page}`)
+      const news = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[active_date]=Y&sort=active_from:desc&fields=id,name,active_from,detail_text,short_text,detail_page_url,photo,video_link&limit=${limit}&page=${page}`)
       commit('updateList', news)
     } catch (e) {
       console.log(e)
