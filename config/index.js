@@ -52,17 +52,17 @@ module.exports = exports = {
   dateFormatter(dateString,locale = 'ru') {
     let loc = 'ru-RU'
     if (locale === 'by') {
-      loc = 'be-BE'
+      loc = 'be'
+      // loc = 'be-BE'
     }
     const d = new Date(dateString)
     d.setTime( d.getTime() + d.getTimezoneOffset()*60*1000 );
     const time = new Intl.DateTimeFormat(loc, {
-      hour: '2-digit', minute: '2-digit',
+      hour: '2-digit', minute: '2-digit'
     }).format(d)
     const date = new Intl.DateTimeFormat(loc, {
       day: 'numeric', month: 'long'
     }).format(d)
-
     return time + ' | ' + date
   },
 

@@ -23,7 +23,8 @@ export const mutations = {
 
     let img
     if (modifiered.PROPERTIES.PHOTO && modifiered.PROPERTIES.PHOTO.VALUE) {
-      img = config.APIserver + modifiered.PROPERTIES.PHOTO.VALUE[0]
+      // img = config.APIserver + modifiered.PROPERTIES.PHOTO.VALUE[0]
+      img = modifiered.PROPERTIES.PHOTO.VALUE[0]
     } else if (modifiered.PROPERTIES.VIDEO_LINK && modifiered.PROPERTIES.VIDEO_LINK.VALUE) {
       // const videoChanks = modifiered.PROPERTIES.VIDEO_LINK.VALUE.split('/')
       // const videoID = videoChanks[videoChanks.length - 1]
@@ -45,7 +46,7 @@ export const actions = {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'news')
 
-      const post = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[main_news_value]=${encodeURIComponent('Да')}&fields=id,name,video_link,detail_text,preview_text,detail_page_url,photo&limit=1`)
+      const post = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[active_date]=Y&filter[main_news_value]=${encodeURIComponent('Да')}&fields=id,name,video_link,detail_text,preview_text,detail_page_url,photo&limit=1`)
       commit('buildPost', post)
     } catch (e) {
       console.log(e)

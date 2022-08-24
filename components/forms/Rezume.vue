@@ -36,15 +36,20 @@
               </div>
 
               <div class="col-md-4 col-us-6">
+                <ValidationProvider mode="lazy" rules="required" v-slot="{ errors }">
                 <div class="ui-field">
-                  <select name="position" id="" placeholder="Выберите вакансию" class="ui-input" v-model="form.vacancy">
+                  <select name="position" id="" placeholder="Выберите вакансию" class="ui-input" v-model="form.vacancy" :class="{invalid: errors.length}">
+                    <option value="">Выберите вакансию</option>
                     <option
                       v-for="cat in categories"
                       :key="cat.ID"
                       :value="cat.NAME"
                     >{{cat.NAME}}</option>
+                    <option value="Предложить вакансию">Предложить вакансию</option>
                   </select>
+                  <div v-if="errors.length" class="ui-field-error">{{ errors[0] }}</div>
                 </div>
+                </ValidationProvider>
               </div>
 
               <div class="col-md-4 col-us-6">
@@ -184,7 +189,9 @@ export default {
   },
 
   mounted () {
-    this.form.vacancy = this.categories[0].NAME
+    // this.form.vacancy = this.categories[0].NAME
+
+    // console.log(this.categories)
   }
 }
 </script>

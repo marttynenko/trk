@@ -35,7 +35,8 @@ export const mutations = {
       modifiered.ID = el.ID
       modifiered.NAME = el.NAME
       modifiered.IMG = (el.PREVIEW_PICTURE && el.PREVIEW_PICTURE.SRC)
-        ? config.APIserver + el.PREVIEW_PICTURE.SRC
+        // ? config.APIserver + el.PREVIEW_PICTURE.SRC
+        ? el.PREVIEW_PICTURE.SRC
         : '/images/plugs/post-card.jpeg'
       
       return modifiered

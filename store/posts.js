@@ -50,7 +50,8 @@ export const mutations = {
       modifiered.DETAIL_TEXT = text
 
       if (el.PROPERTIES.PHOTO && el.PROPERTIES.PHOTO.VALUE) {
-        img = config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
+        // img = config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
+        img = el.PROPERTIES.PHOTO.VALUE[0]
       } else if (el.PROPERTIES.VIDEO_LINK && el.PROPERTIES.VIDEO_LINK.VALUE) {
         // const videoChanks = el.PROPERTIES.VIDEO_LINK.VALUE.split('/')
         // const videoID = videoChanks[videoChanks.length - 1]

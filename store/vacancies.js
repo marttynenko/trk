@@ -65,7 +65,8 @@ export const actions = {
   async fetchCategories ({ commit }) {
     try {
       //get locale iblock id from config
-      const iblockID = config.getIblock(this.$i18n.locale,'vacanciesCats')
+      // const iblockID = config.getIblock(this.$i18n.locale,'vacanciesCats')
+      const iblockID = config.getIblock(this.$i18n.locale,'vacancies')
       
       const res = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&sort=active_from:desc&fields=id,name`)
       commit('setCategories', res)

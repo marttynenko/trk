@@ -18,7 +18,6 @@ export const mutations = {
     }
 
     const clean = list.map(el => {
-    // const clean = arr.map(el => {
       const modifiered = {}
 
       modifiered.URL = '/news/'+el.CODE
@@ -52,18 +51,9 @@ export const actions = {
           filterString += `filter[id][]=${IDs.data[i]}&`
         }
 
-        const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&${filterString}fields=id,name,active_from,code&limit=10`)
-        // for await (const id of IDs.data) {
-        //   const res = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[id]=${id}&fields=id,name,active_from,code`)
-          
-        //   if (res.data && !Array.isArray(res.data)) {
-        //     arr.push(res.data[id])
-        //   }
-        // }
+        const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[active_date]=Y&${filterString}fields=id,name,active_from,code&limit=10`)
         commit('updatePosts', data)
       }
-
-      // commit('updatePosts', arr)
     } catch (e) {
       console.log(e)
     }

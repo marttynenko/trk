@@ -44,11 +44,9 @@ export const mutations = {
 
       let img
       if (el.PROPERTIES.PHOTO && el.PROPERTIES.PHOTO.VALUE) {
-        img = config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
+        // img = config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
+        img = el.PROPERTIES.PHOTO.VALUE[0]
       } else if (el.PROPERTIES.VIDEO_LINK && el.PROPERTIES.VIDEO_LINK.VALUE) {
-        // const videoChanks = el.PROPERTIES.VIDEO_LINK.VALUE.split('/')
-        // const videoID = videoChanks[videoChanks.length - 1]
-        // img = `//img.youtube.com/vi/${videoID}/0.jpg`
         img = config.ytParser(el.PROPERTIES.VIDEO_LINK.VALUE,'0')
       } else {
         img = '/images/plugs/post-card.jpeg'

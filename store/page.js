@@ -37,7 +37,7 @@ export const actions = {
       //get locale iblock id from config
       const iblockID = config.getIblock(this.$i18n.locale,'pages')
       
-      const page = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[CODE]=${code}&fields=id,name,detail_text`)
+      const page = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[active_date]=Y&filter[CODE]=${code}&fields=id,name,detail_text`)
       commit('buildPage', page)
     } catch (e) {
       console.log(e)

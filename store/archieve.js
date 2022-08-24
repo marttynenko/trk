@@ -53,7 +53,8 @@ export const mutations = {
 
 
       if (el.PROPERTIES.PHOTO && el.PROPERTIES.PHOTO.VALUE) {
-        img = config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
+        // img = config.APIserver + el.PROPERTIES.PHOTO.VALUE[0]
+        img = el.PROPERTIES.PHOTO.VALUE[0]
       } else if (el.PROPERTIES.VIDEO_LINK && el.PROPERTIES.VIDEO_LINK.VALUE) {
         // const videoChanks = el.PROPERTIES.VIDEO_LINK.VALUE.split('/')
         // const videoID = videoChanks[videoChanks.length - 1]
@@ -85,7 +86,7 @@ export const actions = {
     try {
       const iblockID = config.getIblock(this.$i18n.locale,'news')
 
-      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[active_from]=${date}&sort=active_from:desc&fields=id,name,active_from,detail_text,short_text,detail_page_url,photo,video_link&limit=${limit}&page=${page}`)
+      const data = await this.$axios.$get(`${config.APIserver}/api/element/?filter[iblock_id]=${iblockID}&filter[active]=Y&filter[active_date]=Y&filter[active_from]=${date}&sort=active_from:desc&fields=id,name,active_from,detail_text,short_text,detail_page_url,photo,video_link&limit=${limit}&page=${page}`)
       // console.log(data)
 
       commit('setPosts', data)

@@ -3,3 +3,9 @@ POST http://bitrixvm.farbatest.com/api/search/?q=Президент
 ###
 
 POST http://apitrk.farbatest.com/api/search/?q=%D0%B3%D0%BE%D0%BC%D0%B5%D0%BB%D1%8C&clear=Y&limit=20&PAGEN_1=3
+
+
+###
+
+
+POST https://api.tvrgomel.by/api/search/?q=%D0%B3%D0%BE%D0%BC%D0%B5%D0%BB%D1%8C&limit=10&PAGEN_1

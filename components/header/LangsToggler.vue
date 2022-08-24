@@ -7,6 +7,7 @@
         class="header-action-langs-lang"
         :key="locale.code"
         :to="localePath('/',locale.code)"
+        @click.native="reload"
       >{{ locale.name }}</nuxt-link>
       <!-- :to="localePath('/',locale.code)" -->
       <!-- :to="switchLocalePath(locale.code)" -->
@@ -16,6 +17,11 @@
 
 <script>
 export default {
+  methods: {
+    reload() {
+      location.reload();
+    }
+  },
   computed: {
     availableLocales () {
       return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
