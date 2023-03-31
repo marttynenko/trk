@@ -4,14 +4,15 @@ import config from './config'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'Телерадиокомпания "Гомель"',
+    title: 'Новости Гомеля и Беларуси - Телерадиокомпания "Гомель"',
     htmlAttrs: {
       lang: 'ru'
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: 'Последние новости Гомеля, Гомельской области и Беларуси. Телеканал Беларусь 4, программа передач, радио и главные новости. Сайт телерадиокомпании «Гомель»' },
+      { hid: 'metatags', name: 'metatags', content: 'телерадиокомпания Гомель, Гомель, ТРК, новости Гомеля, видеоновости' },
       { name: 'format-detection', content: 'telephone=no' }
     ],
     link: [

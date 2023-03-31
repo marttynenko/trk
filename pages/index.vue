@@ -103,6 +103,8 @@ import MainMidHorizontal from '~/components/banners/MainMidHorizontal.vue'
 import MainBottomHorizontal from '~/components/banners/MainBottomHorizontal.vue'
 import MainMini from '~/components/banners/MainMini.vue'
 
+import { mapGetters } from 'vuex'
+
 export default {
   // layout: 'front',
 
@@ -125,7 +127,40 @@ export default {
     MainMidHorizontal,
     MainBottomHorizontal,
     MainMini
-  }
+  },
+
+  // async asyncData({store}) {
+  //   await store.dispatch('meta/fetchTags','Главная')
+  // },
+
+  // computed: {
+  //   ...mapGetters({
+  //     metas: 'meta/getTag'
+  //   })
+  // },
+
+  // head() {
+  //   let title = "Телерадиокомпания Гомель";
+  //   let descr = 'Новости Гомеля и Гомельской области'
+  //   try {
+  //     if (this.metas.PROPERTIES.TITLE && this.metas.PROPERTIES.TITLE.VALUE && this.metas.PROPERTIES.TITLE.VALUE != '') {
+  //       title = this.metas.PROPERTIES.TITLE.VALUE
+  //     }
+
+  //     if (this.metas.PROPERTIES.DESCRIPTION && this.metas.PROPERTIES.DESCRIPTION.VALUE && this.metas.PROPERTIES.DESCRIPTION.VALUE != '') {
+  //       descr = this.metas.PROPERTIES.DESCRIPTION.VALUE
+  //     }
+  //   } catch (e) {
+  //     console.log(e)
+  //   }
+
+  //   return {
+  //     title: title,
+  //     meta: [
+  //       { hid: 'description', name: 'description', content: descr },
+  //     ]
+  //   }
+  // }
 }
 </script>
 

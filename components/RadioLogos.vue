@@ -6,15 +6,15 @@
       </span>
     </span>
     <span class="radios-list-drop" :class="{opened: isDrop}">
-      <a href="http://radiogomelplus.by/" class="radios-item" target="_blank">
+      <a href="//radiogomelplus.by/" class="radios-item" target="_blank">
         <img src="/images/Radio1.png" alt="радио 1">
       </a>
-      <a href="http://www.radiogomelfm.by/" class="radios-item" target="_blank">
+      <a href="//www.radiogomelfm.by/" class="radios-item" target="_blank">
         <img src="/images/Radio2.png" alt="радио 2">
       </a>
-      <a href="http://belarus4gomel.by/" target="_blank" class="radios-item">
+      <span class="radios-item">
         <img src="/images/Radio3.png" alt="радио 3">
-      </a>
+      </span>
     </span>
     
   </div>

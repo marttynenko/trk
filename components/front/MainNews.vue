@@ -16,7 +16,7 @@
     <div class="main-news-img" @mouseenter.once="plHover">
       <div class="main-news-img-link" v-if="isPlayer">
         <vue-plyr ref="plyr" :options="videoOptions">
-          <div data-plyr-provider="youtube" :data-plyr-embed-id="post.PROPERTIES.VIDEO_LINK.VALUE" :rel="0"></div>
+          <div data-plyr-provider="youtube" :data-plyr-embed-id="correctSource" :rel="0"></div>
         </vue-plyr>
       </div>
       
@@ -51,13 +51,18 @@ export default {
           autoplay: 1,
           rel: 0,
         }
-
       },
     }
   },
 
   computed: {
-    ...mapGetters({post: 'mainnews/getPost'})
+    ...mapGetters({post: 'mainnews/getPost'}),
+
+    correctSource: function () {
+      const chanks = this.post.PROPERTIES.VIDEO_LINK.VALUE.split('/')
+      const videoID = chanks[chanks.length - 1]
+      return videoID
+    }
   },
 
   methods: {

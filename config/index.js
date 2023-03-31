@@ -17,7 +17,8 @@ module.exports = exports = {
       vacanciesCats: '39',
       press: '41',
       ads: '32',
-      videonews: '10'
+      videonews: '10',
+      meta: '44'
     },
     by: {
       news: '4',
@@ -32,7 +33,8 @@ module.exports = exports = {
       vacanciesCats: '40',
       press: '42',
       ads: '31',
-      videonews: '19'
+      videonews: '19',
+      meta: '43'
     }
   },
 

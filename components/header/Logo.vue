@@ -1,7 +1,7 @@
 <template>
   <NuxtLink :to="localePath('/')" class="logo">
     <div class="logo-icon">
-      <img src="/images/Logo.png" alt="Телерадиокомпания Гомель">
+      <img src="/images/Logo.png" :alt="$t('name')">
     </div>
     <div class="logo-txt">{{ $t('name') }}</div>
   </NuxtLink>
@@ -78,7 +78,7 @@ export default {
     "name": "Телерадиокомпания «Гомель»"
   },
   "by": {
-    "name": "Телерадыекампанiя «Гомель»"
+    "name": "Тэлерадыёкампанія «Гомель»"
   }
 }
 </i18n>

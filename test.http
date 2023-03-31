@@ -9,3 +9,8 @@ POST http://apitrk.farbatest.com/api/search/?q=%D0%B3%D0%BE%D0%BC%D0%B5%D0%BB%D1
 
 
 POST https://api.tvrgomel.by/api/search/?q=%D0%B3%D0%BE%D0%BC%D0%B5%D0%BB%D1%8C&limit=10&PAGEN_1
+
+
+###
+
+GET https://api.tvrgomel.by/api/element/?filter[iblock_id]=43&filter[name]=Главная&fields=title,description
