@@ -1,8 +1,8 @@
 import config from '~/config'
 
 export const state = () => ({
-  post: {},
-  postInitial: {}
+  post: null,
+  postInitial: null
 })
 
 export const getters = {

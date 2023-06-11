@@ -1,5 +1,5 @@
 <template>
-  <div class="inner">
+  <div class="inner" v-if="post && Object.keys(post).length">
     <div class="row">
       <div class="col-12">
         <div class="ui-breadcrumbs">

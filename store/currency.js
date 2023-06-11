@@ -2,6 +2,9 @@ import config from '~/config'
 
 const watherAPIkey = '1befacfcd56f1b2aba5dea1368552166'
 
+const NodeCache = require( "node-cache" );
+const myCache = new NodeCache();
+
 export const state = () => ({
   currency: null,
   weather: null
@@ -41,7 +44,6 @@ export const mutations = {
 export const actions = {
   async fetchCurrency ({ commit }) {
     try {
-
       const data = await this.$axios.$get(`https://www.nbrb.by/api/exrates/rates?periodicity=0`)
       commit('buildCurrency', data)
     } catch (e) {

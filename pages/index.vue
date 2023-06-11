@@ -129,38 +129,38 @@ export default {
     MainMini
   },
 
-  // async asyncData({store}) {
-  //   await store.dispatch('meta/fetchTags','Главная')
-  // },
+  async asyncData({store}) {
+    await store.dispatch('meta/fetchTags','Главная')
+  },
 
-  // computed: {
-  //   ...mapGetters({
-  //     metas: 'meta/getTag'
-  //   })
-  // },
+  computed: {
+    ...mapGetters({
+      metas: 'meta/getTag'
+    })
+  },
 
-  // head() {
-  //   let title = "Телерадиокомпания Гомель";
-  //   let descr = 'Новости Гомеля и Гомельской области'
-  //   try {
-  //     if (this.metas.PROPERTIES.TITLE && this.metas.PROPERTIES.TITLE.VALUE && this.metas.PROPERTIES.TITLE.VALUE != '') {
-  //       title = this.metas.PROPERTIES.TITLE.VALUE
-  //     }
+  head() {
+    let title = "Телерадиокомпания Гомель";
+    let descr = 'Новости Гомеля и Гомельской области'
+    try {
+      if (this.metas.PROPERTIES.TITLE && this.metas.PROPERTIES.TITLE.VALUE && this.metas.PROPERTIES.TITLE.VALUE != '') {
+        title = this.metas.PROPERTIES.TITLE.VALUE
+      }
 
-  //     if (this.metas.PROPERTIES.DESCRIPTION && this.metas.PROPERTIES.DESCRIPTION.VALUE && this.metas.PROPERTIES.DESCRIPTION.VALUE != '') {
-  //       descr = this.metas.PROPERTIES.DESCRIPTION.VALUE
-  //     }
-  //   } catch (e) {
-  //     console.log(e)
-  //   }
+      if (this.metas.PROPERTIES.DESCRIPTION && this.metas.PROPERTIES.DESCRIPTION.VALUE && this.metas.PROPERTIES.DESCRIPTION.VALUE != '') {
+        descr = this.metas.PROPERTIES.DESCRIPTION.VALUE
+      }
+    } catch (e) {
+      console.log(e)
+    }
 
-  //   return {
-  //     title: title,
-  //     meta: [
-  //       { hid: 'description', name: 'description', content: descr },
-  //     ]
-  //   }
-  // }
+    return {
+      title: title,
+      meta: [
+        { hid: 'description', name: 'description', content: descr },
+      ]
+    }
+  }
 }
 </script>
 
